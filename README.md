@@ -2,6 +2,7 @@
 ## 이메일:  inky4832@daum.net
 ## 구글 드라이브 : https://drive.google.com/drive/folders/1tiCj2DSPxwDJWuz_80Tgyqltp_C8N8Da?usp=sharing
 
+## 크롬 원격 데스크톱 : https://support.google.com/chrome/answer/1649523?hl=ko&co=GENIE.Platform%3DDesktop
 
 ### 자바 JDK 버전:  JDK 17
 ### DB 버전:  MySQL8
