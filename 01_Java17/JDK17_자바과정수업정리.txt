@@ -1,0 +1,36 @@
+
+강사명: 인경열
+이메일: inky4832@daum.net
+
+
+1. 회원가입
+ 
+  - 구글
+  - github
+  - 오라클
+    http://www.oracle.com
+
+2. 환경설정
+
+  1) JDK 설치
+    - C:\Program Files\Java\jdk-17 에 기본적으로 설치됨.
+
+3. 자바 특징
+  - OOP( Object Oriented Programming )
+  - 플랫폼 독립적 ( OS 독립적 )
+  - 개발자가 더 이상 메모리를 관리하지 않는다. ( GC: Garbage Collector )
+
+4. 자바 개발 환경 3가지 ( 기준: 디바이스(장치))
+
+   1) Java SE ( Java Standard Edition )
+      - 일반 PC 	
+      - 자바 기술
+      - 구축방법: JDK 설치
+
+   2) Java EE ( Java Enterprise Edition )
+      - 서버(웹 서버)
+      - 웹페이지 개발 기술 ( Servlet & JSP )
+      - 구축방법: Tomcat 설치
+
+   3) Java ME ( Java Micro Edition )
+      - 휴대용 장치 ( PDA, 셋탑박스 )
