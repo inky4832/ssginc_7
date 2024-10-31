@@ -42,6 +42,24 @@
                 문법:  java Test        <=== Test 클래스가 실행되어 결과가 나옴.
 
 
+      * JDK 설치시 설치되는 JVM ( Java Virtual Machine )
+
+
+         *.class
+        -------------
+         JVM 
+        --------------
+          OS ( Window, Linux, Mac )
+         -------
+	   H/W
+ 
+   2) 개발툴 ( IDE )
+     - 인텔리제이 (
+       http://www.jetbrains.com
+
+     - 이클립스
+       http://www.eclipse.org
+
 3. 자바 특징
   - OOP( Object Oriented Programming )
   - 플랫폼 독립적 ( OS 독립적 )
