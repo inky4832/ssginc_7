@@ -18,8 +18,30 @@
       시작 > 마우스 오른쪽 클릭 > 시스템 > 고급 시스템 설정 > 고급 탭 > 환경변수 
 
       JAVA_HOME=C:\Program Files\Java\jdk-17  <=== JDK의 홈디렉터리 경로 설정
-      PATH=                                   <=== 윈도우의 프로그램에 명령어 경로 설정
- 
+      PATH=%JAVA_HOME%\bin;기본PATH                                   <=== 윈도우의 프로그램에 명령어 경로 설정
+           C:\Program Files\Java\jdk-17\bin;기본PATH   
+
+      * 주요 명령어 2개
+
+       javac.exe ( 컴파일하는 명령어, 컴파일러(compiler) 라고 부름 )
+
+       java.exe  ( 실행하는 명령어,  인터프리터(interpreter) 라고 부름 )
+
+
+      * 자바 실행 순서
+
+      소스 파일( *.java 예> Test.java )
+         |
+      컴파일 작업 ( 컴파일러 이용: javac.exe )
+                
+		문법:  javac Test.java  <=== Test.class 파일이 생성됨 
+
+         |
+      실행 작업 ( 인터프리터 이용: java.exe )
+
+                문법:  java Test        <=== Test 클래스가 실행되어 결과가 나옴.
+
+
 3. 자바 특징
   - OOP( Object Oriented Programming )
   - 플랫폼 독립적 ( OS 독립적 )
