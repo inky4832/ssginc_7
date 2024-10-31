@@ -52,13 +52,59 @@
           OS ( Window, Linux, Mac )
          -------
 	   H/W
- 
+   
+       JDK ( Java Development Kit     : 자바개발 환경 ) <==== 실제로 자바어플리케이션 개발하는 개발자 환경
+                                                          JRE +  API + 개발도구( javac, ... ) 
+
+       JRE ( Java RunTime Environment : 자바실행 환경 ) <==== 실제로 자바어플리케이션을 실행하는 일반 사용자 환경.
+                                                          JVM + API
+
+       자바 API : 자바에서 미리 만들어서 제공된 클래스 파일들을 의미.
+                압축해서 제공됨. ( *.jar 형식 )
+             
+	       C:\Program Files\Java\jdk-17\lib\src.zip 파일이 API의 소스파일.
+
+             * 자바의 압축 파일 3가지
+  
+               -jar
+	         => 일반적인 SE 환경의 압축파일
+                    예> *.jar
+	       -war
+	         => 일반적인 EE 환경의 압축파일
+                    예> *.war
+	       -ear
+                 => jar + war 환경의 압축파일
+                    예> *.ear
+
+      자바 API 문서 :  어떤 자바 API가 있는지 알려주는 메뉴얼.
+                    웹으로 제공됨.
+           https://docs.oracle.com/en/java/javase/17/docs/api/index.html
+
+
+
    2) 개발툴 ( IDE )
      - 인텔리제이 (
        http://www.jetbrains.com
 
      - 이클립스
        http://www.eclipse.org
+       인스톨 프로그램 아님. 압축 풀면 설치됨.
+       C:\java_study\eclipse\workspace 생성  > eclipse.exe 실행
+       
+       eclipse 실행후 추가작업
+        가. 한글 인코딩 설정 (utf-8)
+           elcipse의 window항목 > preference > General > workspace 에서 Text File Encoding 에서
+	   UTF-8로 설정.
+
+	나. 글꼴 설정
+	   elcipse의 window항목 > preference > General > Apper~ > Color&Fonts > Basic > Text Font 에서 설정
+
+        다. 컴파일러 버전 변경
+            elcipse의 window항목 > preference > Java > Compiler 에서 현재 21 --> 17로 변경.
+
+        라. JRE 변경
+
+	    elcipse의 window항목 > preference > installed JRE > 기존 JRE 삭제.
 
 3. 자바 특징
   - OOP( Object Oriented Programming )
