@@ -35,7 +35,10 @@ public class PDT01_정수 {
 		System.out.println(0xD);  // 13
 		System.out.println(0xE);  // 14
 		System.out.println(0xF);  // 15
-		
+	
+		// long타입으로 지정하는 방법
+		System.out.println(100L);  // 100L 은 정수형 long 타입으로 처리됨.
+	
 	}
 
 }

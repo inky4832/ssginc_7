@@ -13,6 +13,11 @@ public class PDT02_실수 {
 		System.out.println(3.14);
 		System.out.println(3.14D); 
 		System.out.println(3.14d);
+		
+		//3. 지수 표현
+		System.out.println(1.4E2);  // 140.0
+		System.out.println(1.4E-2);  // 0.014
+		
 	}
 
 }
