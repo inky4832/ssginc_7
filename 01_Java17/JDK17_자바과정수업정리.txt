@@ -666,3 +666,52 @@
 
       예> String s = "hello";
          Object s2 = s;   // String 인 s가 Object 형으로 자동 형변환 됨.
+
+9. 표준 출력 ( standard output )
+
+        입력(input)                 출력(output)  => I/O
+   외부 ----------> 자바프로그램(기준)------------> 외부
+  (소스)                                      (목적지) 
+ - 키보드(표준입력)                              - 모니터(표준출력)
+   파일                                         파일
+   네트워크                                      네트워크
+
+  1) 개념
+    표준 출력인 모니터에 데이터를 출력하는 방법.
+
+  2) 방법 3가지
+
+   가. System.out.println(값);
+      - 반드시 값은 하나만 지정가능.
+        만약에 여러값을 지정하려면 하나의 값으로 만들어야 된다. + 이용.
+      - 여러번 사용시 새로운 줄에 출력이 된다.
+
+   나. System.out.print(값);
+     - 반드시 값은 하나만 지정가능.
+       만약에 여러값을 지정하려면 하나의 값으로 만들어야 된다. + 이용.
+     - 여러번 사용시 동일한 줄에 출력이 된다.
+       즉 줄 변경이 안됨.
+
+
+   다. System.out.printf("형식문자", 값, 값2, ... );   // 가변인자 라고 부르고 갯수는 정해져 있지 않음.
+      문법: printf(String format, Object... args)
+
+     - 형식문자(%표현식)의 갯수와 값의 갯수가 일치해야 된다.
+      https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax
+
+      문자열: %s
+      정수: %d
+      실수: %f
+      문자: %c
+      논리: %b
+
+      예> System.out.printf("%s", "홍길동");
+         System.out.printf("%d", 100);
+	 System.out.printf("%b", true);
+	 System.out.printf("%f", 3.14);
+
+	 System.out.printf("%s, %d, %b", "홍길동", 20, true);
+
+ 실제로는  System.out.printf("이름: %s, 나이:%d, 결혼여부:%b", "홍길동", 20, true);
+       
+    - 여러번 사용시 print 와 동일하게 한 줄로 출력이 된다.
