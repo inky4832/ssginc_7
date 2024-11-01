@@ -295,3 +295,76 @@
      - 기본형 8가지가 아닌 나머지 모두.
       대표적으로 클래스,배열,인터페이스 가 있음.
       반드시 클래스,배열,인터페이스를 데이터로 간주하자.(*************)
+//////////////////////////////////////////////////////////////////
+1일차 리뷰
+
+1. 자바 3가지 환경
+
+   Java SE: 기본개발환경, JDK 설치, 2가지 환경변수 설정 ( JAVA_HOME, PATH )
+   Java EE: 웹 개발 환경 ( Servlet/JSP ), Tomcat 설치
+   Java ME: 휴대용 모바일 환경
+
+2. 자바특징
+   - OOP(Object Oriented Programming) :객체 지향 프로그래밍 방법론
+     나중에 함수형 프로그래밍(자바에서는 람다(lambda)라고 부름)과 AOP(Aspect Oriented Programming: 관점 지향 프로그래밍)
+     방법론을 배운다.
+   - 플랫폼에 독립적 ( 어떤 OS건 한번 만든 자바 어플리케이션을 바로 실행이 가능하다. )
+     플랫폼에 의존적인 언어도 있음( C언어 )
+   - 자동으로 사용하지 않는 메모리에 올라간 인스턴스를 제거해줌. Garbage Collector(GC)가 해줌.
+     결국 자바 개발자는 메모리 관련되서 신경쓸 필요가 없다.
+
+3. 자바 개발 순서
+
+   1)소스작성 ( Hello.java )
+     
+   2)컴파일
+     - 컴파일러 이용해서 컴파일 한다. ( javac.exe )
+     - 문법:  javac Hello.java
+
+        Hello.java ---------------> Hello.class ( bytecode 라고 부름 ) 
+
+   3)실행
+     - 인터프리터 이용해서 실행 ( java.exe )
+     - 문법:  java Hello
+  
+         Hello.class ------------------> 결과 출력
+
+4. JVM ( Java Virtual Machine )
+
+  - 역할: bytecode 를 실행하는 역할.
+  - 구축방법: JDK 설치
+  - H/W 느낌이 나지만 명백한 S/W 임.
+   그런데 H/W 특징을 가짐 ( 다양한 메모리를 가짐 )
+  - 주요 메모리 3가지: stack, heap, method area (******************)
+
+5. 자바의 데이터종류 ( 데이터타입, 데이터형 )
+
+  1) 기본형 데이터 ( Primitive Data Type :PDT )
+  
+      - 수치형 
+             정수형 : byte  ( 1byte )
+	            short ( 2byte )
+		    int  ( 4byte ) - 기본 ( 만약 100 이라고 지정하면 int로 처리됨 )
+		    long ( 8byte )
+                   
+		   - 10진수,2진수,8진수,16진수 표현 가능.
+
+	     실수형 : float ( 4btye )
+	            double ( 8byte ) - 기본 ( 만약 3.14 이라고 지정하면 double로 처리됨 )
+
+		    float 표현: 3.14F, 3.14f
+                    double 표현: 3.14, 3.14D, 3.14d
+
+		    지수 표현 가능: 140.0 는 1.4E2로 표현 가능.
+
+      - 문자형 : char ( 2byte )
+               유니코드로 처리되기 때문에 전세계의 모든 언어 표현 가능.
+
+      - 논리형 : boolean ( 1byte)
+               true/false
+
+
+  2) 참조형 데이터 ( Reference Data Type :RDT )
+
+     - 기본형 8개를 제외한 나머지가 모두 참조형이다.
+      대표적으로 클래스, 배열, 인터페이스가 있다.
