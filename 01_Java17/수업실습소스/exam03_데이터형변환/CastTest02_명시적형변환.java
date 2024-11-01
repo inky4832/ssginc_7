@@ -17,6 +17,8 @@ public class CastTest02_명시적형변환 {
 		
 		String s = "hello";
         Object s2 = s;   // String 인 s가 Object 형으로 자동 형변환 됨.
+        
+ 
 	}
 
 }
