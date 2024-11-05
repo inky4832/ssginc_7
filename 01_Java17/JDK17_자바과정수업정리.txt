@@ -1361,4 +1361,21 @@
 
      - 장점: 한번 생성된 컬렉션은 크기 변경이 가능. 
             데이터는 모두 달라도 무관.
-  
+
+     - 대표적인 3가지 컬렉션 종류 ( java.util 패키지 )
+       
+       가. List 계열 ( XXXList.class )
+          - 저장되는 순서가 존재함.
+	  - 중복데이터 저장이 가능.
+	  - 대표적인 클래스는 ArrayList.class
+
+       나. Set 계열  ( XXXSet.class )
+          - 저장되는 순서가 없음.
+	  - 중복데이터 저장이 불가능. ( 중복 데이터는 한번만 저장됨 )
+          - 대표적인 클래스는 HashSet.class
+	  
+       다. Map 계열  ( XXXMap.class )
+           - 저장되는 순서가 없음.
+	   - 저장되는 데이터의 이름(name,key)를 같이 저장한다.
+	     key/value 쌍으로 저장.
+           - 대표적인 클래스는 HashMap.class
