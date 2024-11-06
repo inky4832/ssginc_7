@@ -12,6 +12,7 @@ public class TestCat {
 		Cat c = new Cat();
 		System.out.printf("1 번 고양이 이름:%s, 나이:%d, 성별: %s \n", c.name, c.age,c.gender);
 
+		// 초기화
 		c.name="나비";
 		c.age=2;
 		c.gender="암컷";
