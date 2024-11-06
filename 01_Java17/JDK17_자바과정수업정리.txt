@@ -1598,3 +1598,63 @@
 
   2) 문법2 - 리터럴 이용
   2) 문법3 - new + 리터럴 이용
+
+/////////////////////////////////////
+4일차 리뷰
+
+ 1. 1차원 배열 ( array )
+   
+   1)목적
+     - 데이터 저장
+   2)특징
+     - 동일한 데이터만 저장가능
+     - 크기가 변경이 불가
+     - 존재하지 않는 요소를 접근할 경우 ArrayIndexOutofBoundsExcetion 예외가 발생된다.
+   3)문법1- new 이용
+   
+     main(){
+       int [] num; // num은 로컬변수, 데이터타입은 int [](배열) 임. 참조형 변수(주소값을 저장하는 변수)
+                   // stack 메모리에 생성
+
+       num = new int[3]; // new 는 heap 메모리에 생성, heap 메모리에 생성된 경우는 자동초기화 됨.
+
+       //초기화
+       num[0]=10;
+       num[1]=20;
+       num[2]=30;
+     }
+ 
+     문법2- 리터럴 이용 ( 가장 많이 사용됨 )
+       int [] num = {10,20,30};
+
+     문법3- new+리터럴
+
+       int [] num;
+       num = new int[]{10,20,30};  // 크기 지정 불가
+
+  4) 배열 순회
+
+    가. index 명시적으로 지정
+    나. for(int idx=0; idx<num.lenght; idx++){} 
+       => 일반 for문은 조건식을 잘못 지정하면 ArrayIndexOutofBoundsExcetion 예외 발생 확률이 높아짐.
+
+    다. foreach 문
+       for(변수: 배열){
+
+       }
+      => 조건식이 없기 때문에 ArrayIndexOutofBoundsExcetion 예외 발생 확률이 없다.
+
+   5) main(String [] args) 사용 용도
+
+     문법: java Test 값  값1  값2 .. 
+
+     예> java Test 10 20
+
+   6) 문자열숫자를   정수로 만드는 방법
+   
+      int n = Integer.parseInt("10");
+
+
+2. 2차원 배열
+
+
