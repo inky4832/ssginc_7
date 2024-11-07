@@ -8,7 +8,10 @@ public class Dog {
 	
 	
 	// 이클립스가 제공한 생성자 작성 실습
-	public Dog() {}
+	public Dog() {
+		
+		
+	}
 	public Dog(String name, int age) {
 		this(name,age,null);
 //		this.name = name;
