@@ -2045,6 +2045,7 @@
  3) 특징:
      - 일반적으로 생략이 사용된다.
      - 반드시 사용해야 되는 2가지 경우가 있다.
+
       가. 인스턴스 변수명과 파라미터명(로컬변수)이 동일한 경우
 
         예>
@@ -2055,14 +2056,34 @@
                  name = n;
                  age = n2;
 	     }
-
+            // 다음과 같이 인스턴스변수명과 로컬변수명이 동일한 경우
             public Cat( String name,   int age ){
-                 name = name;
-                 age = age;
+                 this.name = name;
+                 this.age = age;
 	     }   
+        
+       나. 특정 생성자에서 다른 생성자를 호출할 때
+          (외부)일반적으로 생성자를 호출하는 방법? new 클래스명([값,...])
+	  내부에서 생성자를 호출하는 방법?  this([값,...])
 
+          예>
 
+	        public Dog(String name, int age) {
+		   this(name,age, null);
+		  // this.name = name;
+		  // this.age = age;
+		}
+		public Dog(String name, int age, String gender) {
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
 
+          용도: 개별적인 생성자에서 인스턴스 변수를 초기화하지 않고 (중복코드 존재)
+	      특정 생성자 하나에서 인스턴스 변수를 초기화할 목적이다.
+
+	  주의할점: 반드시 생성자에서 호출해야 된다.
+	          호출시 첫라인에서 호출해야 된다.
 
 
 
