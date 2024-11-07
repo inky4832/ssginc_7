@@ -2032,5 +2032,41 @@
      메서드: 4가지 모두 사용 가능. 일반적으로 public 로 지정함.
      생성자: 4가지 모두 사용 가능. 일반적으로 public 로 지정함.
 
-2. this 
+2. this 키워드
+
+ 1) 개념: 
+    
+    객체생성후 heap 메모리에 생성된 자신의 인스턴스를 가리키는 방법이다.
+    외부에서는 객체생성시 사용했던 변수 (예> Cat c = new Cat())인 c를 이용한다.
+
+ 2) 문법:
+         this.인스턴스변수;
+	 this.메서드
+ 3) 특징:
+     - 일반적으로 생략이 사용된다.
+     - 반드시 사용해야 되는 2가지 경우가 있다.
+      가. 인스턴스 변수명과 파라미터명(로컬변수)이 동일한 경우
+
+        예>
+	      String name;
+	      int age;
+
+             public Cat( String n,   int n2 ){
+                 name = n;
+                 age = n2;
+	     }
+
+            public Cat( String name,   int age ){
+                 name = name;
+                 age = age;
+	     }   
+
+
+
+
+
+
+
+
+  
 
