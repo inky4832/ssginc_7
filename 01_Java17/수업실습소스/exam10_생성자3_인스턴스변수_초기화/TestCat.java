@@ -5,7 +5,6 @@ public class TestCat {
 	
 	public static void main(String[] args) {
 		
-		
 		// 인스턴스 변수 초기화 방법-1 ( 직접 접근 )
 		Cat c = new Cat();
 		c.name="나비";
