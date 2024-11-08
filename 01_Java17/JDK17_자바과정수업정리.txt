@@ -2514,8 +2514,8 @@
 
           예> Scanner scan = new Scanner(System.in);
 	     int num = scan.nextInt();
-    
 
+  
      나. static 메서드
       - 문법:
            public static void method1(){}
@@ -2528,3 +2528,32 @@
 
            예>  int num = Integer.parseInt("10")
 
+       - 주의할점: new(객체생성)과 무관하기 때문에 
+                new, this, 인스턴스,인스턴스변수, (인스턴스)메서드, heap메모리 
+
+        * static 메서드 vs instance 메서드 
+          static 메서드: 개별적인 instance(Cat, Dog)와 무관한 기능처리.
+          instance 메서드: 개별적인 instance에 국한된 기능처리
+	                  예> Cat의 name속성을 수정하는 setName()
+ 
+
+   4) 일반 클래스와 static 클래스
+     
+      - static 클래스는 반드시 중첩 클래스에서만 사용이 가능하다.
+
+       중첩클래스: 클래스안에 또 다른 클래스가 선언된 경우
+
+         예>
+	      public  class 클래스명{ // outer클래스
+		
+
+		 public class 클래스명{ // 중첩클래스, inner 클래스
+
+		 }
+
+	         public static class 클래스명{ // 중첩클래스, inner 클래스
+
+		 }
+	      }
+
+    5) static 블럭 (***************)
