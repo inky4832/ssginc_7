@@ -2704,4 +2704,43 @@
        Employee
           |
           |
-       Engineer
+       Engineer    Manager
+
+
+   사. 명시적으로 자식에서 부모를 호출할 수 있다.
+       ( super 키워드 이용)
+       * 부모를 호출하는 형태
+       a. 부모의 멤버 호출
+          super.멤버
+
+       b. 부모의 생성자 호출
+          super([값,..])
+
+
+   2) 상속 구현 방법
+    
+     가. 상속이전 코드는 클래스간에 중복되는 코드가 많다.
+
+       Engineer            Manager
+       String name;        String name;   
+       int salary;         int salary;
+       String skill;       String depart;
+    
+
+    나. 상속적용
+       a. Engineer와 Manager를 아우르는 큰 개념의 클래스를 작성한다.
+
+               Employee
+
+       b. 큰 개념의 클래스인 Employee 안에 Engineer와 Manager 의 공통적인 멤버를 정의한다.
+
+       c. 상속을 적용 
+
+          
+			Employee ( 부모 클래스, 큰 개념, 큰 타입 )
+			  |
+			  |
+			  |
+                   Manager    Engineer (자식 클래스, 작은 개념, 작은 타입 )
+
+ ///////////////////////////////////////////////////////////////
