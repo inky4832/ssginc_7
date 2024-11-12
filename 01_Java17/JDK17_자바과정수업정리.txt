@@ -2825,6 +2825,10 @@
         Object의 toString() 메서드 호출 시점?
 	     ==> 참조변수를 System.out.println(참조변수) 하면 자동으로 호출이 된다.
 	         필요시 System.out.println(참조변수.toString()) 명시적으로 호출할 수도 있다.
+		 따라서 다음 2 코드는 동일한 코드이다.
+		 예> String s = "hello";
+		    System.out.println(s);  // 자동으로 toString() 호출됨
+		    System.out.println(s.toString());
 
 	API의 toString()는 거의 대부분 재정의해서 사용한다. 
 	( 즉 클래스@16진수 리턴하지 않고 실제값이 리턴되도록 재정의함 )
