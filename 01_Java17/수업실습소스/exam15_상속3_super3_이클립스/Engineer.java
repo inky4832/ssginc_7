@@ -26,9 +26,14 @@ public class Engineer extends Employee {
 	}
 
 	 // 한번에 데이터 리턴
-	public String getEngineer() {
-		return name+"\t"+salary+"\t"+skill;
-	}   
+//	public String getEngineer() {
+//		return name+"\t"+salary+"\t"+skill;
+//	}   
 	
-	
+	// 부모 메서드 재정의
+	@Override
+	public String getEmployee() {
+//		return name+"\t\t"+salary+"\t"+skill;
+		return super.getEmployee()+"\t"+skill;
+	}
 }

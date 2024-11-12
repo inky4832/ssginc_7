@@ -21,7 +21,21 @@ public class Manager extends Employee {
 		this.depart = depart;
 	}
 	 // 한번에 데이터 리턴
-	public String getManager() {
-		return name+"\t"+salary+"\t"+depart;
-	}   
+//	public String getManager() {
+//		return name+"\t"+salary+"\t"+depart;
+//	}   
+	
+	// 부모 메서드 재정의 - 직접 구현
+//	@Override
+//	public String getEmployee() {
+////		return name+"\t"+salary+"\t"+depart;
+//		return super.getEmployee()+"\t"+depart;
+//	}
+	
+	@Override
+	public String getEmployee() {
+		return super.getEmployee()+"\t"+depart;
+	}
+	
+	
 }
