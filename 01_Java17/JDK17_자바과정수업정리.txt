@@ -2830,10 +2830,10 @@
 		    System.out.println(s);  // 자동으로 toString() 호출됨
 		    System.out.println(s.toString());
 
-	API의 toString()는 거의 대부분 재정의해서 사용한다. 
+	API의 toString()는 거의 대부분 미리 재정의해서 사용한다. 
 	( 즉 클래스@16진수 리턴하지 않고 실제값이 리턴되도록 재정의함 )
         대표적인 API: String, Date, Integer ...
-	따라서 사용자가 만든 클래스도 toString() 재정의해서 매우 쉽게 모두 데이터를 출력할 수 있다.
+	따라서 사용자가 만든 클래스도 toString() 재정의해서 매우 쉽게 모든 데이터를 출력할 수 있다.
 	
 	* 재사용 클래스의 가장 기본되는 템플릿 구조는 다음과 같다.
 
