@@ -2615,3 +2615,42 @@
 	    java.lang 이외의 패키지는 반드시 명시적으로 import 해야 된다.
 
 
+ 3. UML ( Unified Modeling Language )
+
+   - 설계단계에서 추출되는 다양한 산출물들을 도식화하는 도구.
+
+     구글: 클래스 다이어그램
+////////////////////////////////////////////////////////////////////////////
+
+* 클래스 관계
+
+ - use a 관계 : 학생 uas a 컴퓨터. 
+               연관관계(association)
+	       UML: 학생 ---------------> 컴퓨터
+                public class 학생{
+		   컴퓨터 c; // 인스턴스 변수
+		}
+		public class 컴퓨터{
+
+		}
+
+ - has a 관계 : 자동차 has a 바퀴.  Cafe has a Coffee.
+  (집합관계. whole-part 관계)              
+               
+	       aggregation 관계: 자동차 has a 라디오
+	                       자동차와 엔진의 lifecycle 다르다.
+	       UML: 자동차 비어있는마름모-----------라디오
+
+	       composition 관계: 자동차 has a 엔진.
+	                        자동차와 엔진의 lifecycle 같다.
+               UML: 자동차 채워진마름모-----------라디오
+
+                public class 자동차{
+		   엔진 c; // 인스턴스 변수
+		}
+		public class 엔진{
+
+		}
+
+ - is a 관계 : 대학생 is a 학생.
+ (상속 관계)
