@@ -3,7 +3,6 @@ package exam17_다형성;
 public class Manager extends Employee{
 	
 	String depart; // Manager에 추가된 속성
-	String email;
 	
 	public Manager() {
 		super();
@@ -26,9 +25,6 @@ public class Manager extends Employee{
 		return "Manager [depart=" + depart + ", name=" + name + ", salary=" + salary + "]";
 	}
 
-	//자식에만 있는 메서드
-	public void xxx() {
-		
-	}
+	
 	
 }
