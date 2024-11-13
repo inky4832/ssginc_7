@@ -2992,6 +2992,21 @@
 
 
       나. 메서드 파라미터 
+       
+         // 다형성이 적용된 메서드
+	public static void b(Object obj) {
+		System.out.println(obj);		
+	}
+
+	b(100);
+	b("hello");
+	b(3.14);
+
+	==> 오버로딩(overloading)메서드가 불필요하다.
+	==> 대표적인 메서드
+	    System.out.printf("", "홍길동"); 
+	    System.out.printf("", 10); 
+	    System.out.printf("", 175.58); 
 
     6) 다형성에서 원하는 타입에 해당하는 인스턴스 찾기
 
