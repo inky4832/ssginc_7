@@ -2922,3 +2922,41 @@
 9일차
 
 1. 다형성 (Polymorphism)
+
+   1) 개념:  하나의 참조변수가 서로 다른 데이터타입의 인스턴스를 가리키는 능력.
+            반드시 상속관계(is a, 같은종류)가 전제되어야 한다
+
+         예>  
+	     // 다형성 적용 안됨. 일반적인 객체생성 방법
+	     Employee e = new Employee();
+	     Manager m = new Manger();
+	     Engineer eng = new Engineer();
+
+
+	     // 다형성 적용
+            Employee e = new Employee();
+	             e = new Manger();
+	             e = new Engineer();
+
+   2) 문법:
+           큰타입 변수 = 작은타입;
+           작은타입 변수 = 큰타입; //에러발생,해결: (형변환)
+
+	   ( 기본형에서도 비슷하게 적용됨.
+	        byte b = 10;
+		int b2 = b; )
+
+
+  3) 동적 타이핑( dynamic typing )
+    
+     - 개념: 컴파일시점에 자바가 알고 있는 메서드와
+            실행시점에 자바가 알고 있는 메서드가 동적으로 변경된다는 개념이다.
+
+	     Employee e = new Manager("이순신", 4000, "개발");
+             System.out.println(e); // e.toString() 호출  
+	     
+	   컴파일 시점의 toString()는 Employee의 toString()으로 알고 있고
+	   실행 시점에는 실제 new한 Manager의 toString()으로 실행이 된다
+
+    - 특징: 변수에는 동적 타이핑 개념이 없다.
+           메서드에만 존재하는 개념이다.
