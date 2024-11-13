@@ -2856,3 +2856,69 @@
   ///////////////////////////////
 
  ///////////////////////////////////////////////////////////////
+ 8 일차 리뷰
+
+ 1. 상속 ( inheritance )
+
+   1) 개념: 클래스들간의 관계중 ( use a, has a , is a ) is a  관계가 성립됨.
+           결국 is a 는 같은 종류임을 의미함.
+	   예>  대학생 is a  학생
+	       중학생 is a  학생
+	       고양이 is a 애완동물
+               강아지 is a 애완동물 
+   2) 상속구현
+
+           학생   ( 부모클래스,parent, super 클래스 )
+         
+       대학생   중학생 ( 자식클래스, child, sub 클래스 )
+
+         - UML 표기법으로는 삼각형 실선
+	 - 자바코드로는 extends 부모클래스
+
+    3) 특징
+       - 부모의 멤버(인스턴스변수, 메서드)를 자식이 그냥 사용 가능 ( 재사용성이 높아짐. 따라서 코드도 간결해짐 )
+       - 상속이 안되는 2가지 ( 생성자, private로 지정된 멤버 )
+       - 항상 자신보다 부모를 먼저 생성한다. ( 자식클래스 생성자 첫 라인에서 부모생성자를 자동으로 호출한다. super() )
+       - 명시적으로 부모 멤버 및 생성자를 호출할 수 있다.
+          부모 멤버: super.멤버 
+	  부모 생성자: super([값,..]);
+       - overriding 메서드 지원 ( 부모의 메서드를 자식이 재정의 하는 것을 의미 )
+        
+	 규칙: 부모의 리턴타입과 동일.
+	      부모의 메서드명과 동일.
+	      부모의 메서드의 파라미터와 동일.
+	      부모의 접근지정자와 같거나 덜 엄격한 지정자를 사용.
+	      부모에서 지정된 throws 예외클래스는 같거나 자식 클래스를 사용.
+
+
+	      부모 메서드:          public void method([변수,..]) throws RuntimeException{}
+ 
+                                 @Override
+              자식(오버라이딩) 메서드:  public void method([변수,..]) throws ArithmeticException{}
+ 
+	   * 예외클래스 계층구조
+
+	        Object
+		   |
+		Throwable
+		   |
+		 Exception
+		  |
+		 RuntimeException
+		  |
+		  ArithmeticException
+                  ArrayOutofBoundsException
+		  NullPointerException
+
+         overriding 불가: private 
+                         static 
+			 final 
+
+	 * final (마지막)
+	 변수: 상수로 되기 때문에 값 변경 불가.
+	 메서드: overriding 불가
+	 클래스: 상속 불가  ( 예> java.lang.Math )
+/////////////////////////////////////////////
+9일차
+
+1. 다형성 (Polymorphism)
