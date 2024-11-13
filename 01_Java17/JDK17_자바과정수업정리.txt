@@ -2960,3 +2960,39 @@
 
     - 특징: 변수에는 동적 타이핑 개념이 없다.
            메서드에만 존재하는 개념이다.
+
+   4) 자식에서만 추가된 변수 및 메서드는 반드시 형변환해서 사용해야 된다.
+	Employee e = new Manager("이순신", 4000, "개발");
+	 //e.depart;
+	 //e.getDepart(); // 컴파일시 Employee에서 xxx() 찾는다. 해결: 형변환
+	// 다음과 같이 형변환해서 자식에서 추가된 메서드 및 변수를 호출할 수 있다.
+	Manager m = (Manager)e;
+	m.getDepart();
+	System.out.println(m.depart);
+
+    5) 다형성 활용
+
+      가. 배열
+      Employee [] employee = { new Manager("이순신1", 4000, "개발"),
+			       new Engineer("유관순1", 2500, "자바"),
+			     new Manager("이순신2", 4000, "개발"),
+			     new Manager("이순신3", 4000, "개발"),
+			     new Engineer("유관순2", 2500, "자바")
+		};
+ 
+       배열 확장 가능하다.
+       Object [] obj = { new Manager("이순신1", 4000, "개발"),
+			 new Engineer("유관순1", 2500, "자바"),
+			 "hello",
+			 100,
+			 3.14,
+			 true,
+			 ...
+			 };
+
+
+      나. 메서드 파라미터 
+
+    6) 다형성에서 원하는 타입에 해당하는 인스턴스 찾기
+
+       문법:  변수 instanceof 클래스명  <==실행결과값은 true/false 반환
