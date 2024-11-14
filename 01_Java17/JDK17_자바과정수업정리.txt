@@ -3221,3 +3221,10 @@
       TestMain --------> DBService ---------> OracleDAO
       main() 
                                    ---------> MySQLDAO 
+
+     tight coupling: 접근 대상이 클래스이기 때문에 OracleDAO 에서 MySQLDAO 변경시
+                     DBService 가 수정이 되어야 한다.
+     
+     loosely coupling: 접근 대상이 인터페이스이기 때문에 OracleDAO 에서 MySQLDAO 변경시
+                       DBService 가 수정 안된다.
+                       이때 인터페이스는 버퍼역할을 담당한다. ( 다형성 문법이 적용됨 )
