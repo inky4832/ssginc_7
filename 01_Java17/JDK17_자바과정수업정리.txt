@@ -3200,11 +3200,24 @@
       - 하위 클래스에서 특정 메서드를 사용하도록 강제.
        예> 애완동물 관리 프로그램
 
-          Pet
+                 Pet
 
 
-       Cat    Dog
+       Cat    Dog    Bird   Bat
 
 
 
-   4) 목적2
+   4) 목적2 (*************)
+      - 클래스들간에 연관관계(참조)일 때 의존성 감소 목적임.
+        용어: tight coupling , loosely coupling(권장)
+
+       예>  A -----------> B -------------> C
+
+                            ------------->  D
+
+			    ------------->  E
+
+
+      TestMain --------> DBService ---------> OracleDAO
+      main() 
+                                   ---------> MySQLDAO 
