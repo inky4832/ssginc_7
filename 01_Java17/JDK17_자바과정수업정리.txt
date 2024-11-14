@@ -3114,3 +3114,44 @@
 
 	결과가 강제성이 부여되기 때문에 모든 자식들에서 공통적인 메서드로 사용할 수 있다. 
 	또한 일반적인 상속의 장점도 자식들은 누릴 수 있다.
+
+
+5. 인터페이스 (*****************, 매우 중요)
+
+ 1) 문법:
+
+     public interface 인터페이스명{
+        
+	  //구성요소
+          -상수
+	  -추상메서드
+	  -default메서드
+          -static메서드
+     }
+
+     인터페이스명.java 파일로 저장됨.
+
+ 2) 구성요소
+  
+   - 상수:    
+           int NUM =20; 지정하면
+           자동으로 public static final 이 지정된다.
+	   결국  public static final int NUM= 20;
+	   접근은 인터페이스명.상수명 으로 한다. ( 예> 인터페이스명.NUM )
+
+   - 추상메서드:    void a(); <=== default 접근지정자이고 abstract 없음.
+              자동으로 public abstract 가 지정된다.
+	      결국 public abstract void a(); 됨.
+	      따라서 인터페이스의 추상메서드는 abstract 생략가능하고
+	        모든 추상메서드의 접근지정자는 public 임.
+
+   - default메서드:  
+             문법:  public default  void  b(){}
+	          동작은 일반적인 concrete 메서드처럼 실행된다.
+		  따라서 new(객체생성)후에 사용 가능하다.
+  
+   - static 메서드:
+             문법:  public static  void  c(){}
+	         동작은 일반적인  static 메서드처럼 실행된다.
+		  따라서 new(객체생성)없이 클래스명.static메서드 사용 가능하다.
+
