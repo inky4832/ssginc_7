@@ -3344,6 +3344,9 @@
 
 	   }//end Outer
 
+        특징: Outer의 private 도 접근이 가능.
+	    Outer$Inner.class 형식으로 컴파일됨.
+	    Inner 사용은 Outer에서도 가능하고 다른 클래스에서도 가능하다.
 
      나. local inner 클래스 ( Outer클래스내 메서드내의 로컬변수와 동일하게 정의 )
 
@@ -3360,6 +3363,11 @@
 	
 
 	   }//end Outer
+	
+	 특징: Outer의 private 도 접근이 가능.
+	    Outer$Inner.class 형식으로 컴파일됨.
+	    Inner 사용은 Outer에서만 가능하다.
+
 
     다. static inner 클래스 (  static 지정된 inner class로서 Outer클래스의 static 멤버처럼 동작 )
  
@@ -3374,5 +3382,10 @@
 
 	   }//end Outer
 
+    특징:    Outer의 멤버(인스턴스변수) 접근 불가
+	    Outer$Inner.class 형식으로 컴파일됨.
+	    Inner 사용은 Outer.Inner 에서만 가능하다.
+
     라. 익명 클래스 ( anonymous class ,  interface와 같이 사용 ) (*********************)
      
+2. 익명 클래스 ( anonymous class )(*********************)
