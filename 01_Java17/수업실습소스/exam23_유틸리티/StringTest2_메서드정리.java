@@ -7,6 +7,7 @@ public class StringTest2_메서드정리 {
 		String s = "hElLo";
 		String s2 = "     world     ";
 
+		// String 의 인스턴스 메서드
 		System.out.println("1. 문자열 길이: " + s.length() + "\t" + s2.length()); // 5  15
 		System.out.println("2. 특정문자 얻기: " + s.charAt(0));  // h
 		System.out.println("3. 부분열1: " + s.substring(2));   // lLo
@@ -26,15 +27,43 @@ public class StringTest2_메서드정리 {
 		System.out.println("6. 문자열 연결: " + s.concat("!!!!"));   // hElLo!!!!
 		System.out.println("7. 대문자: " + s.toUpperCase());   // HELLO
 		System.out.println("8. 소문자: " + s.toLowerCase());   // hello
+
+		System.out.println("9. 문자열 비교: " + s.equals("hElLo"));   // true
+		System.out.println("9. 문자열 비교: " + s.equals("hello"));   // false
+		System.out.println("9. 문자열 비교(대소문자 무시): " + s.equalsIgnoreCase("hello"));   // true
+		
+		System.out.println("10. 문자열 포함여부: " + s.contains("hE"));   // true
+		System.out.println("10. 문자열 포함여부: " + s.contains("xhE"));   // false
+		
+		System.out.println("11. 문자열 치환: " + s.replace('h', 'H'));   // HElLo
+		System.out.println("11. 문자열 치환: " + s.replace("hE", "A"));   // HElLo
 		
 		
+		System.out.println("12. 문자열을 char[] 반환"); 
+		String s3 = "hElLo";
+		char [] ch = s3.toCharArray();
+		for (char c : ch) {
+			System.out.println(c);
+		}
+
+		System.out.println("13. 구분자 이용한 문자열 분리");
+		String s4 = "홍길동/이순신/유관순";
+		String [] names = s4.split("/");
+		for (String str : names) {
+			System.out.println(str);
+		}
 		
 		
+		// String 의 static 메서드 :  String.static메서드
+		System.out.println("14. 정수를 문자열로 변경" + String.valueOf(10));
+		System.out.println("14. 실수를 문자열로 변경" + String.valueOf(3.14));
+		char [] ch2 = {'A','B','C'};
+		String xxx = String.valueOf(ch2);
+		System.out.println("14. char [] 를 문자열로 변경" + xxx );  // ABC , toCharArray() 반대
 		
-		
-		
-		
-		
+		String f = String.format("이름:%s  나이:%d", "홍길동", 20);
+		System.out.println("15. 문자열 포맷 지정" + f);  // 이름:홍길동  나이:20
+		System.out.printf(f);		
 		
 	}
 }
