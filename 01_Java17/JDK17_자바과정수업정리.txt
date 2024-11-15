@@ -3481,3 +3481,30 @@
           한번 생성된 문자열이 변경된다. 따라서 문자열 가공이 많이 생기는 작업에 사용할 수 있다.
        
   3) 날짜 데이터
+
+     가. java.util.Date
+          a. 생성방법
+	     Date d = new Date();
+          b. 메서드 종류
+	     대부분의 메서드가 deprecated 되어있음.
+	     따라서 잘 사용하지 않음.
+	     java.text.SimpleDateFormat 클래스 이용하면 날짜정보를 얻을수 있음.
+
+     나. java.util.Calendar
+           
+	   a. 생성방법
+            Calendar cal = Calendar.getInstance(); // new 사용안함.
+           b. 메서드 종류
+            cal.get(Calendar.YEAR)
+	   c.  특징
+	      월은 + 1 지정해야 된다.
+	      cal.get(Calendar.MONTH) + 1
+
+     다. java.time.LocalDate (추천)
+
+
+
+
+
+
+
