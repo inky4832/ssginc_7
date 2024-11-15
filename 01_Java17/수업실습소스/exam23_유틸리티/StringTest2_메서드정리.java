@@ -37,7 +37,7 @@ public class StringTest2_메서드정리 {
 		
 		System.out.println("11. 문자열 치환: " + s.replace('h', 'H'));   // HElLo
 		System.out.println("11. 문자열 치환: " + s.replace("hE", "A"));   // HElLo
-		
+	
 		
 		System.out.println("12. 문자열을 char[] 반환"); 
 		String s3 = "hElLo";
@@ -61,9 +61,12 @@ public class StringTest2_메서드정리 {
 		String xxx = String.valueOf(ch2);
 		System.out.println("14. char [] 를 문자열로 변경" + xxx );  // ABC , toCharArray() 반대
 		
-		String f = String.format("이름:%s  나이:%d", "홍길동", 20);
+		String f = String.format("이름:%s  나이:%d \n", "홍길동", 20);
 		System.out.println("15. 문자열 포맷 지정" + f);  // 이름:홍길동  나이:20
 		System.out.printf(f);		
 		
+		
+		// 원본 문자열 출력 : String 은 한번 생성된 문자열은 변경이 안된다. 메서드를 적용하면 새로운 문자열이 생성된다.
+		System.out.println(" 원본 문자열 출력: " + s);  // hElLo
 	}
 }
