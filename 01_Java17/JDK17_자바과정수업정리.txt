@@ -3653,7 +3653,7 @@
     
            Object
 	     |
-	   Throwable
+	   Throwable ( getMessage(), printStackTrace() )
 	     |
  Error                                   Exception ( 예외클래스의 최상위 클래스)
                                             |
@@ -3692,10 +3692,55 @@
       단 다형성을 적용하여 부모 예외클래스 사용은 가능하다.
       하지만 권장하지 않고 적합한 예외클래스 사용(디테일한)을 권장한다.
 
+     - 예외가 발생된 곳에서 처리하는 방법임.
+
+     - catch에서 처리한 예외클래스가 가진 예외정보를 사용할 수 있다.
+       System.out.println( e.getMessage());
+       e.printStackTrace();  // 개발자 디버깅용
+
+     - 다중 catch 문 가능
+        
+	  try{
+
+	  문장1; // ArithmeticException 발생가능성 코드
+	  문장2;
+	  문장3; // NullPointerException 발생가능성 코드
+	  ..
+
+       }catch( ArithmeticException      변수 ){
+        
+	 예외발생시 처리문장; // 할수있는 최고의 처리는 예외정보를 출력하는 것이다.
+  
+       }catch( NullPointerException      변수 ){
+        
+	 예외발생시 처리문장; // 할수있는 최고의 처리는 예외정보를 출력하는 것이다.
+  
+       }catch( Exception     변수 ){
+        
+	 예외발생시 처리문장; // 할수있는 최고의 처리는 예외정보를 출력하는 것이다.
+  
+       }
+ 
+       반드시 예외클래스 계층구조에서 부모 예외클래스는 가장 나중에 catch로 지정해야 된다.
 
 
 
 
 
 
+7번) 예외발생
+8번) 자바가 현재 발생된 예외를 처리하기 위한 적합한 예외클래스를 찾는다.
+    예외클래스내에 발생한 예외정보를 가지고 있음.
+    ArithmeticException
+
+9번) ArithmeticException 객체생성
+
+  ArithmeticException x = new ArithmeticException("에러메시지");
+
+10번) x 참조변수를 자바코드로 던진다.(throw 한다)
+
+11번)  10번에서 던진(throw)한 예외클래스를 catch로 잡음.
+     catch(예외클래스 e){
+
+      }
 
