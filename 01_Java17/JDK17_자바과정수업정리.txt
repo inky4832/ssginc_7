@@ -3473,7 +3473,19 @@
 	  따라서 문자열이 많이 수정되는 경우에는 String 사용을 지양하자. 대신 StringBuilder 클래스를 사용한다.
 	- 리터럴 이용 방법으로 생성한 문자열은 동일한 문자열인 경우에는 한번 만 생성됨.
 
-  2) java.lang.StringBuilder
+  2) java.lang.StringBuilder ( java.lang.StringBuffer 동일한 기능이고 thread-safe 함. )
+      - StringBuilder 는 thread-unsafe 함.
+     
+      //////////////////////////////////////////
+       * thread 특징
+         - 병행처리
+         - 특정 데이터및 코드를 여러 thread가 공유가능.
+ 
+        thread-safe:  특정 스레드가 작업을 끝날때까지 기다려줌. ( synchronized 키워드 )
+	              성능은 떨어짐.
+        thread-unsafe : 스레드들이 병행작업으로 처리됨.
+	              성능은 좋으나 특정 작업은 보장 안됨.
+      /////////////////////////////////////////
 
       가. 생성방법
       나. 메서드 종류
@@ -3493,12 +3505,38 @@
      나. java.util.Calendar
            
 	   a. 생성방법
-            Calendar cal = Calendar.getInstance(); // new 사용안함.
+            Calendar cal = Calendar.getInstance(); // new 사용안함.  싱글톤 디자인 패턴
            b. 메서드 종류
             cal.get(Calendar.YEAR)
 	   c.  특징
 	      월은 + 1 지정해야 된다.
 	      cal.get(Calendar.MONTH) + 1
+        
+	////////////////////////////////////////////
+         싱글톤 디자인 패턴
+         개념: 프로그램중에 단 하나의 인스턴스만을 만들 때 사용.
+	   예> 지구(Earth)
+
+	     public class Earth{
+              
+	        private Earth e;
+
+		private Earth(){  // 외부에서 new Earth() 불가능.
+                    // e = new Earth();
+		}
+		public static Earth getInstance(){
+	             if(e==null){
+                         e = new Earth();
+		     }
+		     return e;
+	        }
+	     }
+	    // main 메서드
+            Earth xxx = Earth.getInstance();
+            Earth xxx2 = Earth.getInstance();
+
+	    System.out.println(xxx == xxx2 ); // true
+        ////////////////////////////////////////////////
 
      다. java.time.LocalDate (추천)
 
