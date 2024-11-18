@@ -3519,7 +3519,7 @@
 
 	     public class Earth{
               
-	        private Earth e;
+	        private static Earth e;
 
 		private Earth(){  // 외부에서 new Earth() 불가능.
                     // e = new Earth();
