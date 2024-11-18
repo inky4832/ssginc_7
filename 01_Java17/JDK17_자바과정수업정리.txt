@@ -3541,8 +3541,83 @@
      다. java.time.LocalDate (추천)
 
 
+                //현재 날짜
+		LocalDate today = LocalDate.now();
+		System.out.println(today);  // 2024-11-18
+		
+		LocalDate today2 = today.minusDays(2);
+		today2 = today.minusMonths(2);
+		today2 = today.minusYears(2);
+		System.out.println(today2);  // 2024-11-16
+		
+		LocalDate today3 = today.plusDays(2);
+		today3 = today.plusMonths(2);
+		today3 = today.plusYears(2);
+		System.out.println(today3);  // 2024-11-20
+		
+		//특정날짜 설정-1
+		LocalDate xxx = LocalDate.of(1999, 10, 12);
+		System.out.println(xxx);  // 1999-10-12
+		
+		// str---> LocalDate
+		// LocalDate parse(CharSequence text, DateTimeFormatter formatter)
+		String str = "1999-10-12";
+		LocalDate xxx2 = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		System.out.println(xxx2);  // 1999-10-12
+		
+		String str2 = "1999년10월12일";
+		LocalDate xxx3 = LocalDate.parse(str2, DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
+		System.out.println(xxx3);  // 1999-10-12
+ 
+
+    4) java.util.StringTokenizer
+
+       - 구분자를 가진 문자열에서 구분자를 이용해서 문자열을 분리할 때 사용
+       - 구분자의 기본은 공백문자.
+
+        예> "홍길동 이순신 유관순" 
+	   "홍길동/이순신/유관순"
+
+         String s2 = "홍길동/이순신/유관순";
+	StringTokenizer st = new StringTokenizer(s2, "/");
+	  while (st.hasMoreTokens()) {
+		 System.out.println(st.nextToken());
+	  }
 
 
 
+     5) 랜덤값 얻기
+       - java.util.Random
 
+         Random ran = new Random();
+	
+	System.out.println("정수값:" + ran.nextInt());
+	System.out.println("정수값(범위):" + ran.nextInt(3));  // 0~2
+	
+	System.out.println("실수값:" + ran.nextFloat());
+	System.out.println("논리값:" + ran.nextBoolean());
 
+      6) enum 타입(객체)
+       
+        - 여러 개의 상수를 효율적으로 사용하기 위한 객체이다.
+	  일반적으로 switch 문에서 사용됨.
+	- 문법:
+	  
+	    public enum  enum명{
+                 상수1, 상수2, 상수3,...;  // 예> 요일
+	    }
+
+	    사용방법:  enum명.상수
+
+	  예>  
+	  public enum Day {
+		SUNDAY,MONDAY,TUESDAY,
+		WEDNESDAY,THURSDAY,FRIDAY,SATURDAY;
+	 }
+
+	  Day day = Day.MONDAY;
+		
+		switch (day) {
+		case SUNDAY: System.out.println("SUN");break;
+
+//////////////////////////////////////////////
