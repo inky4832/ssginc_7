@@ -3672,7 +3672,7 @@
 		...
 
 
-2. 예외처리 방법 1 :  try~catch + 예외클래스 
+2. 예외처리 방법 1 :  try~catch~finally + 예외클래스 
 
   문법:
        try{
@@ -3748,7 +3748,25 @@
           반드시 수행되는 문장;
         }
        
+ 2. 예외처리 방법 2 :   throws 예외클래스
  
+    - try~catch는 예외가 발생된 곳에서 처리하는 방법이고
+      throws 는 예외가 발생된 곳이 아닌 다른 곳에서 예외처리하도록 위임하는 방법이다.
+      위임하는 대상은 메서드를 호출한 곳으로 위임한다.
+      결국 main메서드를 제외한 나머지 메서드는 throws 예외클래스 방식으로 예외처리를 하고
+      main 에서는 try~catch로 최종 예외처리한다.
+
+   문법:
+
+    main(){       a()throws ArithmeticException{     b() throws ArithmeticException{
+    try{
+      a();         b();                               int result = 10/0;
+     }catch(){
+
+     }
+    }             }                                  }
+ 
+
 
 
 
