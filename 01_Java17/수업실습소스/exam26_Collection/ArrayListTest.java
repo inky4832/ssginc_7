@@ -1,6 +1,7 @@
 package exam26_Collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,13 +10,16 @@ public class ArrayListTest {
 	public static void main(String[] args) {
 		// List 계열  (순서가 존재, 중복 가능 )
 		
-		ArrayList<String> list = new ArrayList<String>();  // new ArrayList<>() 동일
+//		ArrayList<String> list2 = new ArrayList<String>();  // new ArrayList<>() 동일
+		List<String> list = new ArrayList<String>();  // 다형성 적용
 		
 		//데이터 추가 ( append 기능 )
 		list.add("홍길동");
 		list.add("이순신");
 		list.add("유관순");
 		list.add("홍길동");
+		
+	
 		
 		//데이터 삽입 ( insert 기능 )
 		list.add(0, "정조");  // [정조, 홍길동, 이순신, 유관순, 홍길동]
@@ -64,6 +68,16 @@ public class ArrayListTest {
 			String s = ite.next();
 			System.out.println(s);
 		}
+		
+		
+		// List 생성-1
+		List<String> list2  = List.of("AA","BB");  // 수정불가, immutable
+//		list2.add(0, "정조"); // UnsupportedOperationException 에러 발생
+		System.out.println("List.of이용한 생성: "+ list2);
+		// List 생성-2
+		List<String> list3 = Arrays.asList("AA","BB"); // 수정불가, immutable
+//		list3.add(0, "정조"); // UnsupportedOperationException 에러 발생
+		System.out.println("Arrays.asList 이용한 생성: "+ list3);
 		
 	}
 
