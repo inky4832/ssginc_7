@@ -3823,7 +3823,7 @@
 	         |
 	     Exception 
 	         |
- RuntimeException     IOException/SQLException
+ RuntimeException  사용자정의예외클래스   IOException/SQLException 
   ...                    ..
 
 3. 예외처리 방법 ( 모두 예외클래스 이용)
@@ -3874,12 +3874,32 @@
      사용자 입장에서는 예외라고 간주할 수 있는 상황에서 사용됨.
 
    - 문법:
-         if(조건식) throw new XXXException("예외메시지"); <== 비정상종료됨. 예외처리 코드(throws)가 추가됨.
+         if(조건식) throw new UserDefinedException("예외메시지"); <== 비정상종료됨. 예외처리 코드(throws)가 추가됨.
 
+     예> Random에서 0 값이 나왔을때.
+        DB에서 원하는 항목을 검색할 때 값이 없을 때.
    
      * throws 와 throw
       throws: 예외처리를 메서드를 호출한 곳으로 위임할 때.
       throw:   명시적 예외 발생시킬 때.
+
+
+/////////////////////////////////////////////////
+13일차
+1.  사용자 정의 예외 클래스 (**************)
+
+   예> 10/0 ==> ArithmeticException
+      null값 ==> NullPointerException
+
+      Random값
+       0 일때  => 사용자 정의 예외클래스
+
+  문법:  public class UserDefinedException extends Exception{
+          // 인스턴스, 메서드 추가 가능
+          public UserDefinedException(String mesg){
+		super(mesg);
+	  }
+       }
 
 
 
