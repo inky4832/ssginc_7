@@ -3966,7 +3966,7 @@
            Collection<E> (인터페이스) - add(E e)-추가,clear()
                 |                   contains(Object obj)
 			            remove(Object obj),size()
-				    iterator()
+				    iterator():Iterator<E>
                 |
   Set<E>(인터페이스)     List<E>(인터페이스)
     | of(값...)                | add(int index, E element)-삽입
