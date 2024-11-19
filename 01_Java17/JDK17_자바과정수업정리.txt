@@ -3966,6 +3966,7 @@
            Collection<E> (인터페이스) - add(E e)-추가,clear()
                 |                   contains(Object obj)
 			            remove(Object obj),size()
+				    iterator()
                 |
   Set<E>(인터페이스)     List<E>(인터페이스)
     | of(값...)                | add(int index, E element)-삽입
@@ -3973,10 +3974,14 @@
 				 set(int index, E element)-수정,sort(), subList()
     |                          |
  HashSet<E>(클래스)    ArrayList(클래스)
+                           indexOf(Object o)
 
-
+ ////////////////////////////////////////////////////////////////////////////////
       Map<K,V> (인터페이스) <= Collection 인터페이스와 무관.
-         |
+         |       clear(), containsKey(Object key),containsValue(Object value)
+	         get(Object key), keySet()-키값만조회, of(k,v)
+		 put(K key, V value)-저장, remove(Object key),replace(K key, V value)
+		 size(), values()
 	 |
      HashMap(클래스)
 
