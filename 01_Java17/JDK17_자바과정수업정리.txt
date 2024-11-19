@@ -3922,7 +3922,16 @@
     - <T>는 컴파일 시점에 실제 지정된 데이터 타입으로 변환됨.
     - 클래스, 인터페이스, 메서드 파라미터 및 리턴타입에 사용한다.
 
-  5) 
+  5) 메서드파라미터로 제네릭 타입 전달시 제약 설정 방법
+   class Person{}
+   class Man extends Person{}
+   class Woman extends Person{}
+
+
+   printData(List<?> list): 제네릭된 모든 타입이 전달 가능.
+   printData2(List<? extends Person> list) : 제네릭된 Person 또는 Person의 자식들(Man,Woman)만 전달 가능
+   printData3(List<? super Man> list) : 제네릭된 Man 또는 Man의 부모인 Person 만 전달 가능.
+
 
 3. 컬렉션 API
  
@@ -3956,7 +3965,7 @@
         - 필요시 모든 값을 얻는다.
         - 실제 사용하는 클래스는 HashSet.
     다. Map 계열
-       - key(name)와 value 쌍으로 저장.
+       - key(name)와 value 쌍으로 저장. 저장되는 데이터 순서가 없다.
          필요시 key이용해서 value 값을 얻는다.
 	 가장 빠르게 데이터 조회가 가능하다.
        - 실제 사용하는 클래스는 HashMap.
