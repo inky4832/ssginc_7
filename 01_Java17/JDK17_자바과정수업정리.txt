@@ -3798,6 +3798,90 @@
         사용자가 만든 어플리케이션에서 특정 조건을 만족하지 않는 경우에 사용됨.
 	예> Random 에서 랜덤값이 0이 나왔을때 ( 자바 입장에서는 예외가 아니지만 사용자 입장에서는 예외라고 할 수 있음 )
 
+///////////////////////////////////
+12일차 리뷰
+
+1. 자바의 예외 종류
+
+  1) 실행시 발생
+     - 런타임 계열
+     - 예외클래스: RuntimeException 및 하위 예외클래스 ( ArithmeticException, NullPointerException,...)
+     - 특징: 원래는 발생되면 안되는 예외들이다. 
+            발생시 예외처리 방법으로 처리하지 않고 if문으로 처리해야 되는 코드들이다.
+     
+
+  2) 컴파일시 발생
+     - 비런타임 계열
+     - 예외클래스: RuntimeException 제외한 Exception 및 하위 예외클래스(IOException,SQLException)
+     - 특징: 반드시 예외처리(try~catch, throws )를 해야된다.
+
+2. 예외클래스 계층구조
+
+             Object
+	        |
+	    Throwable
+	         |
+	     Exception 
+	         |
+ RuntimeException     IOException/SQLException
+  ...                    ..
+
+3. 예외처리 방법 ( 모두 예외클래스 이용)
+
+   1) 예외가 발생된 곳에서 처리
+      try{
+         문장1;
+	 문장2;
+	 ..
+      }catch(예외클래스1 변수){
+         예외 발생시 실행되는 문장;
+      }catch(예외클래스2 변수){
+         예외 발생시 실행되는 문장;
+      }catch(Exception e){
+
+      }
+
+   2) 예외가 발생된 곳이 아닌 메서드를 호출한 곳에서 처리
+      - throws 예외클래스1, 예외클래스2{}
+      - main메서드를 제외한 모든 메서드는 throws 하고 
+        최종적으로 main에서 try~catch로 예외처리한다.
+
+4. finally 문
+  
+   - 반드시 실행되어야 하는 문장을 알려주는 용도임.
+      try{
+         문장1;
+	 문장2;
+	 ..
+      }catch(예외클래스1 변수){
+         예외 발생시 실행되는 문장;
+      }finally{
+         반드시 실행되어야 하는 문장;
+      }
+
+   - try~finally 문 가능
+      try{
+         문장1;
+	 문장2;
+	 ..
+      }finally{
+         반드시 실행되어야 하는 문장;
+      }
+
+5. 명시적 예외 발생
+
+   - 자바 입장에서는 예외가 아니고 
+     사용자 입장에서는 예외라고 간주할 수 있는 상황에서 사용됨.
+
+   - 문법:
+         if(조건식) throw new XXXException("예외메시지"); <== 비정상종료됨. 예외처리 코드(throws)가 추가됨.
+
+   
+     * throws 와 throw
+      throws: 예외처리를 메서드를 호출한 곳으로 위임할 때.
+      throw:   명시적 예외 발생시킬 때.
+
+
 
 7번) 예외발생
 8번) 자바가 현재 발생된 예외를 처리하기 위한 적합한 예외클래스를 찾는다.
@@ -3806,7 +3890,7 @@
 
 9번) ArithmeticException 객체생성
 
-  ArithmeticException x = new ArithmeticException("에러메시지");
+  ArithmeticException x = new ArithmeticException("/ by zero");
 
 10번) x 참조변수를 자바코드로 던진다.(throw 한다)
 
