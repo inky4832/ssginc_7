@@ -4001,10 +4001,16 @@
 
  
 
+4.  Arrays 와 Collections 유틸리티 
 
 
+    가. java.util.Arrays 
+      
+       - 배열시 사용시 유용한 메서드 제공
 
-
+    나. java.util.Collections
+     
+       - 컬렉션(List) 사용시 유용한 메서드 제공
 
 
 
