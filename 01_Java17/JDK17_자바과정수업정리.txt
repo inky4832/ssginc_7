@@ -3925,3 +3925,74 @@
   5) 
 
 3. 컬렉션 API
+ 
+  1) 데이터 저장 방법 3가지
+    가. 변수
+    나. 배열
+        - 크기변경이 불가
+	- 동일한 데이터만 저장 가능.
+	- 배열에서 사용가능한 메서드가 없음. ( 지원되는 메서드가 없음)
+	  하지만 Arrays 유틸리티 클래스에서 배열관련 메서드를 지원한다.
+
+    다. 컬렉션 API
+        - 크기변경이 가능
+	- 다른 데이터 저장도 가능
+	- 자체적으로 사용 가능한 메서드가 지원됨.
+	  또한 Collections 유틸리티 클래스에서 추가 메서드를 지원한다.
+ 
+  2)  컬렉션 API 종류 3가지 ( 외우기 )
+  
+   - java.util 패키지
+
+    가. List 계열
+        - 저장되는 데이터의 순서가 존재한다. ( 내부적으로 idx 이용함 )
+	- 중복 데이터 저장이 가능하다.
+	- 필요시 idx 이용해서 값을 얻는다.
+        - 실제 사용하는 클래스는 ArrayList.
+
+    나. Set 계열
+	- 저장되는 데이터 순서가 없다. 
+	- 중복 데이터 저장이 불가 ( 중복데이터 저장시 한번만 저장됨 )
+        - 필요시 모든 값을 얻는다.
+        - 실제 사용하는 클래스는 HashSet.
+    다. Map 계열
+       - key(name)와 value 쌍으로 저장.
+         필요시 key이용해서 value 값을 얻는다.
+	 가장 빠르게 데이터 조회가 가능하다.
+       - 실제 사용하는 클래스는 HashMap.
+
+  3)  컬렉션 API 계층구조 ( 외우기 )
+
+           Collection<E> (인터페이스) - add(E e)-추가,clear()
+                |                   contains(Object obj)
+			            remove(Object obj),size()
+                |
+  Set<E>(인터페이스)     List<E>(인터페이스)
+    | of(값...)                | add(int index, E element)-삽입
+                                 get(int index), of(값...),remove(int index)
+				 set(int index, E element)-수정,sort(), subList()
+    |                          |
+ HashSet<E>(클래스)    ArrayList(클래스)
+
+
+      Map<K,V> (인터페이스) <= Collection 인터페이스와 무관.
+         |
+	 |
+     HashMap(클래스)
+
+   * 값의 크기 
+    1) 배열크기 : 배열명.length
+    2) 문자열크기(길이): str.length()
+    3) 컬렉션크기     : x.size()
+
+ 
+
+
+
+
+
+
+
+
+
+
