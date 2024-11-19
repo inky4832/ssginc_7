@@ -15,9 +15,9 @@ class Box2<T>{
 
 public class GenericTest2_사용후 {
 	public static void main(String[] args) {
-
+		
 		//문자열만 저장
-		Box2<String> box1 = new Box2<String>();  // new Box2(); 동일
+		Box2<String> box1 = new Box2<>();  // new Box2<String>(); 동일
 		box1.setValue("홍길동");
 //		box1.setValue(10); // 문제1해결: 실행시점이 아닌 컴파일 시점에 잘못 저장된 데이터임을 알 수 있음.
 		String str = box1.getValue(); // 문제2 해결. 형변환이 필요 없음.
