@@ -4112,3 +4112,16 @@
 		    IntUnaryOperator    : int applyAsInt(int operand)
 		    LongBinaryOperator : long applyAsLong(long left, long right)
 		    LongUnaryOperator : long applyAsLong(long operand)
+
+
+ Predicate<T> : 파라미터 있고 리턴있는 형식
+             반드시 리턴값은 boolean 으로 반환.
+	     따라서 조건지정시 주로 사용됨.
+	  
+	     추상메서드: boolean test(T t)
+
+	     하위: BiPredicate<T,U> : boolean test(T t, U u)
+	         DoublePredicate   : boolean test(double value)
+		 IntPredicate      : boolean test(int value)
+		 LongPredicate     : boolean test(long value)
+	        
