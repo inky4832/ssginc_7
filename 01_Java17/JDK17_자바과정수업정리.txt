@@ -4133,3 +4133,20 @@
 
  3) andThen() 메서드
     - Function(*) 또는 Consumer 작업들을 연결해서 처리
+
+    예> "hello" 입력해서 글자수를 체크하고 
+        이 글자수에 + 100 하자.
+    
+       1번째 Function <String, Integer> : "hello" 입력해서 글자수 체크
+
+       2번째 Function <Integer, Integer> : 글자수에 + 100
+
+ 
+ 4) 메서드 참조 ( method reference )
+
+   개념: 람다표현식에서 메서드(생성자)를  호출하는 코드가 있는 경우 축약 표현방법이다.
+
+       1) static 메서드 : 클래스명::메서드명
+       2) 인스턴스 메서드 :  참조변수::메서드명
+       3) 생성자       :  클래스명::new
+       4) System.out.println(값) : System.out::println
