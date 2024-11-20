@@ -1,5 +1,6 @@
 package exam26_Collection;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -45,7 +46,10 @@ public class HashSetTest {
 	    
 		// 생성2 - Set.of(값...) // 수정불가, immutable
 	    Set<String> set3 =Set.of("AA","BB");
-	    //set3.add("CC"); // UnsupportedOperationException 에러 발생
+	    
+	     // 수정가능한 Set으로 변경
+	    set3 = new HashSet<>(set3);
+	    set3.add("CC"); // UnsupportedOperationException 에러 발생
 	    System.out.println("Set.of 이용한 생성"+set3);
 	    
 	}

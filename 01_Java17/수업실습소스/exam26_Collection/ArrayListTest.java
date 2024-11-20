@@ -72,8 +72,11 @@ public class ArrayListTest {
 		
 		// List 생성-1
 		List<String> list2  = List.of("AA","BB");  // 수정불가, immutable
-//		list2.add(0, "정조"); // UnsupportedOperationException 에러 발생
+		// 수정가능한 리스트로 변경
+		list2 = new ArrayList<>(list2);
+		list2.add(0, "정조"); // UnsupportedOperationException 에러 발생
 		System.out.println("List.of이용한 생성: "+ list2);
+		
 		// List 생성-2
 		List<String> list3 = Arrays.asList("AA","BB"); // 수정불가, immutable
 //		list3.add(0, "정조"); // UnsupportedOperationException 에러 발생

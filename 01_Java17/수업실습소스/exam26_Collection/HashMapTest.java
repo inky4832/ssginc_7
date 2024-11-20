@@ -2,6 +2,7 @@ package exam26_Collection;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,7 +63,10 @@ public class HashMapTest {
 		
 		// Map 생성-1  
 		Map<String, Integer> map3 = Map.of("k1", 100, "k2", 200);  // 값 변경불가, immutable
-//		map3.put("k1", 300);  // UnsupportedOperationException 에러 발생
+		
+		// 수정가능한 Map으로 변경
+		map3 = new HashMap<>(map3);
+		map3.put("k1", 300);  // UnsupportedOperationException 에러 발생
 		System.out.println(map3);  // {k2=200, k1=100}
 		
 	}
