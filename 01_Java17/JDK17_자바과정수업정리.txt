@@ -4125,3 +4125,11 @@
 		 IntPredicate      : boolean test(int value)
 		 LongPredicate     : boolean test(long value)
 	        
+	     * 논리연산자에 해당하는 메서드 제공
+	     && : and()
+	     || : or()
+	     !  :  negate()
+
+
+ 3) andThen() 메서드
+    - Function(*) 또는 Consumer 작업들을 연결해서 처리
