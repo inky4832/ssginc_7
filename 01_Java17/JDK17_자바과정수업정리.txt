@@ -4095,3 +4095,20 @@
 		     ToIntFunction<T>     : int applyAsInt(T value)
 		     ToLongBiFunction<T,U>  : long applyAsLong(T t, U u)
 		     ToLongFunction<T>   : long applyAsLong(T value)
+
+  Operator    :  파라미터 있고 리턴있는 형식,
+                 Function 을 상속받음.
+		 Function과 차이점은 Function은 파라미터타입과 리턴타입을 사용자가 임의로 설정이 가능함.
+		 즉 파라미터타입과 리턴타입이 서로 다른 타입이어도 가능했음.
+                 
+		 Operator 는 파라미터타입과 리턴타입이 서로 같음.
+		 따라서 파라미터타입과 명시하도록 되어 있음.
+
+                하위: BinaryOperator<T> : T apply(T t, T u)
+		    UnaryOperator<T>  : T apply(T t)
+		    DoubleBinaryOperator : double applyAsDouble(double left, double right)
+		    DoubleUnaryOperator : double applyAsDouble(double operand)
+		    IntBinaryOperator   : int applyAsInt(int left, int right)
+		    IntUnaryOperator    : int applyAsInt(int operand)
+		    LongBinaryOperator : long applyAsLong(long left, long right)
+		    LongUnaryOperator : long applyAsLong(long operand)
