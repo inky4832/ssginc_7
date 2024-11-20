@@ -3943,7 +3943,7 @@
 	- 배열에서 사용가능한 메서드가 없음. ( 지원되는 메서드가 없음)
 	  하지만 Arrays 유틸리티 클래스에서 배열관련 메서드를 지원한다.
 
-    다. 컬렉션 API
+    다. 컬렉션 API ( 자료구조 )
         - 크기변경이 가능
 	- 다른 데이터 저장도 가능
 	- 자체적으로 사용 가능한 메서드가 지원됨.
@@ -3982,7 +3982,7 @@
                                  get(int index), of(값...),remove(int index)
 				 set(int index, E element)-수정,sort(), subList()
     |                          |
- HashSet<E>(클래스)    ArrayList(클래스)
+ HashSet<E>(클래스)    ArrayList(클래스, thread-unsafe), Vector(클래스, thread-safe)
                            indexOf(Object o)
 
  ////////////////////////////////////////////////////////////////////////////////
@@ -3999,8 +3999,29 @@
     2) 문자열크기(길이): str.length()
     3) 컬렉션크기     : x.size()
 
- 
+///////////////////////////////////////////
+ * Iterator 와 Enumeration
+ - 기능은 Collection ( ArrayList, HashSet, Vector )에 저장되어 있는 데이터를
+ 반복해서 얻을 때 사용한다.
 
+   가. Iterator
+     - ArrayList와 HashSet, Vector 에서 모두 사용
+	
+	예>  Iterator<String> ite = list.iterator();
+	    while(ite.hasNext()){
+               System.out.println(ite.next());
+	    }
+
+   나. Enumeration
+      Vector 에서만  사용
+
+       예> Enumeration<String> enu = v.elements();
+          while(enu.hasMoreElements()){
+             System.out.println(ite.nextElement());
+	  }
+         
+
+//////////////////////////////////////////
 4.  Arrays 와 Collections 유틸리티 
 
 
@@ -4012,7 +4033,7 @@
      
        - 컬렉션(List) 사용시 유용한 메서드 제공
 
-
+////////////////////////////////////////////////////
 
 
 
