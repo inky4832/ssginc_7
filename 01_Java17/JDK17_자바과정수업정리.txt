@@ -4034,6 +4034,42 @@
        - 컬렉션(List) 사용시 유용한 메서드 제공
 
 ////////////////////////////////////////////////////
+13 일차
+
+1. 표준 API 함수적 인터페이스(추상메서드 관련)
+
+  1) 개념
+    - 메서드의 종류가 4가지
+     가. 파라미터 없고 리턴없는 형식
+     나. 파라미터 있고 리턴없는 형식
+     다. 파라미터 없고 리턴있는 형식
+     라. 파라미터 있고 리턴있는 형식
+   현재까지는 위 기능을 하는 메서드가 필요하다면 인터페이스를 만들어서
+   메서드를 구현했음.
+   매우 많이 사용되는 형식이기 때문에 API 에서 위 종류의 추상메서드를
+   가진 인터페이스를 제공해줌.
+   이 인터페이스를 표준 API 함수적 인터페이스라고 부른다.
+   이 인터페이스는 이름있는 클래스, 익명클래스, 람다표현식이 모두 가능하다.
+  
+  2) java.util.function 패키지 
+
+   @FunctionalInterface <== 반드시 단 하나의 추상메서드만 가지도록 강제한다.
+    Consumer<T> : 파라미터 있고 리턴없는 형식
+                 추상메서드: void accept(T t)
+
+               하위: BiConsumer<T,U> : void accept(T t, U u)
+	           DoubleConsumer   :void accept(double value)
+		   IntConsumer      : void accept(int value)
+		   LongConsumer     : void accept(long value)
+                   ObjDoubleConsumer<T> : void accept(T t, double value)
+		   ObjIntConsumer<T>   : void accept(T t, int value)
+		   ObjLongConsumer<T>  : void accept(T t, long value)
 
 
+   Supplier<T> : 파라미터 없고 리턴있는 형식  
+                 추상메서드: T get()
 
+               하위: BooleanSupplier : boolean getAsBoolean()
+	           DoubleSupplier   : double getAsDouble()
+		   IntSupplier      : int getAsInt()
+		   LongSupplier     : long getAsLong()
