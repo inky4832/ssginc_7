@@ -4275,13 +4275,17 @@
              하나의 파라미터가 전달되어 여러개의 값을 가진 리턴값으로 반환됨.
 	     예> "a/b/c" ==>[a,b,c]
         
-      -skip
+      -skip(n) 
+      -limit(n)-갯수제한
       -중복제거 (distinct() )
       -필터링( filter(Predicate))
       ..
    다. 최종처리
      - 최대/최소/총합/평균/갯수
-     - 반복출력
-     - 컬렉션타입변환(List로 변경)
+     - 반복출력 ( foreach(Consumer) )
+     - 컬렉션타입변환(List, Map로 변경)
+       
+        list 반환: List xxx =  stream().collect( Collectors.toList() );  // Collector와 Collectors 상속관계
+	          List xxx = stream().중간처리.collect( Collectors.toList() );
 
 
