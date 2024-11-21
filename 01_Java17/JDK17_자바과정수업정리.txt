@@ -4281,11 +4281,33 @@
       -필터링( filter(Predicate))
       ..
    다. 최종처리
-     - 최대/최소/총합/평균/갯수
+     - 최대(max)/최소(min)/총합(sum)/평균(average)/갯수(count) ( 그룹메서드 )
+       
+       Stream 안에는 count, min, max 만 제공됨.
+       IntStream,DoubleStream, LongStream 등에는  count, min, max, sum, average 모두 제공됨.
+
+        a. 단일값 ( 수치값 )
+         예> int배열,
+	    Integer 리스트
+
+	b. 클래스의 특정변수값
+	 예> Person의 age 값
+   
+            stream().collect( Collectors.averagingInt( Function))
+	    stream().collect( Collectors.averagingDouble( Function))
+
+            stream().collect( Collectors.counting())
+	    stream().collect( Collectors.maxBy(Comparator))
+            stream().collect( Collectors.minBy(Comparator)
+            stream().collect( Collectors.summingInt((Function))
+
      - 반복출력 ( foreach(Consumer) )
      - 컬렉션타입변환(List, Map로 변경)
        
         list 반환: List xxx =  stream().collect( Collectors.toList() );  // Collector와 Collectors 상속관계
 	          List xxx = stream().중간처리.collect( Collectors.toList() );
+
+        Map 반환: Map xxx =  stream().collect( Collectors.toMap(Function, Function) );
+	         Map xxx =  stream().중간처리.collect( Collectors.toMap(Function, Function) );
 
 
