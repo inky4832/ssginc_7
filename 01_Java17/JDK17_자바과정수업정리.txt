@@ -4255,9 +4255,15 @@
       -정렬 ( sorted())
  
          a. 배열 : Arrays.sort( 배열 )- 오름차순(기본)
-	 b. 컬렉션: Collections.sort(컬렉션, Comparator타입) - Comparator이용해서 어떤값으로 정렬할지 지정, 오름차순,내림차순 
-         c. Stream API: sorted()
+	         Arrays.sort( 배열 , Comparator타입)
+		 - Comparator 이용해서 어떤값으로 정렬할지 지정, 오름차순,내림차순  
+	 b. 컬렉션: Collections.sort(컬렉션, Comparator타입)
+	         - Comparator이용해서 어떤값으로 정렬할지 지정, 오름차순,내림차순 
+
+         c. Stream API: sorted() - 오름차순(기본)
 	                sorted(Comparator)
+			- Comparator이용해서 어떤값으로 정렬할지 지정, 오름차순,내림차순
+
 
       -가공(소문자,대문자,..)
           => map(Function<? super T,? extends R> mapper)
