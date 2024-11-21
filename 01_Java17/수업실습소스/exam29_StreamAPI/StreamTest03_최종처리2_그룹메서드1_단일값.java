@@ -29,7 +29,8 @@ public class StreamTest03_최종처리2_그룹메서드1_단일값 {
 		System.out.println("###########################################");
 		//2. 리스트 단일값
 		List<Integer> list = Arrays.asList(1,2,3,4,5);
-		Stream<Integer> st2 = list.stream();
+		// Stream 에는 sum(), average() 메서드가 지원 안됨. 따라서 IntStream으로 변환해야 됨.
+		Stream<Integer> st2 = list.stream(); 
 		IntStream st3 = st2.mapToInt(t-> t);
 		System.out.println("최대값:" +  st3.max().getAsInt());
 		System.out.println("최소값:" + list.stream().mapToInt(t-> t).min() +"\t" +list.stream().mapToInt(t-> t).min().getAsInt());
