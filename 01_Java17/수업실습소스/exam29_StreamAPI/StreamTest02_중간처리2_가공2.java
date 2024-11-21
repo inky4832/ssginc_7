@@ -36,7 +36,7 @@ public class StreamTest02_중간처리2_가공2 {
 		
 		// 리스트로 변경
 		List<String> result = list.stream().flatMap(f).collect(Collectors.toList());
-		System.out.println(result);
+		System.out.println(result); // [홍길동, 이순신, 유관순, 이몽룡, 정조, 영조]
 		
 		
 	}
