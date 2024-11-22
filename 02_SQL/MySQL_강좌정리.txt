@@ -47,5 +47,9 @@
 			       loc 컬럼:    부서위치
 
 			   salgrade 테이블
+			       
+			       grade 컬럼: sal 등급
+			       losal 컬럼: 최저 sal
+			       hisal 컬럼: 최고 sal
 
 	 워크샵에서 사용할 테이블:MySQL용_SQL워크샵스크립트.txt
