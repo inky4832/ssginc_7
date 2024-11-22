@@ -1,0 +1,51 @@
+
+ MySQL8 강좌정리
+
+ 1. 환경설정
+
+  -  https://dev.mysql.com/downloads/installer/ 다운로드 
+  -  설치 3가지  ( MySQL, Workbench, samples )
+     관리자 계정: root
+          비번: 1234
+
+
+ 2. 참조문서 
+   https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/
+
+ 3. MySQL 접속방법
+
+   1) 툴 이용
+      - Workbench ( 자체적으로 설치가능 )
+      - DBeaver.zip ( 다운로드 )
+         http://dbeaver.io/download
+
+   2) 프로그램 언어 ( 자바 )
+      - JDBC ( Java DataBase Connectivity ) 기술
+      - JDBC 특징
+         DB 종류와 무관하게 연동 가능( DB에 독립적)
+	 컴파일 checked 예외가 발생된다. ( 반드시 try~catch 또는 throws 해야 됨 )
+
+ 4. 실습에서 사용할 Database 생성 및 테이블 생성
+   
+    Database 명: testdb
+    테이블 :
+         수업에서 사용할 테이블:scott_mysql.sql	
+			 
+			   emp 테이블 ( 사원 테이블로서 사원 정보가 저장되어 있음 )
+			       empno 컬럼 : 사원번호
+			       ename 컬럼 : 사원명
+			       job   컬럼 : 직업
+			       mgr   컬럼 : 관리자 사원번호
+			       hiredate 컬럼: 입사일
+			       sal   컬럼 : 월급
+			       comm 컬럼  : 커미션, job이 SALESMAN인 경우에만 값을 가짐.
+			       deptno 컬럼: 부서번호
+
+			   dept 테이블 ( 부서 테이블로서 부서 정보가 저장되어 있음)
+			       deptno 컬럼: 부서번호
+			       dname 컬럼:  부서명
+			       loc 컬럼:    부서위치
+
+			   salgrade 테이블
+
+	 워크샵에서 사용할 테이블:MySQL용_SQL워크샵스크립트.txt
