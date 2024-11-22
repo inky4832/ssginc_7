@@ -76,7 +76,7 @@
 					      확정: commit 문
 					      취소: rollback 문
 
-		      select 문: DQL 문 ( Date Query Language )
+		      select 문: DQL 문 ( Data Query Language )
 
 	  보안(인증/인가) 
 	     인증: Authentication ( 예> 우리 회사 사람이야 ? )
@@ -84,10 +84,69 @@
 	   
 	    ==> 사용자 생성 및 권한 할당
 
-    - 데이터 저장 방법 ?
+    - 데이터 저장 방법에 따른 DB 종류 ?
          계층형 DB
 	 망형 DB
 	 객체지향 DB
 	 ..
-	 관계형 DB ( Relational DataBase ) : 데이터를 행(레코드)/열(컬럼)로 구성된 2차원 테이블로 관리
-        
+	 관계형 DB ( Relational DataBase: RDB ) : 데이터를 행(레코드)/열(컬럼)로 구성된 2차원 테이블로 관리
+     
+    ==> 데이터베이스와 데이터베이스 관리 시스템을 데이터베이스 용어로 혼용해서 많이 사용됨.
+
+6.  관계형 DB ( Relational DataBase: RDB )
+  
+    - 현업에서 사용되는 RDB와 대립되는 구조를 가진 형태: NoSQL  ( Not only SQL, 비정형 구조, {key:value} 구조 )
+                                            종류: MongoDB, Casandra, ...
+  1) 개념
+     행(레코드)/열(컬럼)로 구성된 2차원 테이블로 관리
+
+  2) 종류
+     - MySQL ( MariaDB )
+     - Oracle
+     - MSSQL
+     - DB2
+      ..
+
+7. SQL ( Structured Query Language )
+
+ 1) 개요 및 특징
+   - RDB 에서 사용하는 프로그램 언어.
+   - 식별자로 구성 ( 예약어 및 사용자 지정 식별자 사용 가능 )
+   - 대소문자 구별 안함 ( select 와 SELECT 동일 )
+                   ( 'A' 와 'a' 는 MySQL 동일,  Oracle에서는 다르게 처리 ) 
+   
+   - 자바는 'A'와 "AAA" 구별해서 사용했으나
+     SQL문에서는 무조건 'A', 'AAA' , '2024-02-20' 사용하자.
+     ""는 별칭(alias)에서만 사용하자.
+
+   - 연산자 
+   - 조건문
+   - 함수 ( 메서드 역할 )
+
+ 2) SQL 종류1 ( DBMS 종류에 따라서 )
+  
+     가. ANSI SQL ( 표준화된 SQL )
+       - 모든 RDB에서 사용 가능한 SQL 의미.
+
+     나. 비 ANSI SQL ( 표준화 안된 SQL )
+       - 표준화되지 않은 SQL문이기 때문에 특정 RDB에서만 사용 가능.
+        예> MySQL에서만 사용가능한 SQL 문법이 있음.
+       - 함수
+
+ 2) SQL 종류2 ( 기능,역할 ) -외우기
+
+   가. 데이터 조회 ( DQL: Data Query Language )
+      - query 문이라고 하고 select 문이 담당.
+
+   나. 데이터 조작 ( 삽입,수정,삭제, DML: Data Manipulation Language )
+      - 데이터 생성: insert 문
+      - 데이터 수정: update 문
+      - 데이터 삭제: delete 문
+
+   다. DML 확정/취소 ( Data Transaction Language : DTL ,
+                    Transaction Control Language : TCL )
+
+       확정: commit 문
+       취소: rollback 문
+
+   
