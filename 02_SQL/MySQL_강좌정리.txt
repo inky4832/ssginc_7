@@ -149,4 +149,9 @@
        확정: commit 문
        취소: rollback 문
 
-   
+   라. 데이터를 관리할 때 필요한 객체 ( 테이블,인덱스,뷰,시퀀스, 사용자, 권한 ) 조작 ( 생성, 수정, 삭제 )
+         ==> DDL 문 ( Data Definition Language )  
+
+       객체 생성: create 문
+       객체 수정: alter 문
+       객체 삭제: drop 문
