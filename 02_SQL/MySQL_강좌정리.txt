@@ -53,3 +53,41 @@
 			       hisal 컬럼: 최고 sal
 
 	 워크샵에서 사용할 테이블:MySQL용_SQL워크샵스크립트.txt
+
+
+5. 데이터베이스 vs 데이터베이스 관리 시스템 ( DBMS )
+
+   1) 데이터베이스 ( DataBase : DB )
+     - 개인, 회사, 관공서등에서 업무적으로 필요한 데이터를 의미.
+     예> 사원정보(사원 DB)
+        부서정보(부서 DB)
+   
+   2) 데이터베이스 관리 시스템 ( DataBase Management System : DBMS )
+     - 데이터베이스(DB)를 전문적이고 효율적으로 관리하기 위한 S/W 의미.
+     - 관리방법 ?
+
+           CRUD 가능 ( Create: 데이터 생성,  SQL문중에서 insert 문 이용.
+	              Read  : 데이터 조회,  SQL문중에서 select 문 이용.
+		      Update: 데이터 수정,  SQL문중에서 update 문 이용.
+		      Delete: 데이터 삭제,  SQL문중에서 delete 문 이용. )
+
+		      insert/delete/update 문: DML ( Data Manipulation Language, 데이터 조작어)
+		                              확정/취소 작업: DTL ( Data Transaction Language)
+					      확정: commit 문
+					      취소: rollback 문
+
+		      select 문: DQL 문 ( Date Query Language )
+
+	  보안(인증/인가) 
+	     인증: Authentication ( 예> 우리 회사 사람이야 ? )
+	     인가: Ahuthorization ( 예> 이걸 볼 권한이 있어? )
+	   
+	    ==> 사용자 생성 및 권한 할당
+
+    - 데이터 저장 방법 ?
+         계층형 DB
+	 망형 DB
+	 객체지향 DB
+	 ..
+	 관계형 DB ( Relational DataBase ) : 데이터를 행(레코드)/열(컬럼)로 구성된 2차원 테이블로 관리
+        
