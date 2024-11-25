@@ -530,3 +530,44 @@
 		   cast(10 as float),
                    cast('2024-11-25' as Date)
 
+ 
+
+   8) 그룹함수
+    https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions.html
+
+     - 함수가 그룹단위로 적용됨.
+       만일 명시적으로 그룹단위로 묶는 그룹핑 작업(group by)을 안하면 자동으로 전체 레코드를 가진 하나의 그룹으로 묶는다.
+     - 기본적으로 null 제외시키고 처리됨.
+
+
+     - 종류
+       총합:sum([distinct]컬럼)
+       평균:avg([distinct]컬럼)
+       최대:max([distinct]컬럼)
+       최소:min([distinct]컬럼)
+       갯수: count([distinct]컬럼)
+            count(*): 전체 레코드 갯수
+
+      - 명시적으로 그룹핑하는 방법
+
+         문법:
+	      select
+	      from 
+	      where
+              group by 표현식(컬럼)|별칭|select순서  ( Oracle에서는 불가 )
+	      order by 표현식(컬럼)|별칭|select순서
+
+         예> job 별, 성별, 학년별, 
+	    부서별, 시별, ....
+
+      - having 절
+        ==> 그룹핑 이후의 조건지정하는 방법이다.
+       
+        문법:
+	      select    - 5번
+	    from 테이블   - 1번
+	    where 조건식  - 2번 ( 테이블에 대한 필터링 )
+            
+	    group by 표현식(컬럼)|별칭|select순서  ( Oracle에서는 불가 )  - 3번
+	    having 조건식 ( group by에 대한 필터링 )                   - 4번
+	      order by 표현식(컬럼)|별칭|select순서                    - 6번
