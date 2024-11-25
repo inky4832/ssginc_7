@@ -473,3 +473,23 @@
     부호:   sign(값) 양수: 1 음수: -1  0:0
     절대값:  abs(값)
     나머지:  mod() ,  % 도 가능. ( Oracle 불가 )
+
+   5) 단일행 함수 - 날짜 함수 ( 비 ANSI SQL 문법 )
+   https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/date-and-time-functions.html
+
+
+    현재 날짜와 시간 구하기 : NOW(), SYSDATE()  (  Oracle에서는 sysdate ) ( *********)
+    현재 날짜 구하기:  curdate(),  current_date(), current_date   (******)
+    현재 시간 구하기:  curtime(),  current_time(),  current_time
+
+    day 더하기:  ADDDATE( 날짜, day값|-day값 )
+    unit이용한 더하기: DATE_ADD ( 날짜 , INTERVAL  값(-값)  유닛(YEAR|MONTH|DAY|HOUR|MINUTE )
+
+    날짜차이:  DATEDIFF( 날짜1, 날짜2 );   날짜1 - 날짜2 
+    unit이용한 날짜차이:  TIMESTAMPDIFF( unit,  날짜1, 날짜2  )
+
+    특정날짜및시간 정보: EXTRACT ( unit  FROM 날짜 )  (******)
+
+    날짜--> 문자열 : DATE_FORMAT( 날짜, 포맷(%Y-%m-%d %H:%i:%S )) (******)
+
+    문자열-->날짜  : STR_TO_DATA ( 문자열, 포맷(앞의 문자열포맷과 동일))  (******)
