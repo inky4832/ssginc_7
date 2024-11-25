@@ -462,3 +462,14 @@
         문자열 반복: REPEAT(str,count)
 	공백추가: space(n)
           
+
+   4) 단일행 함수 - 수치 함수
+  https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/numeric-functions.html
+
+    반올림: round(값, [자릿수])
+    절삭:  truncate(값, 자릿수)
+    최소 정수: ceil( 값 )
+    최대 정수: floor( 값 )
+    부호:   sign(값) 양수: 1 음수: -1  0:0
+    절대값:  abs(값)
+    나머지:  mod() ,  % 도 가능. ( Oracle 불가 )
