@@ -493,3 +493,40 @@
     날짜--> 문자열 : DATE_FORMAT( 날짜, 포맷(%Y-%m-%d %H:%i:%S )) (******)
 
     문자열-->날짜  : STR_TO_DATA ( 문자열, 포맷(앞의 문자열포맷과 동일))  (******)
+
+
+  6) 단일행 함수 - 조건함수
+
+    - CASE 문 ( ANSI )
+    
+      가. 동등비교
+       
+          case 컬럼명  when 비교값1  then 연산식
+	             when 비교값2  then 연산식
+                     ..
+		     else 연산식
+	  end
+
+      나. 부등비교
+
+          case when  조건식(비교,between,in,and/or/not ) then 연산
+               when  조건식  then 연산
+	       ..
+               else 연산식
+          end
+
+    - if문 ( 자바의 3항 연산자와 비슷 )
+
+        IF (조건식, 참, 거짓 )
+
+   7) 단일행 함수 - 변환 함수
+
+      수치 <-----> 문자 <------> 날짜
+
+      문법:   cast ( 값 as 타입 )
+
+        예>  select cast(10 as char(n)),  // 자바의 String.valueOf(10)
+	           cast('10' as SIGNED INTEGER), // Integer.parseInt("10")
+		   cast(10 as float),
+                   cast('2024-11-25' as Date)
+
