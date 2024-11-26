@@ -758,7 +758,7 @@
      
     5) self 조인
      
-      개념: 하나의 테이블에서 자신이 자신의 테이블에서 조인하는 방법. inner 조인, equi 조인
+      개념: 하나의 테이블에서 자신이 자신의 테이블로 조인하는 방법. inner 조인, equi 조인
       샘플: 사원명과 관리자명을 출력하기
       구현: 별칭 이용
 
@@ -770,10 +770,29 @@
      ------------------                       --------------
       7369  SMITH   7902                       7902  FORD
 
-       SELECT e.ename사원, m.ename관리자
+       SELECT e.ename 사원, m.ename 관리자
        FROM emp e JOIN emp m ON e.mgr = m.empno;
 
      여기까지가 일치(equi/Non-equi)하는 레코드만 출력되는 INNER 조인 방법이다.
 
     6) outer 조인
      
+       - 일치하지 않는 데이터를 포함해서 조인하는 방법.
+         ( left outer join 과 right outer join 2개만 지원됨.
+	   full outer join 지원안됨. ( oracle은 지원됨 )
+
+       - 문법:
+	
+	   select 
+           from 테이블1 left outer join 테이블2 using|ON
+	   where 조건식;
+
+           => 테이블1 의 레코드는 모두 출력됨. ( 일치하지 않아도 )
+
+	    select 
+           from 테이블1 right outer join 테이블2 using|ON
+	   where 조건식;
+	  
+	   => 테이블2 의 레코드는 모두 출력됨. ( 일치하지 않아도 )
+
+	
