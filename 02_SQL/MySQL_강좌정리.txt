@@ -660,6 +660,7 @@
 	만약에 공통컬럼이 없으면 조인이 안되고
 	     공통컬럼이 2개라면 쌍으로 비교해서 조인한다.
         inner 조인이다.
+	단점은 어떤 컬럼으로 조인되었는지를 추가로 확인하는 작업이 필요하다. ( 가독성이 떨어짐 )
 
      - 검색조건
        where 절 이용
@@ -676,3 +677,24 @@
 	    select
 	    from emp e, dept d
 	    where e.deptno = d.deptno and d.dname='RESEARCH';
+
+
+   3) using(컬럼)
+
+     - 문법
+
+         select 컬럼명, ....
+	 from  테이블1 [inner] join 테이블2 using(공통컬럼);
+
+	 select 별칭.컬럼명, ....
+	 from  테이블1 별칭 [inner] join 테이블2 별칭 using(공통컬럼); // using에서는 별칭사용불가
+         where 조건식; // 검색조건
+
+     - 동작 및 특징:
+         테이블1과 테이블2에서 using에 설정된 공통컬럼으로 조인한다.
+	 inner 조인이다.
+	 using에서는 공통컬럼에서는 별칭사용불가
+
+ 
+    natural join 과 using 에서는 반드시 공통컬럼이 존재해야 된다.
+
