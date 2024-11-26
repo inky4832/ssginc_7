@@ -454,3 +454,30 @@ from emp e  join dept d ON e.deptno  =  d.deptno;  -- 조인조건 명시
 -- self 조인
 SELECT e.ename 사원, m.ename 관리자
 FROM emp e JOIN emp m ON e.mgr = m.empno;
+
+-- outer 조인
+ SELECT empno, ename, dname, d.deptno
+ FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno;
+ 
+SELECT empno, ename, dname, d.deptno
+ FROM emp e LEFT OUTER JOIN dept d ON e.deptno = d.deptno;
+ 
+ --  신입사원
+ insert into emp (empno, ename,job,mgr,hiredate,sal,comm,deptno)
+ values ( 9000, '홍길동', 'SALESMAN', 7499, NOW(), 700, 0, null );
+ commit;
+  -- inner 조인이기 때문에 각각 하나씩 누락됨.
+  SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e INNER JOIN dept d USING(deptno);
+ 
+  -- 누락된 홍길동 포함
+ SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e LEFT OUTER JOIN dept d USING(deptno);
+ 
+  -- 누락된 40 포함
+  use testdb;
+   SELECT e.empno, e.ename, d.dname, d.deptno
+ FROM emp e RIGHT OUTER JOIN dept d USING(deptno);
+ 
+    SELECT e.empno, e.ename, d.dname, d.deptno
+ FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno;
