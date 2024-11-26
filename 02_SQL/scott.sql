@@ -376,4 +376,50 @@ SELECT AVG(sal), MAX(sal), MIN(sal), SUM(sal)
  GROUP BY deptno
  HAVING SUM(sal) > 7000;
  
+ use testdb;
+ desc dept;
  
+-- 조인
+-- 1. cross 조인
+SELECT empno, ename, dname
+ FROM emp CROSS JOIN dept;
+
+-- 2. natural 조인
+SELECT empno, ename, dname
+ FROM emp NATURAL JOIN dept;
+
+-- 일치하지 않은 40 부서는 누락됨
+ SELECT empno, ename, dname, deptno
+ FROM emp NATURAL JOIN dept;
+ 
+ -- 별칭 사용
+  SELECT empno, ename, dname, deptno
+ FROM emp e NATURAL JOIN dept d;
+ 
+  SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e NATURAL JOIN dept d;
+ 
+ -- 검색조건 : where 절
+SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e NATURAL JOIN dept d  -- 조인조건
+ where dname = 'RESEARCH';       -- 검색조건  
+ 
+ 
+-- using(공통컬럼)
+SELECT empno, ename, dname, deptno
+ FROM emp JOIN dept USING(deptno);
+ 
+ SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e INNER JOIN dept d USING(deptno);
+ 
+  SELECT e.empno, e.ename, d.dname, e.deptno
+ FROM emp e JOIN dept d USING(deptno)  -- 조인조건
+ where dname = 'RESEARCH';       -- 검색조건 
+ 
+ 
+ -- on 절
+ select *
+from emp e  join dept d ON e.deptno  =  d.deptno;
+
+select empno, ename, dname, loc, e.deptno  -- on절에서는 공통컬럼 사용시 별칭 필수
+from emp e  join dept d ON e.deptno  =  d.deptno;

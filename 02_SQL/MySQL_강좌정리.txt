@@ -710,3 +710,13 @@
 	  select 별칭.컬럼명, ....
 	 from  테이블1 별칭 [inner] join 테이블2 별칭 ON  조인조건
 	 where 검색조건;
+
+
+      예> emp와 dept 조인 ( equi조인)
+
+         select empno, ename, dname , e.deptno <== 공통컬럼 사용시 반드시 별칭을 지정해야 된다. 
+	 from emp e  join dept d ON e.deptno  =  d.deptno;
+
+     - 특징
+       ON절에 조인조건을 명시적으로 지정하기 때문에 어떤 방식으로 조인하는지가 알기 쉽다. ( 가독성이 높다)
+       공통컬럼 사용시 반드시 별칭을 지정해야 된다. ( using 에서는 별칭사용 불가 )
