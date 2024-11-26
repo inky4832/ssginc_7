@@ -1,0 +1,38 @@
+
+-- 6. 
+SELECT  CONCAT('[' , substr(STUDENT_SSN, 1, 8) , '******]') AS 주민번호  , STUDENT_NAME AS 이름
+from 	TB_STUDENT
+where	STUDENT_SSN like '80%' and 
+substr(STUDENT_SSN, 8, 1)='2' and 
+STUDENT_NAME LIKE '김%'
+order by 2;
+
+
+
+-- 7. 계열이 ‘예체능’인 학과의 정원을 기준으로 40 이상이면 ‘대강의실’ 30이상이면 ‘중강의실’ 30나머지는 ‘소강의실’로 출력한다. 단, 정원이 많은 순으로 정렬 한다.
+-- * 현재정원 -> 정원으로 표시
+
+
+select	DEPARTMENT_NAME 학과이름, CAPACITY 현재정원, 
+case 
+when CAPACITY >= 40 then '대강의실'
+when CAPACITY >=30 then '중강의실'
+else '소강의실' 
+end as 강의실크기
+from 	TB_DEPARTMENT
+where	CATEGORY = '예체능'
+order by 2 desc, 1;
+
+
+-- 8. 2005년1월1일부터 2006년12월31일까지의 기간에 입학한 학생 중 주소가 등록되지 않은 남학생의 학과번호, 학생이름, 지도교수번호, 입학년도를 조회하시오. 입학년도를 기준으로 오름차순 정렬한다.
+
+select 	DEPARTMENT_NO 학과번호, STUDENT_NAME 학생이름, 
+COACH_PROFESSOR_NO 지도교수번호, CONCAT( extract(YEAR from ENTRANCE_DATE), '년' ) as 입학년도
+from 	TB_STUDENT
+where 	STUDENT_ADDRESS is null and 
+extract(YEAR from ENTRANCE_DATE) between 2005 and 2007 and
+substr(STUDENT_SSN, 8, 1) = 1
+order by 4,2;
+
+
+

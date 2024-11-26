@@ -1,0 +1,52 @@
+-- 1. 2001년에 입학 한 사학과 학생이 몇 명인지 학생수를 조회하시오. 사학과 코드는 TB_DEPARTMENT 에서 검색한다. (Join을 사용하지 않는다.)
+-- (조인 사용 안함 ) 
+select 	DEPARTMENT_NO 
+from 	TB_DEPARTMENT
+where 	DEPARTMENT_NAME='사학과';
+
+select 	count(*) 학생수 
+from 	TB_STUDENT
+where 	DEPARTMENT_NO='003' and 
+EXTRACT(YEAR from ENTRANCE_DATE ) = 2001;
+
+
+-- 2. 계열이 ‘공학’인 학과 중 입학정원이 20이상, 30이하인 학과의 계열, 학과이름, 정원을 조회하시오. 단 학과이름을 기준으로 오름차순 정렬하시오.”
+select 	CATEGORY 계열, DEPARTMENT_NAME 학과이름, CAPACITY 정원
+from 	TB_DEPARTMENT
+where 	CAPACITY between 20 and 30 and 
+CATEGORY='공학'
+order by 2;
+
+-- 3. ‘학’자가 들어간 계열의 소속 학과가 몇 개 있는지 계열, 학과수를 출력하시오. 단 학과수가 많은 순으로 정렬하시오.
+select	CATEGORY 계열, count(*) as 학과수
+from 	TB_DEPARTMENT 
+where 	CATEGORY LIKE '%학%'
+group by CATEGORY
+order by 2 DESC;
+
+-- 4. (조인 사용 안함 ) 
+select 	DEPARTMENT_NO 
+from 	TB_DEPARTMENT
+where 	DEPARTMENT_NAME='영어영문학과';
+
+select	PROFESSOR_NAME 교수이름, 
+substr(PROFESSOR_SSN, 1, 2) 출생년도, 
+	PROFESSOR_ADDRESS 주소 
+from	TB_PROFESSOR 
+where	DEPARTMENT_NO='002'
+order by 2;
+
+-- 5. 국어국문학과 학생 중 서울에 거주하는 학생의 학과번호, 학생이름, 휴학여부를 조회하고 학생이름으로 오름차순 정렬하시오. 단 휴학여부는 값이 ‘Y’이면 ‘휴학’으로 ‘N’이면 ‘정상’으로 출력한다. 국어국문학과 코드는 TB_DEPARTMENT에서 찾는다. (Join을 사용하지 않는다)
+select 	DEPARTMENT_NO 
+from 	TB_DEPARTMENT
+where 	DEPARTMENT_NAME='국어국문학과';
+
+select	DEPARTMENT_NO 학과번호, STUDENT_NAME 학생이름, 
+CASE ABSENCE_YN WHEN 'Y' THEN '휴학' 
+                ELSE '정상'
+END as 휴학여부
+from 	TB_STUDENT
+where	DEPARTMENT_NO='001' and 
+STUDENT_ADDRESS like '%서울%'
+order by 2;
+
