@@ -610,7 +610,7 @@
 
      나. 비 ANSI 조인
        - DBMS 의존적
-       예> Oracle 조인
+       예> Oracle 조인 (  w
 
    
   4)  조인 종류 3 ( 동등:equi조인 /부등: non-equi조인 )
@@ -631,3 +631,48 @@
      ---------------               -----------------
      empno ename sal               grade losal hisal
      7369  SMITH 800                 1    700  1200
+
+2. ANIS 조인
+
+  1) cross 조인
+    
+    - 문법:
+      
+         select 
+	 from  테이블1 cross join 테이블2;
+
+    - 동작 및 특징:
+       테이블1의 하나의 레코드와과 테이블2의 모든 레코드와 연결된다.
+       조인된 결과의 데이터는 사용불가.
+       
+  2) natural 조인 ( 조인조건 )
+
+     - 문법:
+
+         select 컬럼명, ....
+	 from  테이블1 natural join 테이블2;
+
+         select 별칭.컬럼명, ....
+	 from  테이블1 별칭 natural join 테이블2 별칭;   // as 사용불가
+ 
+     - 동작 및 특징:
+        테이블1 과 테이블2에서 공통컬럼을 찾아서 조인한다.
+	만약에 공통컬럼이 없으면 조인이 안되고
+	     공통컬럼이 2개라면 쌍으로 비교해서 조인한다.
+        inner 조인이다.
+
+     - 검색조건
+       where 절 이용
+
+         select 별칭.컬럼명, ....
+	 from  테이블1 별칭 natural join 테이블2 별칭   -- 조인조건
+	 where 조건식;                             -- 검색조건
+
+	 ANSI는 from절에 조인조건을 지정하고 where절에 검색조건을 지정한다.
+	 하지만 oracle 조인에서는 where에 조인조건과 검색조건을 지정한다.
+	 
+	 예> oracle 조인
+	  
+	    select
+	    from emp e, dept d
+	    where e.deptno = d.deptno and d.dname='RESEARCH';
