@@ -698,3 +698,15 @@
  
     natural join 과 using 에서는 반드시 공통컬럼이 존재해야 된다.
 
+  
+    4) on 절 ( 가장 범용적으로 사용 가능 )
+
+     - 문법
+
+         select 컬럼명, ....
+	 from  테이블1 [inner] join 테이블2  ON  조인조건
+	 where 검색조건;
+
+	  select 별칭.컬럼명, ....
+	 from  테이블1 별칭 [inner] join 테이블2 별칭 ON  조인조건
+	 where 검색조건;
