@@ -734,6 +734,46 @@
 	 from emp e  join dept d 
 	      ON e.deptno  =  d.deptno;
 
+      예> emp와 salgrade 조인 ( non-equi 조인 )
+
+         select *
+	 from emp e join salgrade s 
+	      ON e.sal BETWEEN s.losal AND s.hisal; // 조인조건
+
+      예> emp와 dept 와 salgrade 조인
+
+          select *
+	  from emp e join dept d using(deptno)
+	           join salgrade s on e.sal BETWEEN s.losal AND s.hisal;
+
+	  select *
+	  from emp e join dept d ON e.deptno  =  d.deptno
+	           join salgrade s on e.sal BETWEEN s.losal AND s.hisal;
+
+
      - 특징
        ON절에 조인조건을 명시적으로 지정하기 때문에 어떤 방식으로 조인하는지가 알기 쉽다. ( 가독성이 높다)
        공통컬럼 사용시 반드시 별칭을 지정해야 된다. ( using 에서는 별칭사용 불가 )
+
+     
+    5) self 조인
+     
+      개념: 하나의 테이블에서 자신이 자신의 테이블에서 조인하는 방법. inner 조인, equi 조인
+      샘플: 사원명과 관리자명을 출력하기
+      구현: 별칭 이용
+
+                               emp
+
+           emp e                                emp m
+         
+      empno  ename  mgr  ..                   empno ename ...
+     ------------------                       --------------
+      7369  SMITH   7902                       7902  FORD
+
+       SELECT e.ename사원, m.ename관리자
+       FROM emp e JOIN emp m ON e.mgr = m.empno;
+
+     여기까지가 일치(equi/Non-equi)하는 레코드만 출력되는 INNER 조인 방법이다.
+
+    6) outer 조인
+     

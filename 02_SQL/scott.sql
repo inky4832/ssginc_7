@@ -422,4 +422,35 @@ SELECT empno, ename, dname, deptno
 from emp e  join dept d ON e.deptno  =  d.deptno;
 
 select empno, ename, dname, loc, e.deptno  -- on절에서는 공통컬럼 사용시 별칭 필수
-from emp e  join dept d ON e.deptno  =  d.deptno;
+from emp e  join dept d ON e.deptno  =  d.deptno;  -- 조인조건 명시
+
+ SELECT empno, ename, dname, loc , sal, e.deptno
+ FROM emp e JOIN dept d ON e.deptno = d.deptno -- 조인조건 명시
+ WHERE sal > 2500;                             -- 검색조건 
+
+-- 부등 
+ select *
+	 from emp e join salgrade s 
+	      ON e.sal BETWEEN s.losal AND s.hisal;
+          
+ select empno, ename, sal, deptno, grade
+	 from emp e join salgrade s 
+	      ON e.sal BETWEEN s.losal AND s.hisal;
+          
+ select empno, ename, sal, deptno, grade
+ from emp e join salgrade s 
+ ON e.sal BETWEEN s.losal AND s.hisal  -- 조인 조건
+ where sal > 2500;                     -- 검색 조건
+	
+-- emp와 dept 와 salgrade 조인
+      select *
+	  from emp e join dept d using(deptno) -- equi 조인
+	           join salgrade s on e.sal BETWEEN s.losal AND s.hisal; -- non-equi조인
+               
+  select *
+	  from emp e join dept d ON e.deptno  =  d.deptno  -- equi 조인
+	           join salgrade s on e.sal BETWEEN s.losal AND s.hisal;
+               
+-- self 조인
+SELECT e.ename 사원, m.ename 관리자
+FROM emp e JOIN emp m ON e.mgr = m.empno;
