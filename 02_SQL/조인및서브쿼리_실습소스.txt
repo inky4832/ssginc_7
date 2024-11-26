@@ -1,0 +1,145 @@
+############################
+### 조인 실습 15문제 소스
+
+
+1. 
+SELECT e.EMPNO, e.ENAME , d.DEPTNO, d.DNAME
+FROM dept d JOIN emp e
+ON d.DEPTNO = e.DEPTNO
+ORDER BY e.ENAME;
+
+2.
+SELECT e.EMPNO, e.ENAME, e.SAL, e.DEPTNO
+FROM dept d JOIN emp e
+ON d.DEPTNO = e.DEPTNO
+WHERE e.SAL >= 2000
+ORDER BY e.SAL DESC;
+
+
+3.  
+SELECT e.EMPNO, e.ENAME, e.JOB, e.SAL , e.DEPTNO
+FROM emp e JOIN dept d
+ON e.DEPTNO = d.DEPTNO
+WHERE e.SAL >= 2500
+AND e.JOB = 'MANAGER'
+ORDER BY e.DEPTNO;
+
+
+4
+SELECT e.EMPNO, e.ENAME, e.SAL , s.GRADE
+FROM emp e
+JOIN salgrade s
+ON e.SAL BETWEEN s.LOSAL AND s.HISAL
+WHERE s.GRADE = 4
+ORDER BY e.SAL DESC;
+
+
+5
+SELECT e.EMPNO, e.ENAME, e.DEPTNO , e.SAL , s.GRADE
+FROM emp e JOIN  dept d ON e.DEPTNO = d.DEPTNO
+           JOIN salgrade s ON e.SAL BETWEEN s.LOSAL AND HISAL
+ORDER BY s.GRADE DESC;
+
+6
+SELECT e.ENAME  사원 , m.ENAME 관리자
+FROM EMP e
+JOIN EMP m
+ON e.MGR = m.EMPNO;
+
+7
+SELECT e.ENAME 사원, m1.ENAME 관리자1,  m2.ENAME 관리자2
+FROM EMP e 
+JOIN EMP m1
+ON e.MGR = m1.EMPNO
+JOIN EMP m2
+ON m1.MGR = m2.EMPNO;
+
+8
+SELECT e.ENAME 사원, m1.ENAME 관리자1,  m2.ENAME 관리자2
+FROM  EMP e LEFT OUTER JOIN emp m1 
+ON e.MGR = m1.EMPNO   LEFT OUTER JOIN EMP m2
+ON m1.MGR = m2.EMPNO;
+
+
+9. 
+select e.ename, d.dname , d.deptno
+from emp e JOIN dept d USING(deptno)
+where  e.deptno = 20;
+
+10. 
+SELECT e.ename, e.comm, d.dname
+FROM emp e JOIN dept d
+ON e.deptno = d.deptno
+WHERE  e.comm IS NOT NULL and e.comm != 0;
+
+11. 
+SELECT e.ename,  d.dname
+FROM emp e JOIN dept d
+ON e.deptno = d.deptno
+WHERE e.ename  LIKE  '%A%';
+
+12.
+SELECT e.ename, e.sal , e.hiredate
+FROM emp e JOIN dept d
+ON e.deptno = d.deptno
+WHERE d.loc = 'DALLAS' AND e.sal >= 1500;
+
+  
+13.
+SELECT e.ename, e.sal
+FROM EMP e JOIN EMP m
+ON e.mgr = m.empno
+WHERE e.sal > m.sal;
+
+14. 
+SELECT e.ename , e.sal , e.hiredate, d.dname , TIMESTAMPDIFF(MONTH, e.HIREDATE, CURDATE())/12
+FROM EMP e JOIN DEPT  d
+ON e.deptno = d.deptno
+WHERE TIMESTAMPDIFF(MONTH, e.HIREDATE, CURDATE())/12 > 30;
+
+15.
+SELECT d.DNAME  부서명 ,  COUNT(e.EMPNO ) 인원수
+FROM DEPT d JOIN EMP e
+ON d.DEPTNO = e.DEPTNO
+WHERE DATE_FORMAT( e.HIREDATE, '%y' ) <= 1982
+GROUP BY d.DNAME;
+
+
+############################
+### 서브쿼리 실습 5문제 소스
+
+1. 
+SELECT EMPNO, ENAME, SAL
+FROM EMP
+WHERE SAL > ( SELECT SAL
+              FROM EMP
+              WHERE ENAME = 'BLAKE');
+2.
+SELECT EMPNO, ENAME, HIREDATE
+FROM EMP
+WHERE HIREDATE > ( SELECT HIREDATE
+              FROM EMP
+              WHERE ENAME = 'MILLER');
+
+3.
+SELECT EMPNO, ENAME, SAL
+FROM EMP
+WHERE SAL > ( SELECT AVG(SAL)
+              FROM EMP);
+
+4.
+ SELECT EMPNO, ENAME, DEPTNO ,SAL
+ FROM EMP
+ WHERE SAL IN ( SELECT MAX(SAL)
+				FROM EMP
+		        GROUP BY DEPTNO);
+			   
+
+
+5. 
+select *
+from emp
+where sal <= ( select avg(sal)
+               from emp e join salgrade s
+               on e.sal between s.losal and s.hisal
+               where s.grade = 2 );
