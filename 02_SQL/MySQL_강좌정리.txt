@@ -1083,5 +1083,23 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
      가. subquery 이용
 
+       문법:
+           insert into 테이블명( 컬럼명, .... )
+	   select 컬럼명, ....
+	   from 테이블명;
+  
+      예>
+         INSERT INTO copy_emp (empno, ename, sal)
+	 SELECT empno, ename, sal
+	 FROM emp;
+	 commit;
 
      나. value list 이용 (****************)
+        
+	  insert into 테이블명( 컬럼명, .... )
+	  values (  값1, ...),(  값2, ...),(  값3, ...);
+	 
+     예>  INSERT INTO copy_emp (empno, ename, sal)
+         values ( 100,'홍길동1',400),( 101,'홍길동2',400),( 102,'홍길동3',400);
+	 commit;
+	 
