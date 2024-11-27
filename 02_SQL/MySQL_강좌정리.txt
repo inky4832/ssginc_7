@@ -1200,3 +1200,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
     # 에러 발생 코드 ( dept 같은 테이블에서 subquery 했기 때문)
     delete from dept 
     where dname = ( select dname from dept where deptno=90);
+
+     # 정상 코드 ( dept 다른 테이블에서 subquery 했기 때문)
+     delete from dept 
+    where dname = ( select ename from emp where empno=90);
