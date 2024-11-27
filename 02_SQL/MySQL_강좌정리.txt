@@ -795,4 +795,57 @@
 	  
 	   => 테이블2 의 레코드는 모두 출력됨. ( 일치하지 않아도 )
 
+	예>
+	--  신입사원
+	 insert into emp (empno, ename,job,mgr,hiredate,sal,comm,deptno)
+	 values ( 9000, '홍길동', 'SALESMAN', 7499, NOW(), 700, 0, null );
+	 commit;
+
+	  -- inner 조인이기 때문에 각각 하나씩 누락됨.
+	  SELECT e.empno, e.ename, d.dname, e.deptno
+	 FROM emp e INNER JOIN dept d USING(deptno);
+	 
+	  -- 누락된 홍길동 포함
+	 SELECT e.empno, e.ename, d.dname, e.deptno
+	 FROM emp e LEFT OUTER JOIN dept d USING(deptno);
+	 
+	  -- 누락된 40 포함
+	  use testdb;
+	   SELECT e.empno, e.ename, d.dname, d.deptno
+	 FROM emp e RIGHT OUTER JOIN dept d USING(deptno);
+	 
+	    SELECT e.empno, e.ename, d.dname, d.deptno
+	 FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno;
+
+////////////////////////////////////////////////////////////////////////
+4일차
+
+1. 서브쿼리 ( subquery )
+
+  1) 개념(목적)
+     한번의 select 문으로는 원하는 결과를 못 얻을 때,
+     여러번의 select문을 사용해서 원하는 결과를 얻을 수 있음.
+
+  2) 문법
+
+    예> emp 테이블에서 SCOTT 사원보다 많은 급여를 받는 사원의 이름을 검색 하시오.
+
+      1단계: scott의 sal ?  3000
+
+         select sal
+	 from emp
+	 where ename='SCOTT';
+
+      2단계: 3000 보다 많은 급여를 받는 사원?
+
+
+         select *
+	 from emp
+	 where sal > 3000;
+
 	
+   ==> 문법은 3000 위치에 1단계 문장으로 치환하자.
+
+         select *
+	 from emp
+	 where sal > 3000;
