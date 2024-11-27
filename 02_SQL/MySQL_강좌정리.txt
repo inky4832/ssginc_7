@@ -1103,3 +1103,42 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
          values ( 100,'홍길동1',400),( 101,'홍길동2',400),( 102,'홍길동3',400);
 	 commit;
 	 
+5. UPDATE 문
+
+   1) 용도
+    - 컬럼 수정
+
+  2) 문법
+
+     가. 조건 없는 update ( where 없는 경우 )
+        ==> 모든 레코드 대상.
+
+         update 테이블
+	 set 컬럼명=값, 컬럼명=값 ;
+         commit;
+
+     나. 조건 있는 update ( where 있는 경우 )
+        ==> 조건에 일치하는 레코드 대상.
+
+         update 테이블
+	 set 컬럼명=값, 컬럼명=값
+	 where 조건식;
+	 commit;
+
+
+  3) subquery 이용한 update
+
+    # mysql 에러발생, oracle 가능
+
+    UPDATE dept
+    SET dname=(select dname from dept where deptno=20), 
+        loc=(select loc from dept where deptno=20)
+    WHERE deptno=90;
+
+     # 해결
+      UPDATE  dept , 
+             (select dname from dept where deptno=20) as x ,
+             (select loc from dept where deptno=20) as x2
+    SET dept.dname= x.dname, 
+        dept.loc= x2.loc
+    WHERE deptno=90;

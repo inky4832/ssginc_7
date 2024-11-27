@@ -599,3 +599,37 @@ VALUES (91, '인사과');
   INSERT INTO copy_emp (empno, ename, sal)
  SELECT empno, ename, sal
  FROM emp;
+ commit;
+ select * from copy_emp;
+ 
+ -- 다중행 생성2 - value list 이용
+ INSERT INTO copy_emp (empno, ename, sal)
+values ( 100,'홍길동1',400),( 101,'홍길동2',400),( 102,'홍길동3',400);
+commit;
+
+-- update
+UPDATE dept
+SET dname='경리과', loc='부산';
+rollback;
+
+ UPDATE dept
+ SET dname='경리과', loc='부산'
+ WHERE deptno=90;
+ commit;
+select * from dept;
+select dname from dept where deptno=20;
+
+-- 에러
+ UPDATE dept
+    SET dname=(select dname from dept where deptno=20), 
+        loc=(select loc from dept where deptno=20)
+    WHERE deptno=90;
+    
+-- 해결
+      UPDATE  dept , 
+             (select dname from dept where deptno=20) as x ,
+             (select loc from dept where deptno=20) as x2
+    SET dept.dname= x.dname, 
+        dept.loc= x2.loc
+    WHERE deptno=90;
+ commit;
