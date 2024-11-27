@@ -953,6 +953,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
    - delete 문 : 레코드 삭제
 
    ==> DML은 트랜잭션으로 처리된다.
+       따라서 자동시작된 트랜잭션을 명시적으로 종료해야 된다. ( commit/rollback )
 
   2) 특징
    - 트랜잭션(transaction) 관련된 작업.
@@ -1014,3 +1015,22 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
       트랜잭션 종료   -> commit (확정)
                      rollback (취소)
+
+
+4. INSERT 문
+
+  1) 용도
+    - 새로운 레코드 생성
+    - 단일행 생성, 멀티행 생성
+
+  2) 단일행 생성 방법
+
+     가. 컬럼명 명시
+ 
+         insert into 테이블명 ( 컬럼명, 컬럼명2,...)
+	 values            (  값,    값2,  ...);
+
+     나. 컬럼명 생략
+        
+	 insert into 테이블명 
+	 values            (  값,    값2,  ...);
