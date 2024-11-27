@@ -848,4 +848,30 @@
 
          select *
 	 from emp
-	 where sal > 3000;
+	 where sal > (select sal
+	              from emp
+	              where e각ame='SCOTT');
+
+   3) 특징
+     - 반드시 () 소괄호를 갖는다.
+     - subquery가 먼저 실행되고 그 결과값을 이용해서 main query가 실행됨.
+     - subquery를 사용 가능한 위치는 거의 모든 곳에 사용이 가능하다.
+       where,having,from,insert,delete,update,create ....
+     - main query에서만 order by가 가능하다.
+
+    
+   4) subquery 사용시 주의할 점은 연산자이다.
+
+      subquery가 실행후 결과값이 하나 또는 여러개 여부에 따라서 연산자가 각각 제공된다.
+
+      가. 단일행 연산자
+         subquery가 실행후 결과값이 하나인 경우에 사용한다.
+         비교연산자 ( =, != , >, >=, <,<=)
+
+      나. 복수행 연산자
+        subquery가 실행후 결과값이 여러개인 경우에 사용한다.
+	  IN, 
+	  > any , < any
+	  > all , < all
+	  exists
+
