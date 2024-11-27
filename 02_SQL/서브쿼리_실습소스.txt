@@ -1,0 +1,35 @@
+1. 
+SELECT EMPNO, ENAME, SAL
+FROM EMP
+WHERE SAL > ( SELECT SAL
+              FROM EMP
+              WHERE ENAME = 'BLAKE');
+2.
+SELECT EMPNO, ENAME, HIREDATE
+FROM EMP
+WHERE HIREDATE > ( SELECT HIREDATE
+              FROM EMP
+              WHERE ENAME = 'MILLER');
+
+3.
+SELECT EMPNO, ENAME, SAL
+FROM EMP
+WHERE SAL > ( SELECT AVG(SAL)
+              FROM EMP);
+
+4.
+ SELECT EMPNO, ENAME, DEPTNO ,SAL
+ FROM EMP
+ WHERE SAL IN ( SELECT MAX(SAL)
+				FROM EMP
+		        GROUP BY DEPTNO);
+			   
+
+
+5. 
+select *
+from emp
+where sal <= ( select avg(sal)
+               from emp e join salgrade s
+               on e.sal between s.losal and s.hisal
+               where s.grade = 2 );
