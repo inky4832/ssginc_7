@@ -928,7 +928,34 @@
 
        예> emp 와 dept 테이블에서 부서별 sal총합과 평균을 출력?
 
+          // 다음코드는 emp의 15개 레코드와 dept의 4개 레코드가 참여해서 조인됨. 총 60번 비교작업이 필요함.
           select e.deptno, sum(sal), round(avg(sal)), count(*)
 	  from emp e join dept d ON e.deptno = d.deptno
 	  group by deptno
 	  order by 1;
+
+
+          // 다음코드는 서브쿼리의 4개 레코드와 dept의 4개 레코드가 참여해서 조인됨. 총 16번 비교작업이 필요함.
+	        SELECT e.deptno, total_sum, total_avg, cnt 
+		 FROM ( SELECT deptno, SUM(sal) total_sum, ROUND(AVG(sal)) total_avg,
+		 COUNT(*) cnt
+		 FROM emp
+		 GROUP BY deptno) e JOIN dept d ON e.deptno = d.deptno
+		 order by 1;
+	
+2.  DML ( Data Manipulation Language : 데이터 조작어 )
+https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statements.html
+
+  1) 종류
+
+   - insert 문 : 레코드 추가
+   - update 문 : 레코드 수정 ( 컬럼단위 수정)
+   - delete 문 : 레코드 삭제
+
+  2) 특징
+   - 트랜잭션(transaction) 관련된 작업.
+     
+
+3. 트랜잭션(transaction)
+
+   1)개념
