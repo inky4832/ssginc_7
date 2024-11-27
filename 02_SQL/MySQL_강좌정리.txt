@@ -1025,12 +1025,28 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
   2) 단일행 생성 방법
 
-     가. 컬럼명 명시
+     가. 컬럼명 명시 ( 권장 )
  
          insert into 테이블명 ( 컬럼명, 컬럼명2,...)
 	 values            (  값,    값2,  ...);
+ 
+      예> insert into emp ( empno, ename, sal )
+         values           ( 9800, '이순신', 400 );
 
+       ==> 선택적으로 임의의 컬럼에 값을 저장할 수 있다.
+           나머지 컬럼에는 null 값이 저장된다.
+       ==> 가독성이 높아진다.
      나. 컬럼명 생략
         
 	 insert into 테이블명 
 	 values            (  값,    값2,  ...);
+
+	예>
+	   insert into emp 
+	   values ( empno값 , ename값  , job값 , mgr 값, hirdate값, sal값 , comm값 , deptno값  );
+
+       ==> 선택적으로 컬럼을 선택할 수 없기 때문에
+          반드시 모든 테이블의 모든 컬럼에 값을 저장해야 되고
+	  순서대로 설정해야 된다.
+       => 지정된 값 순서대로 실제 테이블의 컬럼에 매핑된다.
+       ==> 가독성이 떨어진다.
