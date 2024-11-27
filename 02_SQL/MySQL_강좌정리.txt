@@ -875,3 +875,14 @@
 	  > all , < all
 	  exists
 
+       > all: 최대값보다 큰 값 반환
+               > (select max() ~ )동일
+
+       < all: 최소값보다 작은 값 반환
+               < (select min() ~ )동일
+
+       > any: 최소값보다 큰 값 반환
+               > (select min() ~ )동일
+
+       < any: 최대값보다 작은 값 반환
+               < (select max() ~ )동일
