@@ -1142,3 +1142,23 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
     SET dept.dname= x.dname, 
         dept.loc= x2.loc
     WHERE deptno=90;
+
+ 
+6. DELETE 문
+ 
+    1) 용도
+    - 레코드 삭제
+
+  2) 문법
+
+      가. 조건 없는 delete ( where 없는 경우 )
+        ==> 모든 레코드 대상.
+
+          delete from 테이블명;
+
+
+     나. 조건 있는 delete ( where 있는 경우 )
+        ==> 조건에 일치하는 레코드 대상.
+
+	delete from 테이블명
+	where 조건식;
