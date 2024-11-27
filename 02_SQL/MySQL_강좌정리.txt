@@ -1016,6 +1016,17 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
       트랜잭션 종료   -> commit (확정)
                      rollback (취소)
 
+    4) DBMS 마다 트랜잭션 처리가 다르다.
+     
+       mysql: auto commit 으로 처리된다.
+             따라서 트랜잭션으로 묶을 수 없다. 비활성화 시킬 것이다.
+	      
+	       -- mysql 트랜잭션 처리 여부
+		 show variables like 'autocommit%';
+		 set Autocommit = false;
+
+       oracle: 명시적으로 commit/rollback 지정해야 된다.
+  
 
 4. INSERT 문
 
@@ -1036,6 +1047,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
        ==> 선택적으로 임의의 컬럼에 값을 저장할 수 있다.
            나머지 컬럼에는 null 값이 저장된다.
        ==> 가독성이 높아진다.
+
      나. 컬럼명 생략
         
 	 insert into 테이블명 
@@ -1046,7 +1058,11 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 	   values ( empno값 , ename값  , job값 , mgr 값, hirdate값, sal값 , comm값 , deptno값  );
 
        ==> 선택적으로 컬럼을 선택할 수 없기 때문에
-          반드시 모든 테이블의 모든 컬럼에 값을 저장해야 되고
+          반드시 테이블의 모든 컬럼에 값을 저장해야 되고
 	  순서대로 설정해야 된다.
        => 지정된 값 순서대로 실제 테이블의 컬럼에 매핑된다.
        ==> 가독성이 떨어진다.
+
+      - 주의할 점
+        pk 컬럼에는 중복값 저장이 안되고 null 값 저장 불가.
+	not null 제약조건을 가진 컬럼에는 반드시 값을 지정해야 된다.
