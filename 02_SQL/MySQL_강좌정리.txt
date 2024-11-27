@@ -959,3 +959,22 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 3. 트랜잭션(transaction)
 
    1)개념
+    - 1개 이상(여러개)의 DML작업들을 하나의 작업처럼 묶어서 처리하는 개념으로
+      묶음을 의미.
+
+   2)용도
+
+    예> 계좌이체 ( A---->B, 500 이체 )
+
+      1000            0
+       A              B
+
+     성공 상태:
+
+      500            500
+       A              B
+
+     실패 상태:
+
+      1000            0
+       A              B
