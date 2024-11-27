@@ -1,0 +1,39 @@
+
+use testdb;
+
+
+34. 
+UPDATE TB_DEPARTMENT
+SET  CAPACITY = ROUND( CAPACITY * 1.1 , 0 );
+
+
+35. 
+UPDATE   TB_STUDENT
+SET  STUDENT_ADDRESS = '서울시 종로구 숭인동 181-21'
+WHERE STUDENT_NO = 'A413042';
+
+36. 
+
+ UPDATE TB_STUDENT
+SET STUDENT_SSN = SUBSTR( STUDENT_SSN , 1 , 6 );
+
+
+37. 
+UPDATE  TB_GRADE
+SET  POINT = 3.5
+WHERE  TERM_NO = '200501'
+AND CLASS_NO = (SELECT CLASS_NO
+                   FROM TB_CLASS
+                  WHERE CLASS_NAME = '피부생리학' )
+ AND STUDENT_NO = ( SELECT STUDENT_NO
+                       FROM TB_STUDENT
+                       JOIN TB_DEPARTMENT USING ( DEPARTMENT_NO)
+                       WHERE STUDENT_NAME = '김명훈'
+                       AND DEPARTMENT_NAME = '의학과' );
+
+38. 
+DELETE FROM TB_GRADE
+WHERE STUDENT_NO  IN ( SELECT STUDENT_NO
+                          FROM  TB_STUDENT
+                          WHERE  ABSENCE_YN = 'Y');
+rollback;
