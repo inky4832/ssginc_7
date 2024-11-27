@@ -642,3 +642,40 @@ DELETE FROM dept
   select * from copy_emp;
   DELETE FROM copy_emp;
   commit;
+  
+select * from dept;
+
+-- upsert 기능
+ INSERT INTO dept (deptno, dname, loc )
+ VALUES (90, '인사과','서울');
+ 
+INSERT INTO dept (deptno, dname, loc )
+ VALUES (92, '인사과','서울') ON DUPLICATE KEY UPDATE loc='부산', dname='개발';
+
+INSERT INTO dept (deptno, dname, loc )
+ VALUES (92, '인사과','서울'),(93, '인사과2','서울2') 
+  ON DUPLICATE KEY UPDATE loc='부산', dname='개발';
+  
+  
+-- lock 경합
+  rollback;
+  
+   # 에러 발생 코드 ( dept 같은 테이블에서 subquery 했기 때문)
+    UPDATE dept
+    SET dname=(select dname from dept where deptno=20), 
+        loc=(select loc from dept where deptno=20)
+    WHERE deptno=90;  
+    
+   # 정상 코드 ( dept 다른 테이블에서 subquery 했기 때문)
+    UPDATE dept
+    SET dname=(select ename from emp where empno=7369), 
+        loc=(select job from emp where empno=7369)
+    WHERE deptno=90;  
+
+    # 에러 발생 코드 ( dept 같은 테이블에서 subquery 했기 때문)
+    delete from dept 
+    where dname = ( select dname from dept where deptno=90);
+
+     # 정상 코드 ( dept 다른 테이블에서 subquery 했기 때문)
+     delete from dept 
+    where dname = ( select ename from emp where empno=90);
