@@ -952,6 +952,8 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
    - update 문 : 레코드 수정 ( 컬럼단위 수정)
    - delete 문 : 레코드 삭제
 
+   ==> DML은 트랜잭션으로 처리된다.
+
   2) 특징
    - 트랜잭션(transaction) 관련된 작업.
      
@@ -966,15 +968,49 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
     예> 계좌이체 ( A---->B, 500 이체 )
 
-      1000            0
+      1000            
        A              B
 
      성공 상태:
 
       500            500
        A              B
+     update          insert
 
+  
+       500            
+       A              B
+ 
      실패 상태:
 
       1000            0
        A              B
+
+    예> 제주도 여행
+     
+       비행기예약(insert
+       숙소예약(insert
+       렌트카예약(insert
+       ..
+    예> member 테이블,  board 테이블
+
+      
+       member 탈퇴
+        member 테이블(delete)
+	board 테이블(delete)
+   
+    예> 상품테이블  재고테이블
+    ...
+
+    3) 트랜잭션은 시작 및 종료
+
+      시작: DML을 사용하면 자동으로 시작됨.
+      종료: 명시적으로 TCL(commit, rollback) 지정해야 된다. ( 실제 DB 반영: commit(확정), DB 미반영: rollback(취소)
+
+      트랜잭션 시작   ->
+                     insert
+                     .. (DML)
+
+
+      트랜잭션 종료   -> commit (확정)
+                     rollback (취소)
