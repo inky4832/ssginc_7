@@ -1162,3 +1162,20 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
 	delete from 테이블명
 	where 조건식;
+
+
+7. upsert ( update + insert ) 기능 ( merge )
+
+  - 테이블에 해당 행이 있으면 update 수행하고 
+    없으면 insert 를 수행한다.
+
+    -- upsert 기능
+	 INSERT INTO dept (deptno, dname, loc )
+	 VALUES (90, '인사과','서울');
+	 
+	INSERT INTO dept (deptno, dname, loc )
+	 VALUES (92, '인사과','서울') ON DUPLICATE KEY UPDATE loc='부산', dname='개발';
+
+  INSERT INTO dept (deptno, dname, loc )
+ VALUES (92, '인사과','서울'),(93, '인사과2','서울2') 
+  ON DUPLICATE KEY UPDATE loc='부산', dname='개발';
