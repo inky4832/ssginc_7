@@ -633,3 +633,12 @@ select dname from dept where deptno=20;
         dept.loc= x2.loc
     WHERE deptno=90;
  commit;
+ 
+ -- 레코드 삭제
+ DELETE FROM dept; -- 에러발생, emp에서 fk인 deptno가 참조하고 있기 때문에 (10,20,30)
+                   -- 참조하지 않는 레코드는 삭제 가능
+DELETE FROM dept
+ WHERE deptno = 90; -- 삭제가능. emp에서 90 값을 가진 fk 가 없기 때문에.
+  select * from copy_emp;
+  DELETE FROM copy_emp;
+  commit;
