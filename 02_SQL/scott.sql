@@ -469,15 +469,86 @@ SELECT empno, ename, dname, d.deptno
   -- inner 조인이기 때문에 각각 하나씩 누락됨.
   SELECT e.empno, e.ename, d.dname, e.deptno
  FROM emp e INNER JOIN dept d USING(deptno);
- 
   -- 누락된 홍길동 포함
  SELECT e.empno, e.ename, d.dname, e.deptno
  FROM emp e LEFT OUTER JOIN dept d USING(deptno);
  
   -- 누락된 40 포함
-  use testdb;
-   SELECT e.empno, e.ename, d.dname, d.deptno
+   SELECT e.empno, e.ename, d.dname, e.deptno
  FROM emp e RIGHT OUTER JOIN dept d USING(deptno);
  
-    SELECT e.empno, e.ename, d.dname, d.deptno
- FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno;
+ -- 서브쿼리
+ -- 서브쿼리 적용전
+ use testdb;
+    select sal
+	 from emp
+	 where ename='SCOTT';
+     
+  select *
+	 from emp
+	 where sal > 3000;
+     
+-- 서브쿼리 적용후
+     select *
+	 from emp
+	 where sal > ( select sal
+	               from emp
+	               where ename='SCOTT');
+     
+
+SELECT empno, ename, job, sal
+ FROM emp
+ WHERE job = ( SELECT job
+ FROM emp
+ WHERE empno = 7521 )
+ AND
+ sal > ( SELECT sal
+ FROM emp
+ WHERE empno = 7934 );
+ 
+
+
+SELECT deptno, MIN(sal)
+ FROM emp
+ GROUP BY deptno
+ HAVING MIN(sal) > ( SELECT MIN(sal)
+ FROM emp
+ WHERE deptno = 20 );
+ 
+ -- 복수행
+  SELECT empno, ename, job, hiredate, sal, deptno
+ FROM emp
+ WHERE sal IN ( SELECT MIN(sal)
+               FROM emp
+               GROUP BY job );
+               
+select avg(sal)
+	                  from emp
+			  group by deptno;
+              
+SELECT empno
+ FROM emp
+ WHERE comm IS NOT NULL;
+ 
+ SELECT empno, ename, job, hiredate, sal, deptno
+ FROM emp
+ WHERE EXISTS ( SELECT empno
+			    FROM emp
+                WHERE sal > 10000 );
+                
+SELECT empno
+			    FROM emp
+                WHERE sal > 10000;
+                
+-- 다중 컬럼
+SELECT deptno, empno, ename, sal
+ FROM emp
+ WHERE (deptno, sal ) IN ( SELECT deptno, MAX(sal)
+                          FROM emp
+                          GROUP BY deptno);
+                          
+-- 인라인 뷰
+   select e.deptno, sum(sal), round(avg(sal)), count(*)
+	  from emp e join dept d ON e.deptno = d.deptno
+	  group by deptno
+	order by 1;

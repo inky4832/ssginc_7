@@ -886,3 +886,49 @@
 
        < any: 최대값보다 작은 값 반환
                < (select max() ~ )동일
+ 
+    예>
+        select *
+	from emp
+	where sal > all ( select max(sal)
+	                  from emp
+			  group by deptno);
+
+       select *
+	from emp
+	where sal >  ( select max(sal)
+	                  from emp
+			  group by deptno);
+
+
+         exists 연산자
+	  문법:
+	    select
+	    from 
+	    where exists ( 서브쿼리 );
+
+            서브쿼리가 실행후 결과(레코드)가 있으면 main query가 실행되고
+            서브쿼리가 실행후 결과(레코드)가 없으면 main query가 실행안됨.
+
+
+
+     5) 인라인 뷰(inline-view)
+      
+       개념: main query의 from 절에 사용되는 서브쿼리를 의미.
+
+       문법:
+
+           select
+	   from (subquery) 별칭
+	   where ~;
+   
+       용도:
+          성능이슈
+	
+
+       예> emp 와 dept 테이블에서 부서별 sal총합과 평균을 출력?
+
+          select e.deptno, sum(sal), round(avg(sal)), count(*)
+	  from emp e join dept d ON e.deptno = d.deptno
+	  group by deptno
+	  order by 1;
