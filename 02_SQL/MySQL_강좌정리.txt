@@ -1046,6 +1046,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
 
        ==> 선택적으로 임의의 컬럼에 값을 저장할 수 있다.
            나머지 컬럼에는 null 값이 저장된다.
+	   따라서 지정되지 않은 컬럼은 not null 제약조건이 없어야 된다.
        ==> 가독성이 높아진다.
 
      나. 컬럼명 생략
@@ -1066,3 +1067,21 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
       - 주의할 점
         pk 컬럼에는 중복값 저장이 안되고 null 값 저장 불가.
 	not null 제약조건을 가진 컬럼에는 반드시 값을 지정해야 된다.
+
+    * CMD 기반의 접속툴 
+
+     C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe 이용하자.
+
+     1)cmd 열기
+     2)cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+     3) C:\Program Files\MySQL\MySQL Server 8.0\bin> mysql -u root -p  엔터치고 비밀번호 1234 입력
+     4) mysql>use testdb
+        mysql>select * from dept;
+
+  
+  3) 다중행 생성 방법
+
+     가. subquery 이용
+
+
+     나. value list 이용 (****************)

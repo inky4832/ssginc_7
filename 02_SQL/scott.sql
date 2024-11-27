@@ -552,3 +552,50 @@ SELECT deptno, empno, ename, sal
 	  from emp e join dept d ON e.deptno = d.deptno
 	  group by deptno
 	order by 1;
+    
+ SELECT deptno, SUM(sal) total_sum, ROUND(AVG(sal)) total_avg,COUNT(*) cnt
+ FROM emp
+ GROUP BY deptno;
+ 
+  SELECT e.deptno, total_sum, total_avg, cnt
+ FROM ( SELECT deptno, SUM(sal) total_sum, ROUND(AVG(sal)) total_avg,
+ COUNT(*) cnt
+ FROM emp
+ GROUP BY deptno) e JOIN dept d ON e.deptno = d.deptno
+ order by 1;
+ 
+ 
+ 
+ -- mysql 트랜잭션 처리 여부
+ show variables like 'autocommit%';
+ set Autocommit = false;
+ 
+ INSERT INTO dept (deptno, dname, loc )
+ VALUES (90, '인사과','서울');
+ INSERT INTO dept (deptno, dname ) # loc 컬럼에 null 저장
+VALUES (91, '인사과');
+ INSERT INTO dept (loc, dname, deptno )
+ VALUES ('서울', '인사과', 80);
+  INSERT INTO dept
+ VALUES (70, '인사과','서울');
+ rollback; -- 취소
+ commit; -- DB 반영
+ select * from dept;
+ 
+ SELECT empno, ename, sal FROM emp
+ WHERE 1=1;
+ 
+ -- 레코드 포함한 형태의 새로운 테이블 생성
+ CREATE TABLE copy_emp2
+ AS
+ SELECT empno, ename, sal FROM emp;
+ 
+ -- 레코드 포함하지 않은 형태의 새로운 테이블 생성
+ CREATE TABLE copy_emp
+ AS
+ SELECT empno, ename, sal FROM emp
+ WHERE 1=2;
+ -- 다중행 생성1- subquery 이용
+  INSERT INTO copy_emp (empno, ename, sal)
+ SELECT empno, ename, sal
+ FROM emp;
