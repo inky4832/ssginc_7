@@ -679,3 +679,13 @@ INSERT INTO dept (deptno, dname, loc )
      # 정상 코드 ( dept 다른 테이블에서 subquery 했기 때문)
      delete from dept 
     where dname = ( select ename from emp where empno=90);
+    
+    
+ -- DDL
+ -- 테이블생성-1
+ use testdb;
+ CREATE TABLE IF NOT EXISTS  dept_2
+ ( deptno INT,
+ dname VARCHAR(10),
+ loc VARCHAR(10) );
+    
