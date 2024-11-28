@@ -1232,3 +1232,47 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/sql-data-manipulation-statemen
          예> insert into 테이블명 ( 컬럼명 )
 	     values ( 값);
             컬럼명2 에는 null 값이 저장됨.
+
+
+  4) 데이터타입
+https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
+
+    
+     가. 수치형
+       
+        - 정수: tinyint ( 1byte)
+	       smallint ( 2byte)
+	       mediumint ( 3byte)
+	       int(integer) ( 4byte)
+	       bigint     (8byte)
+
+	- 실수: 부동 소수점: float , double
+	       고정 소수점: decimal, numeric
+ 
+    나. 문자형
+
+       고정길이:  char(n) : n byte ( n byte 크기의 영문자및한글저장 가능 ) , 최대 길이: 0~255
+             
+	      예> char(4) 인 경우
+	         저장값이 만약 'a' 라고 해도 4byte 크기에 a 를 저장한다.
+	      - 고정된 길이의 값을 저장할 때 사용
+	       예> 성별(남/녀), 학년, 요일,...
+
+       가변길이:  varchar(n) : n byte ( n byte 크기의 영문자및한글저장 가능 ) , 최대 길이: 0~65535
+               (바차, 바캐릭터)
+	       ( varchar2(n) 는 oracle에서 제공 )
+
+	      예> varchar(4) 인 경우
+	         저장값이 만약 'a' 라고 하면 4byte 크기가 1byte 크기로 축소되어 저장된다.
+
+       BLOB( Binary Large Object ) :  대용량 binary text 데이터 저장.
+
+       enum(값, 값2 ):  지정된 값만 허용
+
+     
+    다. 시간 및 날짜형
+
+        time:  hh:mm:ss , insert 할때 curtime() 사용
+	date:  YYYY-MM-DD , insert 할때 curdate() 사용
+        datetime: YYYY-MM-DD hh:mm:ss , insert 할때 now() 사용
+
