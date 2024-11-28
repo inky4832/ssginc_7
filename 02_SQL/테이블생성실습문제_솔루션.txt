@@ -1,0 +1,24 @@
+   create table student
+  ( studno int  PRIMARY KEY,
+    stuname varchar(10) );
+    
+
+  create table subject
+ ( subno int,
+   subname varchar(20)  NOT NULL,
+   term varchar(1), 
+   type varchar(4),
+    CONSTRAINT  primary key(subno),
+    CONSTRAINT CHECK ( term in ( '1','2') ),
+    CONSTRAINT CHECK( type in ('필수','선택')) 
+   );
+
+ create table sugang
+  ( studno int ,
+    subno int ,
+    regdate date,
+    result int, 
+     CONSTRAINT  PRIMARY KEY (studno, subno),
+     CONSTRAINT FOREIGN KEY(studno) REFERENCES student(studno),
+     CONSTRAINT FOREIGN KEY(subno) REFERENCES subject(subno)
+     );
