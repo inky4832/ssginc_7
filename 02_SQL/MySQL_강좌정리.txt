@@ -1281,7 +1281,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
 
     문법
 
-      create table [if not exists] 테이블명
+      create table [if not exists] 별
       (  컬럼명 데이터타입,
          컬럼명2 데이터타입 DEFAULT 값,
 	 ..
@@ -1295,3 +1295,54 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
          예> insert into 테이블명 ( 컬럼명 )
 	     values ( 값);
             컬럼명2 에는 DEFAULT 값이 저장됨.
+
+     용도:
+         - 고정된 값을 사용. 예> 게시판의 작성날짜, 성별
+
+       CREATE TABLE IF NOT EXISTS board
+	 ( num INT PRIMARY KEY AUTO_INCREMENT,
+ author VARCHAR(10) NOT NULL,
+ title VARCHAR(20) NOT NULL,
+ content VARCHAR(100) NOT NULL,
+	 writeday DATE DEFAULT (CURRENT_DATE),  #  DATE 일때는 (CURRENT_DATE)
+	 writeday2 DATETIME DEFAULT now(),      #  DATETIME  now()
+	 readcnt INT DEFAULT 0 );
+
+
+     6) AUTO_INCREMENT
+
+       ==> 자동으로 넘버링 가능한 방법으로
+           명시적으로 값을 지정하지 않는다.
+	   따라서 위 board 테이블에는 author, title, content 3개의 컬럼에만 명시적으로 값을 저장하면 된다.
+	   예> insert into board (author, title,content ) values ( '홍길동','테스트','내용무');
+      ==> 일반적으로 pk에 주로 사용됨.
+    
+ 2. 제약조건
+
+   1) 목적
+     - 무결성 보장.
+
+   2) 특징
+     - fk가 적용된 master의 테이블은 삭제불가 및 레코드 삭제 불가
+     - 레코드가 생성,수정 될때마다 제약조건을 체크.
+     - 제약조건을 설정하는 방법은 테이블레벨 과 컬럼레벨 방식 2가지가 있다.
+
+   3) 제약조건 종류
+     primary key(pk): 기본키,  not null + unique 포함하는 제약조건이다.
+                 자동으로 index 가 추가됨. 따라서 pk로 검색하면 검색속도가 빨라진다.
+		 테이블당 하나의 pk 만 가능. 복합컬럼 가능
+
+     unique(uk): 데이터값이 유일한 값이고 null 허용.
+                 자동으로 index 가 추가됨. 따라서 uk로 검색하면 검색속도가 빨라진다.
+		  테이블당 여러개 uk 가능. 복합컬럼 가능
+
+     check(ck): 비즈니스 로직 처리
+               예> 성별(남/여) 중학교(1학년/2학년/3학년), 학기(1학기/2학기)
+
+     foreign key(fk): 다른 테이블 참조용(연결용)
+                      예> emp(slave,child)의 deptno(fk) ----->   dept(master,parent)의 deptno(pk) 참조
+		      반드시 master의 컬럼중에서 pk 또는 uk 컬럼만 참조 가능하다.
+		      따라서 fk 컬럼이 가질 수 있는 값은 master의 pk값 또는 uk 값 또는 null 만 저장할 수 있다.
+		      테이블당 여러개 fk 가능.
+
+    not null(nn): 컬럼값에 null 허용 안함.
