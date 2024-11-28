@@ -1462,3 +1462,15 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
 
        delete from master1
        where no = 1;    -- 에러발생. 이유는 slave1 에서 mastser1의 no컬럼의 1 값을 참조하고 있기 때문이다.
+
+       해결 방법 2가지
+       ON DELETE CASCADE :  master의 레코드와 slave 레코드를 같이 삭제함.
+
+       ON DELETE SET NULL: slave 의 fk값을 null 로 설정함.
+
+       create table slave1
+	( num int primary key,
+	  email varchar(10) not null,
+          no int,
+	  constraint foreign key(no) references master1(no) ON DELETE CASCADE | ON DELETE SET NULL
+	 );

@@ -788,7 +788,7 @@ values( 4, 'aa',  30);   -- address는 not null 이기 때문에 따라서 에�
 	( num int primary key,
 	  email varchar(10) not null,
 	  no int,
-	  constraint foreign key(no) references master1(no)
+	  constraint foreign key(no) references master1(no)   ON DELETE SET NULL
 	 );
 
 	 insert into master1 ( no, name) values ( 1, 'aaa');
