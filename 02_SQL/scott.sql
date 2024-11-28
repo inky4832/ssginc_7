@@ -778,3 +778,28 @@ insert into student3 ( no, name, address, age )
 values( 3, null, 'bb', 30); -- name 값은 unique 값이기 때문에 null 허용
 insert into student3 ( no, name,  age )
 values( 4, 'aa',  30);   -- address는 not null 이기 때문에 따라서 에러발생
+
+-- foreign key - 테이블 레벨
+  create table master1
+	( no int primary key,
+	  name varchar(10) not null );
+
+	create table slave1
+	( num int primary key,
+	  email varchar(10) not null,
+	  no int,
+	  constraint foreign key(no) references master1(no)
+	 );
+
+	 insert into master1 ( no, name) values ( 1, 'aaa');
+	 insert into master1 ( no, name) values ( 2, 'bbb');
+	 insert into master1 ( no, name) values ( 3, 'ccc');
+
+	 insert into slave1 ( num, email, no ) values ( 10, 'a@n.com', 1 );
+	 insert into slave1 ( num, email, no ) values ( 20, 'a@n.com', 2 );
+	 insert into slave1 ( num, email, no ) values ( 30, 'a@n.com', null );
+	 insert into slave1 ( num, email, no ) values ( 40, 'a@n.com', 4 ); -- 에러
+   commit;
+
+	delete from master1
+	where no = 1;
