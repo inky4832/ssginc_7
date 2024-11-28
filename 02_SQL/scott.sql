@@ -689,3 +689,49 @@ INSERT INTO dept (deptno, dname, loc )
  dname VARCHAR(10),
  loc VARCHAR(10) );
     
+ -- 테이블생성-2 default 지정
+  CREATE TABLE IF NOT EXISTS dept_3
+ ( deptno INT,
+ dname VARCHAR(10),
+ loc VARCHAR(10) DEFAULT '서울' );   
+ 
+ insert into dept_3 ( deptno, dname )
+ values ( 10, '개발');
+ commit;
+ select * from dept_3;
+ 
+        CREATE TABLE IF NOT EXISTS board
+	 ( num INT PRIMARY KEY AUTO_INCREMENT,
+	 author VARCHAR(10) NOT NULL,
+	 title VARCHAR(20) NOT NULL,
+	 content VARCHAR(100) NOT NULL,
+	 writeday DATE DEFAULT (CURRENT_DATE),  #  DATE 일때는 (CURRENT_DATE)
+	 writeday2 DATETIME DEFAULT now(),      #  DATETIME  now()
+	 readcnt INT DEFAULT 0 );
+	
+insert into board ( num, author, title,content )
+values ( 1, '홍길동','테스트','내용무');
+insert into board (author, title,content )
+values ( '홍길동','테스트','내용무');
+ select * from board;
+ 
+ delete from dept;
+ drop table dept;
+ 
+ -- 제약조건1
+ CREATE TABLE student
+ ( no INT PRIMARY KEY,
+ name VARCHAR(10) UNIQUE ,
+ address VARCHAR(10) NOT NULL, # 컬럼레벨만 가능
+age INT CHECK( age IN ( 10,20,30 )));
+
+insert into student ( no, name, address, age )
+values( 1, 'aa', 'bb', 10);
+insert into student ( no, name, address, age )
+values( 2, 'aa2', 'bb', 40); -- age값에는 10,20,30 만 가능
+insert into student ( no, name, address, age )
+values( 3, 'aa', 'bb', 30); -- name 값은 unique 값 가능
+insert into student ( no, name, address, age )
+values( 3, null, 'bb', 30); -- name 값은 unique 값이기 때문에 null 허용
+insert into student ( no, name,  age )
+values( 4, 'aa',  30);   -- address는 not null 이기 때문에 에러

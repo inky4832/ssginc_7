@@ -1392,3 +1392,12 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
 
                # not null 제약조건 설정방법
                 alter table 테이블명 modify  컬럼명2 데이터타입  not null;
+
+
+   # 컬럼레벨실습 ( primary key, unique, not null, check )
+
+       CREATE TABLE student
+	( no INT PRIMARY KEY,
+	 name VARCHAR(10) UNIQUE ,
+	 address VARCHAR(10) NOT NULL, # 컬럼레벨만 가능
+	age INT CHECK( age IN ( 10,20,30 )));
