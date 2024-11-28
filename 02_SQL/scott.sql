@@ -718,7 +718,7 @@ values ( '홍길동','테스트','내용무');
  delete from dept;
  drop table dept;
  
- -- 제약조건1
+ -- 제약조건1 ( 컬럼레벨)
  CREATE TABLE student
  ( no INT PRIMARY KEY,
  name VARCHAR(10) UNIQUE ,
@@ -728,10 +728,53 @@ age INT CHECK( age IN ( 10,20,30 )));
 insert into student ( no, name, address, age )
 values( 1, 'aa', 'bb', 10);
 insert into student ( no, name, address, age )
-values( 2, 'aa2', 'bb', 40); -- age값에는 10,20,30 만 가능
+values( 2, 'aa2', 'bb', 40); -- age값에는 10,20,30 만 가능 따라서 에러발생
 insert into student ( no, name, address, age )
-values( 3, 'aa', 'bb', 30); -- name 값은 unique 값 가능
+values( 3, 'aa', 'bb', 30); -- name 값은 unique 값 가능 따라서 에러발생
 insert into student ( no, name, address, age )
 values( 3, null, 'bb', 30); -- name 값은 unique 값이기 때문에 null 허용
 insert into student ( no, name,  age )
-values( 4, 'aa',  30);   -- address는 not null 이기 때문에 에러
+values( 4, 'aa',  30);   -- address는 not null 이기 때문에 따라서 에러발생
+
+-- 제약조건2 ( 테이블 레벨)
+  CREATE TABLE student2
+	 ( no INT,
+	 name VARCHAR(10),
+	 address VARCHAR(10) NOT NULL, # 컬럼레벨만 가능
+	 age INT ,
+	 CONSTRAINT PRIMARY KEY(NO),
+	 CONSTRAINT UNIQUE(NAME),
+	 CONSTRAINT CHECK(age IN( 10,20,30 )));
+insert into student2 ( no, name, address, age )
+values( 1, 'aa', 'bb', 10);
+insert into student2 ( no, name, address, age )
+values( 2, 'aa2', 'bb', 40); -- age값에는 10,20,30 만 가능 따라서 에러발생
+insert into student2 ( no, name, address, age )
+values( 3, 'aa', 'bb', 30); -- name 값은 unique 값 가능 따라서 에러발생
+insert into student2 ( no, name, address, age )
+values( 3, null, 'bb', 30); -- name 값은 unique 값이기 때문에 null 허용
+insert into student2 ( no, name,  age )
+values( 4, 'aa',  30);   -- address는 not null 이기 때문에 따라서 에러발생
+
+
+   CREATE TABLE student3
+	 ( no INT,
+	 name VARCHAR(10),
+	 address VARCHAR(10),
+	 age INT
+	);
+      alter table student3 add CONSTRAINT PRIMARY KEY(NO);
+       alter table student3 add CONSTRAINT UNIQUE(NAME);
+       alter table student3 add CONSTRAINT CHECK(age IN( 10,20,30 ));
+	alter table student3 modify  address VARCHAR(10) not null;
+    
+insert into student3 ( no, name, address, age )
+values( 1, 'aa', 'bb', 10);
+insert into student3 ( no, name, address, age )
+values( 2, 'aa2', 'bb', 40); -- age값에는 10,20,30 만 가능 따라서 에러발생
+insert into student3 ( no, name, address, age )
+values( 3, 'aa', 'bb', 30); -- name 값은 unique 값 가능 따라서 에러발생
+insert into student3 ( no, name, address, age )
+values( 3, null, 'bb', 30); -- name 값은 unique 값이기 때문에 null 허용
+insert into student3 ( no, name,  age )
+values( 4, 'aa',  30);   -- address는 not null 이기 때문에 따라서 에러발생

@@ -1400,4 +1400,36 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
 	( no INT PRIMARY KEY,
 	 name VARCHAR(10) UNIQUE ,
 	 address VARCHAR(10) NOT NULL, # 컬럼레벨만 가능
-	age INT CHECK( age IN ( 10,20,30 )));
+	 age INT CHECK( age IN ( 10,20,30 )));
+
+   # 테이블 레벨실습 ( primary key, unique, not null, check )
+     
+         CREATE TABLE student2
+	 ( no INT,
+	 name VARCHAR(10),
+	 address VARCHAR(10) NOT NULL, # 컬럼레벨만 가능
+	 age INT ,
+	 CONSTRAINT PRIMARY KEY(NO),
+	 CONSTRAINT UNIQUE(NAME),
+	 CONSTRAINT CHECK(age IN( 10,20,30 )));
+
+
+   # 테이블을 먼저 생성하고 나중에 제약조건을 설정
+
+       CREATE TABLE student3
+	 ( no INT,
+	 name VARCHAR(10),
+	 address VARCHAR(10),
+	 age INT
+	);
+
+     - alter table 테이블명 add  제약조건설정  ( 테이블 레벨 문법과 동일 )
+
+       alter table student3 add CONSTRAINT PRIMARY KEY(NO);
+       alter table student3 add CONSTRAINT UNIQUE(NAME);
+       alter table student3 add CONSTRAINT CHECK(age IN( 10,20,30 ));
+
+      - not null 제약조건 설정방법
+       alter table 테이블명 modify  컬럼명2 데이터타입  not null;
+
+       alter table student3 modify  address VARCHAR(10) not null;
