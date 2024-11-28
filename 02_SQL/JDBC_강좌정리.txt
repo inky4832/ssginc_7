@@ -20,7 +20,7 @@ JDBC ( Java DataBase Connectivity )
          java.sql.PreparedStatement,
 	 java.sql.ResultSet
 	 ..)
-
+     c. DB연동 코드 작업...
 
 
 3. mysql 드라이버 구하기 및 eclipse에서 mysql-connector-j-8.0.33.jar 인식시키기
@@ -34,3 +34,23 @@ JDBC ( Java DataBase Connectivity )
 
        프로젝트 생성 > 프로젝트 선택후 오른쪽 클릭후 Build path > configure build path... >  3번째 탭 library 선택 >
        classpath 선택하고 Add External Jars >  mysql-connector-j-8.0.33.jar 선택해서 추가 > apply and close
+
+4. JDBC 연동 코드
+
+   1) mysql 접속 정보
+
+      String driver ="com.mysql.cj.jdbc.Driver";
+      String url="jdbc:mysql://localhost:3306/testdb";
+      String userid="root";
+      String passwd="1234";
+
+   2) 드라이버 로딩 (com.mysql.cj.jdbc.Driver 를 메모리에 올리는 작업)
+
+       Class.forName(driver);  // Class.forName("com.mysql.cj.jdbc.Driver");
+
+   3) Connection 맺기 
+
+      import java.sql.Connection;
+      import java.sql.DriverManager;
+
+      Connection con = DriverManager.getConnection(url, userid, passwd);
