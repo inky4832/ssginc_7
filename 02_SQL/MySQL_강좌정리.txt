@@ -1474,3 +1474,26 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/data-types.html
           no int,
 	  constraint foreign key(no) references master1(no) ON DELETE CASCADE | ON DELETE SET NULL
 	 );
+
+
+        # 테이블 먼저 생성하고 나중에 fk 제약조건을 추가
+	create table master2
+	( no int primary key,
+	  name varchar(10) not null );
+
+	create table slave2
+	( num int primary key,
+	  email varchar(10) not null,
+          no int
+	 );
+
+	alter table slave2 add constraint foreign key(no) references master2(no);
+
+
+	 insert into master2 ( no, name) values ( 1, 'aaa');
+	 insert into master2 ( no, name) values ( 2, 'bbb');
+	 insert into master2 ( no, name) values ( 3, 'ccc');
+
+	 insert into slave2 ( num, email, no ) values ( 10, 'a@naver.com', 1 );
+	 insert into slave2 ( num, email, no ) values ( 20, 'a@naver.com', 2 );
+	 insert into slave2 ( num, email, no ) values ( 30, 'a@naver.com', null );
