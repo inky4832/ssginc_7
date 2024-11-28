@@ -1,0 +1,56 @@
+
+JDBC ( Java DataBase Connectivity )
+
+
+1. 개요
+  - 자바와 DBMS 연동하는 기술.
+
+                    JDBC
+   자바프로그램 ------------------------- DBMS(Mysql, Oracle, ... )
+
+2. 특징
+  - JDBC 는 DBMS 종류과 무관하게 일관된 방법으로 접근이 가능하다.
+    어떤 DBMS 건 동일한 메서드를 사용할 수 있다. ( 인터페이스 이용 )
+
+
+
+     자바                                                   DBMS
+    -a. 인터페이스작성해서 벤더에 제공       ---------------->     mysql ( mysql-connector-j-8.0.33.jar : mysql 드라이버라고 부른다. )
+       ( java.sql.Connection,                            b. 자바에서 제공된 인터페이스 implments 한 클래스파일들 작성
+         java.sql.PreparedStatement,
+	 java.sql.ResultSet
+	 ..)
+     c. DB연동 코드 작업...
+
+
+3. mysql 드라이버 구하기 및 eclipse에서 mysql-connector-j-8.0.33.jar 인식시키기
+ 
+   1) mysql 드라이버 구하기
+    https://dev.mysql.com/downloads/connector/j/  > 버전 고려 > archieves 선택 >
+     버전 선택 및 platform independent 선택 >   mysql-connector-j-8.0.33.zip 다운로드 > 압축 풀면
+     mysql-connector-j-8.0.33.jar 제공됨.
+
+   2) eclipse에서 mysql-connector-j-8.0.33.jar 인식시키기
+
+       프로젝트 생성 > 프로젝트 선택후 오른쪽 클릭후 Build path > configure build path... >  3번째 탭 library 선택 >
+       classpath 선택하고 Add External Jars >  mysql-connector-j-8.0.33.jar 선택해서 추가 > apply and close
+
+4. JDBC 연동 코드
+
+   1) mysql 접속 정보
+
+      String driver ="com.mysql.cj.jdbc.Driver";
+      String url="jdbc:mysql://localhost:3306/testdb";
+      String userid="root";
+      String passwd="1234";
+
+   2) 드라이버 로딩 (com.mysql.cj.jdbc.Driver 를 메모리에 올리는 작업)
+
+       Class.forName(driver);  // Class.forName("com.mysql.cj.jdbc.Driver");
+
+   3) Connection 맺기 
+
+      import java.sql.Connection;
+      import java.sql.DriverManager;
+
+      Connection con = DriverManager.getConnection(url, userid, passwd);
