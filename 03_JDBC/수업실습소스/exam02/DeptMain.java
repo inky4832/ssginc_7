@@ -58,8 +58,13 @@ public class DeptMain {
 				DeptService service = new DeptServiceImpl();
 				service.setDeptDAO(new DeptDAO());
 				
-				int n = service.delDept(deptno);
-				System.out.println(n+" 개가 삭제됨.");
+				int n=0;
+				try {
+					n = service.delDept(deptno);
+					System.out.println(n+" 개가 삭제됨.");
+				} catch (RecordNotFoundException e) {
+					System.out.println(e.getMessage());
+				}
 				
 			}else {
 			    // 0. 종료

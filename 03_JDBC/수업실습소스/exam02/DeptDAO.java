@@ -63,8 +63,8 @@ public class DeptDAO {
 		  }//end finally
 		return n;
 	}//end addDept
-	public int delDept(Connection con, int deptno) {
-	
+	public int delDept(Connection con, int deptno) 
+			throws RecordNotFoundException {
 		int n = 0;
 		 PreparedStatement pstmt = null;
 	      try {
@@ -72,6 +72,9 @@ public class DeptDAO {
 	    	  pstmt = con.prepareStatement(sql);
 	    	  pstmt.setInt(1, deptno);
 	    	  n = pstmt.executeUpdate();
+	    	  // 사용자 예외 발생 조건
+	    	  if(n==0) throw new RecordNotFoundException(deptno +" 에 해당되는 레코드가 없습니다");
+	    	  
 	      }catch(SQLException e) {
 	    	  e.printStackTrace();
 	      }finally {

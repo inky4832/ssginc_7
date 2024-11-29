@@ -69,7 +69,7 @@ public class DeptServiceImpl
 	}
 
 	@Override
-	public int delDept(int deptno) {
+	public int delDept(int deptno) throws RecordNotFoundException{
 		int n = 0;
 		Connection con = null;
 		try {
