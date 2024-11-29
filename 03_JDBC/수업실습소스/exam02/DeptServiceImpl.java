@@ -47,4 +47,24 @@ public class DeptServiceImpl
 		} //end finally
 		return list;
 	}//end selectList
+
+	@Override
+	public int addDept(DeptDTO dto) {
+		int n = 0;
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(url, userid, passwd);
+			// DeptDAO 연동
+			n = dao.addDept(con, dto);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null)con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} //end finally
+		return n;
+	}
 }//end main

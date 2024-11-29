@@ -8,10 +8,10 @@ public class DeptMain {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
-			System.out.println("1. select");
-			System.out.println("2. insert");
-			System.out.println("3. update");
-			System.out.println("4. delete");
+			System.out.println("1. 부서 목록 보기");
+			System.out.println("2. 부서 추가");
+			System.out.println("3. 부서 수정");
+			System.out.println("4. 부서 삭제");
 			System.out.println("0. 종료");
 			System.out.println("----------------");
 			
@@ -30,8 +30,21 @@ public class DeptMain {
 				System.out.println("--------------------------------");
 				
 			}else if("2".equals(input_num)) {
-				// 2. insert
-				System.out.println("insert 작업");
+				System.out.println("부서번호를 입력하시오.");
+				int deptno = scan.nextInt();
+				System.out.println("부서명를 입력하시오.");
+				String dname = scan.next();
+				System.out.println("부서위치를 입력하시오.");
+				String loc = scan.next();
+				
+				// dto -----------> DeptDAO 까지 전달해야됨.
+				DeptDTO dto = new DeptDTO(deptno, dname, loc);
+				
+				DeptService service = new DeptServiceImpl();
+				service.setDeptDAO(new DeptDAO());
+				int n = service.addDept(dto);
+				System.out.println(n+" 개가 생성됨.");
+				
 			}else if("3".equals(input_num)) {
 				// 3. update
 				System.out.println("update 작업");

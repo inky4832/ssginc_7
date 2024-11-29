@@ -1,6 +1,7 @@
 package exam02;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,4 +41,26 @@ public class DeptDAO {
 			} //end finally
 	     return list; // 누적된 리스트를 Service로 리턴해줌.
 	}//end selectList
+	
+	public int addDept(Connection con, DeptDTO dto) {
+		int n = 0;
+		 PreparedStatement pstmt = null;
+	      try {
+	    	  String sql = "insert into dept (deptno, dname, loc ) values ( ?, ?, ? )";
+	    	  pstmt = con.prepareStatement(sql);
+	    	  pstmt.setInt(1, dto.getDeptno());
+	    	  pstmt.setString(2, dto.getDname());
+	    	  pstmt.setString(3, dto.getLoc());
+	    	  n = pstmt.executeUpdate();
+	      }catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }finally {
+	    	    try {
+					if(pstmt!=null)pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		  }//end finally
+		return n;
+	}//end addDept
 }

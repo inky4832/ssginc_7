@@ -6,4 +6,6 @@ public interface DeptService {
   
 	public void setDeptDAO(DeptDAO dao);
 	public abstract List<DeptDTO> selectList();
+	
+	public int addDept(DeptDTO dto);
 }
