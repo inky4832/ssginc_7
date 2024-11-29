@@ -1,5 +1,6 @@
 package exam02;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class DeptMain {
@@ -16,8 +17,18 @@ public class DeptMain {
 			
 			String input_num = scan.next();
 			if("1".equals(input_num)) {
-				// 1. select 작업
-				System.out.println("select 작업");
+				 
+				DeptService service = new DeptServiceImpl();
+				service.setDeptDAO(new DeptDAO());
+				List<DeptDTO> list = service.selectList();
+				System.out.println("부서번호 \t\t 부서명 \t\t  부서위치");
+				System.out.println("--------------------------------");
+				for (DeptDTO dept : list) {
+					System.out.printf("%d   %s    %s \n", dept.getDeptno(), dept.getDname(), dept.getLoc());
+				}
+				System.out.println("--------------------------------");
+				System.out.println("--------------------------------");
+				
 			}else if("2".equals(input_num)) {
 				// 2. insert
 				System.out.println("insert 작업");

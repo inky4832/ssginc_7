@@ -3,6 +3,7 @@ package exam02;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DeptServiceImpl 
    implements DeptService {
@@ -11,6 +12,12 @@ public class DeptServiceImpl
      String url="jdbc:mysql://localhost:3306/testdb";
      String userid="root";
      String passwd="1234";
+     
+     DeptDAO dao;
+     // DeptMain에서 DeptDAO 전달.
+     public void setDeptDAO(DeptDAO dao) {
+    	 this.dao = dao;
+     }
      
 	public DeptServiceImpl() {
 	      try {
@@ -22,11 +29,13 @@ public class DeptServiceImpl
 
 	//select 메서드
 	@Override
-	public void selectList() {
+	public List<DeptDTO> selectList() {
+		List<DeptDTO> list = null;
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url, userid, passwd);
-			
+			// DeptDAO 연동
+			list = dao.selectList(con);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -36,5 +45,6 @@ public class DeptServiceImpl
 				e.printStackTrace();
 			}
 		} //end finally
+		return list;
 	}//end selectList
 }//end main

@@ -23,7 +23,6 @@ public class DeptDAO {
 				     int deptno = rs.getInt("no");  // 컬럼헤더 또는 순서(1부터)
 				     String dname = rs.getString(2);
 				     String loc = rs.getString("loc");
-				     
 				     // 하나의 레코드를 DTO 저장
 				     DeptDTO dto = new DeptDTO(deptno, dname, loc);
 				     // 누적
@@ -39,7 +38,6 @@ public class DeptDAO {
 					e.printStackTrace();
 				}
 			} //end finally
-	      
-	     return list;
+	     return list; // 누적된 리스트를 Service로 리턴해줌.
 	}//end selectList
 }
