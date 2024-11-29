@@ -67,4 +67,25 @@ public class DeptServiceImpl
 		} //end finally
 		return n;
 	}
+
+	@Override
+	public int delDept(int deptno) {
+		int n = 0;
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(url, userid, passwd);
+			// DeptDAO 연동
+			n = dao.delDept(con, deptno);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null)con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} //end finally
+		return n;
+	}
 }//end main

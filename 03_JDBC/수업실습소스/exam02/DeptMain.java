@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class DeptMain {
 
 	public static void main(String[] args) {
+		
+		
 		Scanner scan = new Scanner(System.in);
 		while(true) {
 			System.out.println("1. 부서 목록 보기");
@@ -48,9 +50,17 @@ public class DeptMain {
 			}else if("3".equals(input_num)) {
 				// 3. update
 				System.out.println("update 작업");
+				
 			}else if("4".equals(input_num)) {
-				// 4. delete
-				System.out.println("delete 작업");
+				System.out.println("삭제할 부서번호를 입력하시오.");
+				int deptno = scan.nextInt();
+				
+				DeptService service = new DeptServiceImpl();
+				service.setDeptDAO(new DeptDAO());
+				
+				int n = service.delDept(deptno);
+				System.out.println(n+" 개가 삭제됨.");
+				
 			}else {
 			    // 0. 종료
 				scan.close();

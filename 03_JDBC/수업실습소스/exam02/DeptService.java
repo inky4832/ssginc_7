@@ -8,4 +8,5 @@ public interface DeptService {
 	public abstract List<DeptDTO> selectList();
 	
 	public int addDept(DeptDTO dto);
+	public int delDept(int deptno);
 }

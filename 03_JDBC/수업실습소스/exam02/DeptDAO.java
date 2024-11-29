@@ -63,4 +63,24 @@ public class DeptDAO {
 		  }//end finally
 		return n;
 	}//end addDept
+	public int delDept(Connection con, int deptno) {
+	
+		int n = 0;
+		 PreparedStatement pstmt = null;
+	      try {
+	    	  String sql = "delete from dept where deptno = ?";
+	    	  pstmt = con.prepareStatement(sql);
+	    	  pstmt.setInt(1, deptno);
+	    	  n = pstmt.executeUpdate();
+	      }catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }finally {
+	    	    try {
+					if(pstmt!=null)pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		  }//end finally
+		return n;
+	}
 }
