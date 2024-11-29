@@ -11,7 +11,9 @@ JDBC ( Java DataBase Connectivity )
 2. 특징
   - JDBC 는 DBMS 종류과 무관하게 일관된 방법으로 접근이 가능하다.
     어떤 DBMS 건 동일한 메서드를 사용할 수 있다. ( 인터페이스 이용 )
-
+  - jdbc는 compile checked (비런타임)이기 때문에 반드시 try~cacth 예외처리 필수.
+  - jdbc는 기본적으로 DML 작업은 auto commit 됨. (비활성화 가능 )
+    현재는 계좌이체 같은 트랜잭션 처리 작업은 불가.
 
 
      자바                                                   DBMS
@@ -121,3 +123,37 @@ JDBC ( Java DataBase Connectivity )
        con.close();
 
        SQLException 예외처리 필수로 설정.
+
+
+ 5. sql 문에 실제 데이터를 동적으로 설정하는 방법
+
+   1)적용
+     select
+     insert
+     delete
+     update
+
+   2) 순서
+
+     가. sql 문 작성
+
+        예> String sql = "select deptno, dname, loc from dept where deptno = ? and dname = ?"  // ? 바인딩 변수
+
+	   pstmt = con.prepareStatement(sql);
+           
+	   pstmt.setInt( 1 , 10  );
+	   pstmt.setString( 2, "개발");
+
+	   rs = pstmt.executeQuery();
+
+
+    나. DML 문 작성
+
+       예> String sql = "insert into dept (deptno, dname, loc ) values ( ?, ?, ?)";
+
+          pstmt = con.prepareStatement(sql);
+          pstmt.setInt(1, 42 );
+	  pstmt.setString(2, "인사");
+	  pstmt.setString(3, "서울");
+
+	  int n = pstmt.executeUpdate();
