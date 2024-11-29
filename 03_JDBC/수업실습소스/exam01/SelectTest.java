@@ -47,7 +47,7 @@ public class SelectTest {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		} //end finally
 	      
 	      
 	}//end main
