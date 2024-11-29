@@ -168,5 +168,48 @@ JDBC ( Java DataBase Connectivity )
      즉 명시적으로 commit/rollback 이 필요하다.
 
    - 구현
+     
+      Connection con = null;
+
+      try{
+          con = DriverManager.getConnection(url, userid, passwd);
+ con.setAutoCommit(false);
+	  insert 작업;
+	  update 작업;
+	  delete 작업;
+ con.commit();
+
+      }catch(SQLException e){
+ con.rollback();
+      }
+
+7.  기능분리
+
+  1) 기능분리 전
+
+      SeleteTest.java  <-----------------------------> MySQL DBMS
+      -화면처리 코드
+      -비즈니스로직(가공) 코드
+      -DB연동 코드
+
+  2) 기능분리 후
+
+                          DeptService(인터페이스)
+     DeptMain.java <----> DeptServiceImpl(클래스) <----> DeptDAO  <----> MySQL DBMS
+     -main()               - 비즈니스로직(가공) 코드         -DB연동 코드 
+     -화면처리 코드            - 트랜잭션 처리(*********)
 
 
+8. 예외처리
+ 
+  예> 
+    1) 시스템은 에러가 아닌 경우 ( 사용자 입장에서 에러라고 가정 )
+     삭제할 레코드가 없는 경우 ( 조회했을 때 레코드가 없는 경우 )
+  
+     RecordNotFoundException.java 사용자 정의 예외클래스 이용.
+
+
+    2) 시스템 에러 경우
+     저장할 때 pk 중복시 
+     
+     DuplicatedDeptnoException.java 
