@@ -29,15 +29,10 @@ public class DeptMain {
 				System.out.println("delete 작업");
 			}else {
 			    // 0. 종료
+				scan.close();
 				System.out.println("프로그램 종료");
 				System.exit(0);  // 프로그램 종료
 			}
 		}
-		
-		
-		
-		
-
 	}
-
 }
