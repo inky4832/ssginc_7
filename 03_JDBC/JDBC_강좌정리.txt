@@ -6,7 +6,7 @@ JDBC ( Java DataBase Connectivity )
   - 자바와 DBMS 연동하는 기술.
 
                     JDBC
-   자바프로그램 ------------------------- DBMS(Mysql, Oracle, ... )
+   자바프로그램 ------------------------- DBMS(Mysql, Oracle, Ms-sql ... )
 
 2. 특징
   - JDBC 는 DBMS 종류과 무관하게 일관된 방법으로 접근이 가능하다.
@@ -45,8 +45,11 @@ JDBC ( Java DataBase Connectivity )
       String passwd="1234";
 
    2) 드라이버 로딩 (com.mysql.cj.jdbc.Driver 를 메모리에 올리는 작업)
+      => "패키지.클래스명" 를 사용하기 위해서는 Class.forName(문자열) 사용한다.
 
        Class.forName(driver);  // Class.forName("com.mysql.cj.jdbc.Driver");
+
+       ClassNotFoundException 예외처리 필수로 설정.
 
    3) Connection 맺기 
 
@@ -54,3 +57,67 @@ JDBC ( Java DataBase Connectivity )
       import java.sql.DriverManager;
 
       Connection con = DriverManager.getConnection(url, userid, passwd);
+
+      SQLException 예외처리 필수로 설정.
+
+    4) sql 문 작성 
+     ==> 수업에서 배웠던 모든 SQL 문 사용 가능
+     ==> 문장끝의 ; 반드시 제외
+
+     String sql = "select deptno as no, dname, loc from dept";
+
+    5) PreparedStatement ( sql 문을 DBMS로 전달하는 객체) 
+
+      
+       import java.sql.PreparedStatement;
+
+
+       PreparedStatement pstmt = con.prepareStatement(sql);
+
+       SQLException 예외처리 필수로 설정.
+
+    6) sql 문 전송 ( PreparedStatement 의 메서드 이용 )
+
+       가. select 문
+         ==> select 문의 실행결과는 테이블(결과셋)로 반환.
+
+          import java.sql.ResultSet;
+
+
+	  ResultSet rs = pstmt.executeQuery();  // rs가 실행결과 테이블을 참조하는 변수
+
+         SQLException 예외처리 필수로 설정.
+
+
+	   // 행선택
+	  while(rs.next()){
+	     // 열선택
+	     int deptno = rs.getInt("no");  // 컬럼헤더 또는 순서(1부터)
+	     String dname = rs.getString(2);
+	     String loc = rs.getString("loc");
+	  }
+
+
+       나. DML 문( insert,delete,update)
+         ==> DML문의 실행결과는 영향받은 레코드 갯수
+
+	   
+	   int n = pstmt.executeUpdate();   // n은 DML 실행후 영향받은 레코드 갯수
+
+          SQLException 예외처리 필수로 설정.
+
+
+    7) 자원반납 ( close 작업 )
+
+       사용한 순서는 다음과 같다.
+       Connection con
+       PreparedStatement pstmt
+       ResultSet rs
+
+
+       반드시 close() 호출은 사용한 역순
+       rs.close();
+       pstmt.close();
+       con.close();
+
+       SQLException 예외처리 필수로 설정.
