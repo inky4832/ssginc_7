@@ -7,7 +7,8 @@ public interface DeptService {
 	public void setDeptDAO(DeptDAO dao);
 	public abstract List<DeptDTO> selectList();
 	
-	public int addDept(DeptDTO dto);
+	public int addDept(DeptDTO dto)
+			throws DuplicatedDeptnoException;
 	public int delDept(int deptno)
 			throws RecordNotFoundException ;
 }

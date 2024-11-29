@@ -44,8 +44,13 @@ public class DeptMain {
 				
 				DeptService service = new DeptServiceImpl();
 				service.setDeptDAO(new DeptDAO());
-				int n = service.addDept(dto);
-				System.out.println(n+" 개가 생성됨.");
+				int n=0;
+				try {
+					n = service.addDept(dto);
+					System.out.println(n+" 개가 생성됨.");
+				} catch (DuplicatedDeptnoException e) {
+					System.out.println(e.getMessage());
+				}
 				
 			}else if("3".equals(input_num)) {
 				// 3. update

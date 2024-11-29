@@ -49,7 +49,7 @@ public class DeptServiceImpl
 	}//end selectList
 
 	@Override
-	public int addDept(DeptDTO dto) {
+	public int addDept(DeptDTO dto) throws DuplicatedDeptnoException{
 		int n = 0;
 		Connection con = null;
 		try {

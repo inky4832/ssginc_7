@@ -42,7 +42,8 @@ public class DeptDAO {
 	     return list; // 누적된 리스트를 Service로 리턴해줌.
 	}//end selectList
 	
-	public int addDept(Connection con, DeptDTO dto) {
+	public int addDept(Connection con, DeptDTO dto)
+			throws DuplicatedDeptnoException {
 		int n = 0;
 		 PreparedStatement pstmt = null;
 	      try {
@@ -53,7 +54,8 @@ public class DeptDAO {
 	    	  pstmt.setString(3, dto.getLoc());
 	    	  n = pstmt.executeUpdate();
 	      }catch(SQLException e) {
-	    	  e.printStackTrace();
+	    	  //e.printStackTrace();
+	    	  throw new DuplicatedDeptnoException(dto.getDeptno()+" 이 중복되어 에러발생");
 	      }finally {
 	    	    try {
 					if(pstmt!=null)pstmt.close();
