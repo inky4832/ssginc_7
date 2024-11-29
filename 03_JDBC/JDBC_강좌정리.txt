@@ -157,3 +157,16 @@ JDBC ( Java DataBase Connectivity )
 	  pstmt.setString(3, "서울");
 
 	  int n = pstmt.executeUpdate();
+
+
+6. 트랜잭션 처리
+ 
+   - 기본적으로 JDBC는 auto commit 이다.
+     따라서 계좌이체 같은 트랜잭션 처리가 불가능하다.
+
+     그런데 계좌이체 같은 트랜잭션를 처리하기 위해서 auto commit 비활성화 가능하다.
+     즉 명시적으로 commit/rollback 이 필요하다.
+
+   - 구현
+
+
