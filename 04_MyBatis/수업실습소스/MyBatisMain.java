@@ -41,5 +41,10 @@ public class MyBatisMain {
 		// 복수행
 		List<DeptDTO> list = session.selectList("findAll");
 		System.out.println(list);
+		System.out.println("##########################");
+		List<DeptDTO> list2 = 
+				session.selectList("findByDname", "인사");
+		System.out.println(list2);
+		
 	}
 }

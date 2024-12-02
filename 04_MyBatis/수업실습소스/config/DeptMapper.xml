@@ -4,10 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.mybatis.example.BlogMapper">
  
+  <!--   복수행  -->
   <select id="findAll" resultType="com.dto.DeptDTO">
      select deptno, dname, loc 
      from dept
   </select>
+  
+  <select id="findByDname" 
+  resultType="com.dto.DeptDTO"
+  parameterType="string"
+  >
+     select deptno , dname, loc 
+     from dept
+     where dname = #{dname}
+  </select>
+  
+  <!--   단일행  -->
   <select id="find10" resultType="com.dto.DeptDTO">
      select deptno, dname, loc 
      from dept

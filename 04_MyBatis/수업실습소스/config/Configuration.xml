@@ -22,5 +22,6 @@
   <mappers>
    <!-- com.config.DeptMapper.xml 파일을 설정 -->
     <mapper resource="com/config/DeptMapper.xml"/>
+    <mapper resource="com/config/DeptMapper2.xml"/>
   </mappers>
 </configuration>
