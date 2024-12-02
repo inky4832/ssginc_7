@@ -101,8 +101,29 @@ MyBatis 프레임워크
 
 	      SqlSessionFactory에서 openSession() 이용해서 얻는다.
 
+  5.  mapper 작성
+ 
+     - 태그를 이용해서 CRUD 가능
+      예> 
+         select 작업:
+	             <select id="">
+                         selelct 문
+		     </select>
 
+         insert 작업:
+	             <insert id="">
+                         insert 문
+		     </insert>
 
+         update 작업:
+	             <update id="">
+                         update 문
+		     </update>
+
+         delete 작업:
+	             <delete id="">
+                         delete 문
+		     </delete>
 
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
