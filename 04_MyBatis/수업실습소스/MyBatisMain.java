@@ -46,5 +46,7 @@ public class MyBatisMain {
 				session.selectList("findByDname", "인사");
 		System.out.println(list2);
 		
+		//자원반납
+		session.close();
 	}
 }

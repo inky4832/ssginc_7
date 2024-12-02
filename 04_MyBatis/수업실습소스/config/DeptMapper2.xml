@@ -4,6 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.mybatis.example.BlogMapper">
  
+   <delete id="deleteDept" parameterType="string" >
+     delete from dept
+     where dname = #{dname}
+   </delete>
+ 
+ 
+ 
+   <update id="updateDept" parameterType="hashmap">
+      update dept
+      set dname = #{dname}, loc = #{loc}
+      where deptno = #{deptno}
+   </update>
+ 
+ 
    <insert id="addDept" >
       insert into dept (deptno, dname, loc) 
       values ( 50 ,  '관리' , '부산' )
