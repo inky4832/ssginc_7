@@ -162,7 +162,7 @@ MyBatis 프레임워크
 		     where deptno = 10
 		 </select>
 
-	      DeptDTO dto = session.selectOne("find10");
+	      DeptDTO dto = session.selectOne("namespace명.find10");
 
 	   만일 존재하지 않는 id를 사용하면 다음과 같은 에외가 발생된다.
 	   Mapped Statements collection does not contain value for find100
@@ -196,6 +196,16 @@ MyBatis 프레임워크
            int n =  session.delete(String);   // String값은 mapper의 id값, n 값은 변경된 레코드 갯수
 	   int n =  session.delete(String,Object );  // Object는 where 절 사용되는 파라미터값
  
+ 
+
+    7.   mapper 의 namespace 용도
+  
+       - 여러 mapper 파일이 있고 동일한 id를 가진 태그 요청시 id만 사용하면 중복되었기 때문에 에러가 발생됨. ( 식별이 안되기 때문)
+         namespace.id 로 요청하면 namespace 가 다르기 때문에 동일한 id값일지라도 실행이 됨.
+	 따라서 namespace는 유일해야 된다.
+
+       예>   int n = session.insert("namespace명.id값");
+
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
       이클립스 Window > Preferences > XML ( Wild Web Developer ) 선택 >  Download external resource ... 체크
