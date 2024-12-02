@@ -1,0 +1,45 @@
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.config.MySqlSessionFactory;
+import com.dto.DeptDTO;
+
+public class MyBatisMain {
+
+	public static void main(String[] args) {
+
+		SqlSession session = MySqlSessionFactory.getSession();
+		
+		// 단일행
+		DeptDTO dto = session.selectOne("find10");
+		System.out.println(dto);
+		System.out.println("##########################");
+		
+		DeptDTO dto2 = session.selectOne("findByDeptno", 40);
+		System.out.println(dto2);
+		System.out.println("##########################");
+		
+		DeptDTO searchDTO = new DeptDTO();
+		searchDTO.setDeptno(10);
+		searchDTO.setDname("ACCOUNTING");
+		DeptDTO dto3 = 
+				session.selectOne("findByDeptnoAndDname",
+						searchDTO );
+		System.out.println(dto3);
+		System.out.println("##########################");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("xxx", 10);
+		map.put("yyy", "ACCOUNTING");
+		DeptDTO dto4 = 
+				session.selectOne("findByHashmap", map);
+		System.out.println(dto4);
+		System.out.println("##########################");
+		
+		// 복수행
+		List<DeptDTO> list = session.selectList("findAll");
+		System.out.println(list);
+	}
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.example.BlogMapper">
+ 
+  <select id="findAll" resultType="com.dto.DeptDTO">
+     select deptno, dname, loc 
+     from dept
+  </select>
+  <select id="find10" resultType="com.dto.DeptDTO">
+     select deptno, dname, loc 
+     from dept
+     where deptno = 10
+  </select>
+    <select id="findByDeptno" 
+        resultType="com.dto.DeptDTO"
+        parameterType="int"
+        >
+     select deptno, dname, loc 
+     from dept
+     where deptno = #{deptno}
+  </select>
+    <select id="findByDeptnoAndDname" 
+        resultType="com.dto.DeptDTO"
+        parameterType="com.dto.DeptDTO"
+        >
+     select deptno, dname, loc 
+     from dept
+     where deptno = #{deptno} and dname=#{dname}
+  </select>
+   <select id="findByHashmap" 
+        resultType="com.dto.DeptDTO"
+        parameterType="hashmap"
+        >
+     select deptno, dname, loc 
+     from dept
+     where deptno = #{xxx} and dname=#{yyy}
+  </select>
+  
+</mapper>
