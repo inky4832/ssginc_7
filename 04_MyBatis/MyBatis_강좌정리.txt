@@ -95,11 +95,26 @@ MyBatis 프레임워크
 	     java.sql.PreparedStatement
 	     java.sql.ResultSet 
 
+	     마지막에는 역순으로 close() 해야됨.
+
+	   - 트랜잭션은 auto commit.
+	   - 반드시 예외처리 필수 ( try~catch ). <=== compile checked 예외
+
        나. MyBatis 에서 필요한 API
 
            - org.apache.ibatis.session.SqlSession
 
 	      SqlSessionFactory에서 openSession() 이용해서 얻는다.
+
+	      마지막에는 SqlSession을 close() 해야됨.
+
+          - 트랜잭션은 auto commit 아님. 따라서 명시적으로 commit() / rollback() 호출해야 된다.
+          - 예외처리 필요없음  <== compile unchecked 예외. 즉 RuntimeException 예외가 발생됨.
+
+	     내부적으로 compile checked 예외인 SQLException 을 
+	             compile unchecked 예외인 RuntimeException 계열로 변경한다.
+             따라서 사용자는 RuntimeException 계열 예외를 만나기 때문에 예외처리가 필요없다. 
+	     catch는 필요할때만 사용하면 된다.
 
   5.  mapper 작성
  
@@ -135,10 +150,10 @@ MyBatis 프레임워크
 
       1) select문
 
-         가. 단일행
+         가. 단일행 ( 리턴값은 DTO 받는 경우)
 
-	   mapper에서 resultType으로 지정된 타입 = session.selectOne(String); // String값은 mapper의 id값
-            session.selectOne(String, Object); // Object는 where절에 사용되는 파라미터값
+	   mapper에서 resultType으로 지정된 타입 변수명 = session.selectOne(String); // String값은 mapper의 id값
+           session.selectOne(String, Object); // Object는 where절에 사용되는 파라미터값
 
            예> 
 	        <select id="find10" resultType="com.dto.DeptDTO">
@@ -149,17 +164,37 @@ MyBatis 프레임워크
 
 	      DeptDTO dto = session.selectOne("find10");
 
+	   만일 존재하지 않는 id를 사용하면 다음과 같은 에외가 발생된다.
+	   Mapped Statements collection does not contain value for find100
 
-	 나. 복수행
 
+           실행결과를 보면 select 한 결과가 자동으로 DTO의 변수에 저장( set컬럼명 )이 되고
+	               파라미터로 전달한 DTO의 변수값이 자동으로 select 문의 where 절에 (#{변수명}) 설정( get컬럼명 )이 됨.
+             
+ 
+
+	 나. 복수행 ( 리턴값은 DTO에 하나의 레코드를 저장하고 저장된 DTO을 List에 저장해서 반환 )
+
+	    List<DeptDTO> list = session.selectList(String);          // String값은 mapper의 id값
+	    List<DeptDTO> list = session.selectList(String, Object); // Object는 where절에 사용되는 파라미터값
+	    List<DeptDTO> list = session.selectList(String, Object, RowBounds);
 
 
       2) insert문
 
+	   int n =  session.insert(String);   // String값은 mapper의 id값, n 값은 변경된 레코드 갯수
+	   int n =  session.insert(String,Object );  // Object는 values절 사용되는 파라미터값
+
       3) update문
+ 
+           int n =  session.update(String);   // String값은 mapper의 id값, n 값은 변경된 레코드 갯수
+	   int n =  session.update(String,Object );  // Object는 where 및 set절 사용되는 파라미터값
+
 
       4) delete문
-
+     
+           int n =  session.delete(String);   // String값은 mapper의 id값, n 값은 변경된 레코드 갯수
+	   int n =  session.delete(String,Object );  // Object는 where 절 사용되는 파라미터값
  
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
