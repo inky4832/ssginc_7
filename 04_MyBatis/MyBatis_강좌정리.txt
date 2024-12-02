@@ -58,6 +58,10 @@ MyBatis 프레임워크
 	   config
 	        Configuration.xml
 
+      - 설정 정보는 다음과 같다.
+        jdbc.properties 설정해서 4가지 정보를 이용해서 DB 연동이 된다.
+        DeptMapper.xml 설정해서 dept테이블에 select 및 dml 요청이 가능하다.
+	설정시 주의할 점은 패키지는 .(dot)가 아닌 / 로 설정해야 된다.
 
    나. mapper 파일
       - JDBC에서 사용했던 SQL문을 설정하는 용도. ( 내용은 MyBatis 문서 참조 )
@@ -68,6 +72,19 @@ MyBatis 프레임워크
          com
 	   config
 	        DeptMapper.xml
+
+  4.  자바에서 Configuration.xml 파일 등록 ( 내용은 MyBatis 문서 참조 )
+
+
+        String resource = "com/config/Configuration.xml";
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	SqlSessionFactory sqlSessionFactory =
+	  new SqlSessionFactoryBuilder().build(inputStream);
+
+
+       위 코드를 구현한 클래스 파일을 작성하자. ( com.config.MySqlSessionFactory.java )
+         SqlSessionFactory 에서 SqlSession 을 얻음.
+	 이 SqlSession 의 메서드를 이용해서 DB 연동을 한다.
 
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
@@ -88,7 +105,7 @@ MyBatis 프레임워크
 		   <phone>010-23454</phone>
 	        </user>
 
-     - dtd 와 xsd 용도
+     - *.dtd 와 *.xsd 용도
       
        사용자간에 xml 의 태그명과 속성명, 데이터타입, 태그중복여부 및 횟수 등 약속을 정하는 문법이다.
        
