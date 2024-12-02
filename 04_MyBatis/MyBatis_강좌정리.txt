@@ -103,11 +103,15 @@ MyBatis 프레임워크
 
   5.  mapper 작성
  
-     - 태그를 이용해서 CRUD 가능
+     - 태그를 이용해서 CRUD 가능.
+     - 동일한 태그를 여러개 지정할 수 있고 id 속성 이용해서 구분한다. ( 하나의 mapper 파일안에서 id값은 유일해야 됨 )
       예> 
          select 작업:
-	             <select id="">
-                         selelct 문
+	             <select id="finAll" resultType="select한결과를저장할DTO클래스">
+                         select * from dept
+		     </select>
+		     <select id="findDeptnoAndDname" resultType="select한결과를저장할DTO클래스">
+                         select deptno, dname from dept
 		     </select>
 
          insert 작업:
@@ -125,6 +129,38 @@ MyBatis 프레임워크
                          delete 문
 		     </delete>
 
+   6. SqlSession의 메서드
+    
+     - mapper의 태그와 연동하는 메서드이 제공됨.
+
+      1) select문
+
+         가. 단일행
+
+	   mapper에서 resultType으로 지정된 타입 = session.selectOne(String); // String값은 mapper의 id값
+            session.selectOne(String, Object); // Object는 where절에 사용되는 파라미터값
+
+           예> 
+	        <select id="find10" resultType="com.dto.DeptDTO">
+		     select deptno, dname, loc 
+		     from dept
+		     where deptno = 10
+		 </select>
+
+	      DeptDTO dto = session.selectOne("find10");
+
+
+	 나. 복수행
+
+
+
+      2) insert문
+
+      3) update문
+
+      4) delete문
+
+ 
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
       이클립스 Window > Preferences > XML ( Wild Web Developer ) 선택 >  Download external resource ... 체크
