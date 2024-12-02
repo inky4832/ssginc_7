@@ -1,0 +1,98 @@
+MyBatis 프레임워크
+
+1. 개요
+ - JDBC 사용을 편리하고 효율적이며 기능이 추가된 형태의 SQL Mapping Framework 이다. ( 외부 라이브러리 )
+ - ibatis( old 버전 )
+
+2. 환경설정 
+
+  - mybatis 라이브러리 (jar) 필요.
+
+    http://mybatis.org 
+
+
+    products 탭 > MyBatis 3 프로젝트 선택 >  download 선택 > mybatis-3.5.14 > mybatis-3.5.14.zip 다운하고 압축풀기
+  
+  - 이클립스에서 build path 
+
+    2개의 jar ( mybatis-3.5.14.jar 와 mysql-connector-j-8.0.33.jar )
+
+3. MyBaits 사용방법
+
+  1) JDBC에서 사용했던 4가지 정보를 외부파일에 저장한자. ( key=value 형식의 데이터는 *.properties 사용한다. )
+
+     - jdbc.properties
+     - src 폴더에 저장 ( package 설정 가능 )
+
+       src
+         com
+	   config
+	        jdbc.properties
+
+
+  2) DTO 클래스 작성
+    - DTO ( Data Transfer Object)는 테이블의 레코드 저장 용도로서
+      일반적으로 테이블당 하나씩 생성한다.
+
+      예> dept 테이블 --> com.dto.DeptDTO
+          deptno 컬럼      deptno 변수
+	  dname 컬럼       dname 변수
+	  loc   컬럼       loc    변수
+
+          emp 테이블 --> com.dto.EmpDTO
+
+    - 테이블의 컬럼명과 DTO 클래스의 변수명은 일치하는 것을 권장한다. ( 달라도 무관 )
+      이유는 테이블의 컬럼명과 일치하는 클래스의 변수에 자동으로 값을 저장한다.
+      만약 일치하지 않으면 개발자가 명시적으로 매핑작업을 추가해야 된다.
+
+
+  3) 2개의 xml 파일이 필요
+
+   가.  설정 파일
+      - Mybatis의 환경설정을 설정하는 용도. ( 내용은 MyBatis 문서 참조 )
+      - Configuration.xml
+      - src 폴더에 저장 ( package 설정 가능 )
+
+       src
+         com
+	   config
+	        Configuration.xml
+
+
+   나. mapper 파일
+      - JDBC에서 사용했던 SQL문을 설정하는 용도. ( 내용은 MyBatis 문서 참조 )
+      - 테이블단 하나씩 작성 (  테이블명Mapper.xml )
+      - src 폴더에 저장 ( package 설정 가능 )
+
+        src
+         com
+	   config
+	        DeptMapper.xml
+
+///////////////////////////////////////////////////////////////////
+     * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
+      이클립스 Window > Preferences > XML ( Wild Web Developer ) 선택 >  Download external resource ... 체크
+
+     * dtd, xsd
+     - xml은  eXtensible Markup Language 로서 태그로 구성되어 있음. 예> <태그명 속성명="속성값" 속성명="속성값"></태그명>
+             시작태그에 속성명="속성값" 지정할 수 있고 중첩이 가능하다.
+	     태그명과 속성명은 임의로 지정할 수 있고 사용자가 필요한 데이터를 저장하는 용도로 사용된다.
+	     예> <person>
+                   <name>홍길동</name>
+		   <age>20</age>
+	        </person>
+		<user 속성명="속성값">
+                   <name>홍길동</name>
+		   <age>20</age>
+		   <phone>010-1234</phone>
+		   <phone>010-23454</phone>
+	        </user>
+
+     - dtd 와 xsd 용도
+      
+       사용자간에 xml 의 태그명과 속성명, 데이터타입, 태그중복여부 및 횟수 등 약속을 정하는 문법이다.
+       
+        A 사용자(개인,기업,..)                   B 사용자(개인,기업,..)
+
+
+///////////////////////////////////////////////////////////////////
