@@ -86,6 +86,24 @@ MyBatis 프레임워크
          SqlSessionFactory 에서 SqlSession 을 얻음.
 	 이 SqlSession 의 메서드를 이용해서 DB 연동을 한다.
 
+
+    *  JDBC vs  MyBatis
+
+       가. JDBC 에서 필요한 API
+	  
+	   - java.sql.Connection
+	     java.sql.PreparedStatement
+	     java.sql.ResultSet 
+
+       나. MyBatis 에서 필요한 API
+
+           - org.apache.ibatis.session.SqlSession
+
+	      SqlSessionFactory에서 openSession() 이용해서 얻는다.
+
+
+
+
 ///////////////////////////////////////////////////////////////////
      * XML 다운로드 문제로 인해 xml 에서 에러 발생시 해결방법
       이클립스 Window > Preferences > XML ( Wild Web Developer ) 선택 >  Download external resource ... 체크
