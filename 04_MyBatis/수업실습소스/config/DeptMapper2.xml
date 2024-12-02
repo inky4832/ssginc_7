@@ -2,14 +2,17 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
- 
+<mapper namespace="com.config.DeptMapper2">
+   <select id="findAll" resultType="com.dto.DeptDTO">
+     select deptno, dname, loc 
+     from dept
+     order by deptno
+  </select>
+  
    <delete id="deleteDept" parameterType="string" >
      delete from dept
      where dname = #{dname}
    </delete>
- 
- 
  
    <update id="updateDept" parameterType="hashmap">
       update dept

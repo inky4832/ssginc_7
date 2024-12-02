@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
- 
+<mapper namespace="com.config.DeptMapper">
   <!--   복수행  -->
   <select id="findAll" resultType="com.dto.DeptDTO">
      select deptno, dname, loc 
      from dept
+     order by deptno desc
   </select>
   
   <select id="findByDname" 

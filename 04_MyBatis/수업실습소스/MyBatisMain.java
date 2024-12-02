@@ -13,11 +13,11 @@ public class MyBatisMain {
 		SqlSession session = MySqlSessionFactory.getSession();
 		
 		// 단일행
-		DeptDTO dto = session.selectOne("find10");
+		DeptDTO dto = session.selectOne("com.config.DeptMapper.find10");
 		System.out.println(dto);
 		System.out.println("##########################");
 		
-		DeptDTO dto2 = session.selectOne("findByDeptno", 40);
+		DeptDTO dto2 = session.selectOne("com.config.DeptMapper.findByDeptno", 40);
 		System.out.println(dto2);
 		System.out.println("##########################");
 		
@@ -25,7 +25,7 @@ public class MyBatisMain {
 		searchDTO.setDeptno(10);
 		searchDTO.setDname("ACCOUNTING");
 		DeptDTO dto3 = 
-				session.selectOne("findByDeptnoAndDname",
+				session.selectOne("com.config.DeptMapper.findByDeptnoAndDname",
 						searchDTO );
 		System.out.println(dto3);
 		System.out.println("##########################");
@@ -34,16 +34,16 @@ public class MyBatisMain {
 		map.put("xxx", 10);
 		map.put("yyy", "ACCOUNTING");
 		DeptDTO dto4 = 
-				session.selectOne("findByHashmap", map);
+				session.selectOne("com.config.DeptMapper.findByHashmap", map);
 		System.out.println(dto4);
 		System.out.println("##########################");
 		
 		// 복수행
-		List<DeptDTO> list = session.selectList("findAll");
+		List<DeptDTO> list = session.selectList("com.config.DeptMapper.findAll");
 		System.out.println(list);
 		System.out.println("##########################");
 		List<DeptDTO> list2 = 
-				session.selectList("findByDname", "인사");
+				session.selectList("com.config.DeptMapper.findByDname", "인사");
 		System.out.println(list2);
 		
 		//자원반납

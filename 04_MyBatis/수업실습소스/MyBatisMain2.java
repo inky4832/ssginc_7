@@ -28,12 +28,12 @@ public class MyBatisMain2 {
 		map.put("dname", "홍보부");
 		map.put("loc", "포항");
 		
-		int n3 = session.update("updateDept", map);
+		int n3 = session.update("com.config.DeptMapper2.updateDept", map);
 		session.commit();
 		System.out.println(n3);
 		System.out.println("#######################");
 		// delete 문
-		int n4 = session.delete("deleteDept", "관리");
+		int n4 = session.delete("com.config.DeptMapper2.deleteDept", "관리");
 		session.commit();
 		System.out.println(n4);
 		
