@@ -626,3 +626,81 @@ MyBatis 프레임워크
       List<EmpDTO> list = session.selectList(String, Object, new RowBounds(skip, perPage));
 
      ==>  new RowBounds( skip갯수, 읽어올 갯수  );
+
+4.  resultMap 사용
+
+   1) 용도 2가지
+
+     - 테이블의 컬럼명과 DTO의 변수명이 일치하지 않는 경우
+     - 조인(join)할 때
+
+    가. 테이블의 컬럼명과 DTO의 변수명이 일치하지 않는 경우
+
+       // DTO
+        public class EmpDTO {
+
+	private int empno;
+	private String usename;  // 실제 컬럼명은 ename
+	private String job;
+	private int mgr;
+	private String hiredate;  // 날짜데이터 가공할려면 LocalDate 타입으로 지정한다.
+	private int salary;      // 실제 컬럼명은 sal
+	private int commission;  // 실제 컬럼명은 comm       
+	private int deptno;
+
+	해결방법1:  alias
+	   select empno,
+	          ename as usename,
+		  ..
+		  sal as salary,
+		  comm as commission
+	해결방법2: 
+               <resultMap id="userResultMap" type="EmpDTO">
+		 <id     property="empno" column="empno" />
+		 <result property="username" column="ename"/>
+		 <result property="job" column="job"/>
+		 <result property="mgr" column="mgr"/>
+		 <result property="hiredate" column="hiredate"/>
+		 <result property="salary" column="sal"/>
+		 <result property="commission" column="comm"/>
+		 <result property="deptno" column="deptno"/>
+		</resultMap>
+	   
+	        <select id="" resultMap="userResultMap">
+                         select  empno,ename,job,mgr,
+	                hiredate,
+	                sal,comm,deptno
+	                from emp
+		</select>
+
+
+   나. 조인 (join)
+
+      //가.  emp입장에서는 dept 관계가 1:1
+      Emp ---------------- Dept
+
+      => 자바코드 방법
+ 
+         EmpDTO                 DeptDTO
+  
+     public class EmpDTO{       public class DeptDTO {
+         int empno;                   int deptno;
+	 String dname;                String dname;
+	 ..                           String loc;
+	 // int deptno;         }
+         DeptDTO dto;
+     }
+
+      //나.  dept입장에서는 emp 관계가 N:1
+      Emp ---------------- Dept
+
+      => 자바코드 방법
+       public class EmpDTO{       public class DeptDTO {
+         int empno;                   int deptno;
+	 String dname;                String dname;
+	 ..                           String loc;
+	                              
+				      List<EmpDTO> empList;
+	 int deptno;         }
+         
+     }
