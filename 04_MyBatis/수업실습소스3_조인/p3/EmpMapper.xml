@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.EmpMapper">
+ 
+      <resultMap id="userResultMap" type="DeptDTO">
+		 <id     property="deptno" column="deptno" />
+		 <result property="dname" column="dname"/>
+		 <result property="loc" column="loc"/>
+	     
+	 	 <!--  Emp 데이터 저장 -->
+	 	 <collection property="empList" ofType="EmpDTO">
+			 <id     property="empno" column="empno" />
+			 <result property="username" column="ename"/>
+			 <result property="job" column="job"/>
+			 <result property="mgr" column="mgr"/>
+			 <result property="hiredate" column="hiredate"/>
+			 <result property="salary" column="sal"/>
+			 <result property="commission" column="comm"/>
+         </collection>
+	 </resultMap>
+	 
+	 <select id="empDeptJoin" resultMap="userResultMap">
+     select *
+     from emp join dept on emp.deptno = dept.deptno
+     order by empno
+  </select>
+	 
+	 
+	 
+</mapper>
