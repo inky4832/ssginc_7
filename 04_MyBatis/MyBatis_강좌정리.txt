@@ -561,3 +561,68 @@ MyBatis 프레임워크
 		int n3 = session.update("com.config.EmpMapper.updateDynamic", dto3);
 		session.commit();
 		System.out.println(n3 +"가 수정됨");
+
+
+  6) 조건이 여러개
+
+       mysql sql문:
+               
+          
+              job 이 'SALESMAN' 이면  sal > 1500 조회
+                 'CLERK'     이면  sal > 2500 조회
+                 모두 아니면     sal > 3000 조회
+
+	  mybatis 문:
+            <select id="selectChoose" parameterType="EmpDTO" resultType="EmpDTO">
+            select  empno,ename,job,mgr,
+	                hiredate,
+	                sal,comm,deptno
+	        from emp
+	        <where>
+	           <choose>
+	             <when test="job == 'SALESMAN' ">
+	                 sal &gt; 1500
+	             </when>
+	             <when test="job == 'CLERK' ">
+	                 sal &gt; 2500
+	             </when>
+	             <otherwise>
+	                 sal &gt; 3000
+	             </otherwise>
+	           </choose>
+	        </where>
+         </select>
+ 
+
+
+	  자바 코드:
+
+	 //6. 다중 조건
+		EmpDTO dto4 = new EmpDTO();
+		dto4.setJob("MANAGER");  // CLERK , MANAGER
+		List<EmpDTO> chooseList = session.selectList("com.config.EmpMapper.selectChoose", dto4);
+		for (EmpDTO empDTO : chooseList) {
+		   System.out.println(empDTO);
+	    }
+
+   7) 단일값 리턴
+
+     예>
+         select count(*)
+	 from emp
+
+
+	int cnt = session.selectOne("id");
+
+   8) 페이징 처리 
+    - 반드시 테이블 정렬 필수
+
+    - 코드구현;
+
+      int perPage= 3;
+      int curPage = 1;
+      int skip = (curPage-1)*perPage;
+
+      List<EmpDTO> list = session.selectList(String, Object, new RowBounds(skip, perPage));
+
+     ==>  new RowBounds( skip갯수, 읽어올 갯수  );
