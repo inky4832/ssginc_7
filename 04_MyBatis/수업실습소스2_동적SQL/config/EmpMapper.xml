@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.EmpMapper">
+
+    <!--  멀티 select
+    
+           mysql sql문:
+           
+              select 
+              from emp
+              where empno IN ( 7369, ... )
+     -->
+      <select id="selectMulti" parameterType="arraylist" resultType="EmpDTO">
+            select empno,
+	          ename,
+	          job,
+	          mgr,
+	          hiredate,
+	          sal,
+	          comm,
+	          deptno
+	   from emp
+	     <where>
+                    empno IN
+                     <foreach item="item" collection="list"  separator="," open="(" close=")">
+                         #{item} 
+                     </foreach>
+                </where>
+      </select>
+
+
+
+     <!--  멀티 delete
+          mysql sql문:
+             delete from emp 
+             where empno IN ( 1001, 1002,.... )
+      -->
+      <delete id="deleteMulti" parameterType="arraylist">
+                delete from emp 
+                <where>
+                    empno IN
+                     <foreach item="item" collection="list"  separator="," open="(" close=")">
+                         #{item} 
+                     </foreach>
+                </where>
+	</delete>
+
+
+    <!--  멀티 insert 
+    
+        mysql sql문:
+        
+             insert into emp ( empno, ename, sal )
+             values (1001,'홍길동1',500), (1002,'홍길동1',500),(1003,'홍길동1',500)
+    -->
+    <insert id="insertMulti" parameterType="arraylist">
+         insert into emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+         values
+         <foreach item="item" collection="list"  separator=",">
+           (#{item.empno},#{item.ename},#{item.job},#{item.mgr},now(),#{item.sal},#{item.comm},#{item.deptno})
+         </foreach>
+    </insert>
+
+	<select id="findAll" resultType="EmpDTO">
+	   select empno,
+	          ename,
+	          job,
+	          mgr,
+	          hiredate,
+	          sal,
+	          comm,
+	          deptno
+	   from emp
+	</select>
+  
+</mapper>
