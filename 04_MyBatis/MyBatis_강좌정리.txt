@@ -323,3 +323,110 @@ MyBatis 프레임워크
 	       int n = session.insert("namespace명.mapper의 id값", 파라미터 )
 	       int n = session.update("namespace명.mapper의 id값", 파라미터 )
 	       int n = session.delete("namespace명.mapper의 id값", 파라미터 )
+
+///////////////////////////////////////////////////////////////////
+2 일차
+
+1. DTO 별칭 설정
+
+  - Configuration.xml 에서 설정
+
+  <!-- DTO 별칭 -->
+  <typeAliases>
+    <typeAlias alias="DeptDTO" type="com.dto.DeptDTO" />
+  </typeAliases>
+
+
+2. CDATA 섹션 ( XML 문법 )
+ 문법:
+   <![CDATA[
+                     select deptno, dname, loc 
+		     from dept
+		     where deptno < 40
+    ]]>
+
+
+3. 동적 sql 문 작성
+
+  1) 멀티 insert 문
+
+      mysql sql문:
+        
+             insert into emp ( empno, ename, sal )
+             values (1001,'홍길동1',500), (1002,'홍길동1',500),(1003,'홍길동1',500)
+
+
+     mybatis 문:
+        <insert id="insertMulti" parameterType="arraylist">
+		 insert into emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+		 values
+		 <foreach item="item" collection="list"  separator=",">
+		   (#{item.empno},#{item.ename},#{item.job},#{item.mgr},now(),#{item.sal},#{item.comm},#{item.deptno})
+		 </foreach>
+        </insert>
+  
+      자바 코드:
+         	EmpDTO e1 = new EmpDTO(1001, "홍길동1", "SALESMAN", 7698, null, 500, 100, 30);
+		EmpDTO e2 = new EmpDTO(1002, "홍길동2", "SALESMAN", 7698, null, 500, 100, 30);
+		EmpDTO e3 = new EmpDTO(1003, "홍길동3", "SALESMAN", 7698, null, 500, 100, 30);
+		
+		List<EmpDTO> multiList = Arrays.asList(e1, e2, e3); 
+		int n = session.insert("com.config.EmpMapper.insertMulti", multiList);
+		session.commit();
+		System.out.println(n +" 개가 저장됨");
+
+
+ 2) 멀티 delete 문
+
+      mysql sql문:
+               delete from emp 
+             where empno IN ( 1001, 1002,.... )
+
+      mybatis 문:
+            <delete id="deleteMulti" parameterType="arraylist">
+                delete from emp 
+                <where>
+                    empno IN
+                     <foreach item="item" collection="list"  separator="," open="(" close=")">
+                         #{item} 
+                     </foreach>
+                </where>
+	</delete>
+
+      자바 코드:
+         List<Integer> delList = Arrays.asList(1001, 1002);
+		int n2 = session.delete("com.config.EmpMapper.deleteMulti", delList);
+		session.commit();
+		System.out.println(n2 +" 개가 삭제됨");
+
+  3) 멀티 select 문
+ 
+         mysql sql문:
+                   select 
+              from emp
+              where empno IN ( 7369, ... )
+ 
+	 mybatis 문:
+                 <select id="selectMulti" parameterType="arraylist" resultType="EmpDTO">
+            select empno,
+	          ename,
+	          job,
+	          mgr,
+	          hiredate,
+	          sal,
+	          comm,
+	          deptno
+	   from emp
+	     <where>
+                    empno IN
+                     <foreach item="item" collection="list"  separator="," open="(" close=")">
+                         #{item} 
+                     </foreach>
+                </where>
+      </select>
+
+	  자바 코드:
+
+	    List<Integer> selectList = Arrays.asList(7369, 7499, 7521);
+		List<EmpDTO>  selectMultiList = session.selectList("com.config.EmpMapper.selectMulti", selectList);
+		System.out.println(selectMultiList);
