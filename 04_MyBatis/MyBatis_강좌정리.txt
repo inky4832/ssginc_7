@@ -345,6 +345,8 @@ MyBatis 프레임워크
 		     where deptno < 40
     ]]>
 
+    < : &lt;
+    > : &gt;
 
 3. 동적 sql 문 작성
 
@@ -430,3 +432,132 @@ MyBatis 프레임워크
 	    List<Integer> selectList = Arrays.asList(7369, 7499, 7521);
 		List<EmpDTO>  selectMultiList = session.selectList("com.config.EmpMapper.selectMulti", selectList);
 		System.out.println(selectMultiList);
+
+
+   4) 동적으로 조건 지정1 - 조건이 하나인 경우
+
+           mysql sql문:
+              select 
+               from emp
+               
+               또는
+               
+               select 
+               from emp
+               where job = 값
+
+	   mybatis 문:
+               <select id="selectIf" parameterType="EmpDTO" resultType="EmpDTO">
+		       select  empno,ename,job,mgr,
+				  hiredate,
+				  sal,comm,deptno
+			   from emp
+			   <where>
+					<if test="job != null">
+						 job = #{job}
+					</if>
+			   </where>
+               </select>
+
+	   자바 코드:
+
+	     System.out.println("4. 동적 조건 지정####################################");
+		EmpDTO dto = new EmpDTO();
+		//dto.setJob("SALESMAN");
+		List<EmpDTO> selectMultiList2 = session.selectList("com.config.EmpMapper.selectIf", dto);
+		System.out.println(selectMultiList2);
+		System.out.println(selectMultiList2.size());
+
+   4) 동적으로 조건 지정2 - 조건이 여러개인 경우
+
+        mysql sql문:
+                      
+               select 
+               from emp
+               
+               또는
+               select 
+               from emp
+               where job = 값
+               
+               또는
+                select 
+               from emp
+               where sal > 값
+               
+                 또는
+                 select 
+               from emp
+               where job = 값 or sal > 값
+
+	 mybatis 문:
+               <select id="selectIf2" parameterType="EmpDTO" resultType="EmpDTO">
+		       select  empno,ename,job,mgr,
+				  hiredate,
+				  sal,comm,deptno
+			   from emp
+			   <where>
+					<if test="job != null">
+						 job = #{job}
+					</if>
+					<if test="sal != 0">
+						 or sal &lt; #{sal}
+					</if>
+			   </where>
+	      </select>
+
+	 자바 코드:
+
+	 System.out.println("4. 동적 조건 지정2 ( 여러개 )####################################");
+		EmpDTO dto2 = new EmpDTO();
+//		dto2.setJob("SALESMAN");
+//		dto2.setSal(1000);
+		
+		List<EmpDTO> selectMultiList3 = session.selectList("com.config.EmpMapper.selectIf2", dto2);
+		System.out.println(selectMultiList3);
+		System.out.println(selectMultiList3.size());
+
+
+   5) 동적으로 update
+
+         mysql sql문:
+               
+            update emp
+            set sal = 값, mgr= 값
+            where empno = 값
+            
+            또는
+             update emp
+            set sal = 값
+            where empno = 값
+            
+            또는
+             update emp
+            set  mgr= 값
+            where empno = 값
+
+	  mybatis 문:
+            <update id="updateDynamic" parameterType="EmpDTO">
+      	  update emp
+      	  <set>
+      	    <if test="sal != 0">
+      	       sal = #{sal},
+      	    </if>
+      	    <if test="mgr != 0">
+      	       mgr= #{mgr}
+      	    </if>
+      	  </set>
+      	  where empno=#{empno}
+      </update>
+
+
+	  자바 코드:
+
+	  // 5. 동적수정
+		EmpDTO dto3 = new EmpDTO();
+		//dto3.setSal(5000);
+		dto3.setMgr(7369);
+		dto3.setEmpno(1003);
+		int n3 = session.update("com.config.EmpMapper.updateDynamic", dto3);
+		session.commit();
+		System.out.println(n3 +"가 수정됨");
