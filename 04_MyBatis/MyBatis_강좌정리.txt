@@ -233,3 +233,93 @@ MyBatis 프레임워크
 
 
 ///////////////////////////////////////////////////////////////////
+1 일차 리뷰
+
+1. 환경설정
+
+  - 2개의 jar 필요 ( 다운로드에 이클립스에 build path )
+    mysql 드라이버: mysql-connector-j-8.0.33.jar
+    mybatis 라이브러리: mybatis-3.5.14.jar
+
+2. mybatis 작업순서
+
+
+   1) jdbc.properties
+      - key=value 형식의 포맷을 가짐.
+      - text file encoding은 utf-8로 변경.
+      - 용도: DB 연동위한 4가지 정보를 설정.
+
+        jdbc.driver=com.mysql.cj.jdbc.Driver
+	jdbc.url=jdbc:mysql://localhost:3306/testdb
+	jdbc.userid=root
+	jdbc.passwd=1234
+
+       - src 에 저장 ( classpath 경로에 저장하면 됨 )
+
+   2) 2개의 XML 파일
+
+     가. mybatis 환경설정
+       - Configuration.xml
+       - 용도:
+            jdbc.properties 등록
+	    ${key}이용해서 DB연동 위한 설정
+	    mapper 등록
+
+
+     나. mapper 파일로서 sql 문 저장
+        - 테이블Mapper.xml
+	- 테이블당 하나씩 작성.
+        - 용도:
+	      DB연동위한 SQL 문 설정
+
+	   select 문:  
+	              <select id="" resultType=""  parameterType=""
+                          select 문
+			  where 컬럼명= 값
+		      </select>
+
+                   id 용도: 식별, 하나의 mapper 파일안에서는 유일한 값.
+                   resultType 용도: select 시 실행결과인 테이블의 하나의 레코드를 저장할 타입.
+		                  일반적으로 DTO 설정.( 반드시 패키지명 포함)
+				  예> resultType="com.dto.DeptDTO"
+
+		   parameterType 용도:  sql문에 전달하는 값의 타입.
+		                      DTO 및 HashMap 설정.
+
+	    select 자바코드:
+	        SqlSessionFactory에서 SqlSession 얻어야 된다. (**************)
+
+		SqlSession session  = MySqlSessionFactory.getSession();
+
+		 단일행:
+                        DTO  변수   = session.selectOne("namespace명.mapper의 id값")
+			DTO  변수   =session.selectOne("namespace명.mapper의 id값", 파라미터 )
+
+		 복수행:
+
+		         List<DTO> 변수 = session.selectList("namespace명.mapper의 id값")
+			 List<DTO> 변수 = session.selectList("namespace명.mapper의 id값", 파라미터 ))
+
+	 DML 문:
+	         <insert id="" parameterType="">
+                    insert 
+		    values ( 값, 값 )
+		 </insert>
+
+		 <update id="" parameterType="">
+                    update 
+		    set 변수= 값, 변수= 값 
+		    where 컬럼명= 값
+		 </update>
+
+		 <delete id="" parameterType="">
+                    delete from 테이블명
+		    where 컬럼명= 값
+		 </delete>
+
+         자바코드:
+	       SqlSession session  = MySqlSessionFactory.getSession();
+
+	       int n = session.insert("namespace명.mapper의 id값", 파라미터 )
+	       int n = session.update("namespace명.mapper의 id값", 파라미터 )
+	       int n = session.delete("namespace명.mapper의 id값", 파라미터 )
