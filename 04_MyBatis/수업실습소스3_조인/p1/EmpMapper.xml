@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.EmpMapper">
+ 
+   <!-- resultMap 사용예1 - 변수명과 컬럼명이 다른 경우 -->
+   <resultMap id="userResultMap" type="EmpDTO">
+		 <id     property="empno" column="empno" />
+		 <result property="username" column="ename"/>
+		 <result property="job" column="job"/>
+		 <result property="mgr" column="mgr"/>
+		 <result property="hiredate" column="hiredate"/>
+		 <result property="salary" column="sal"/>
+		 <result property="commission" column="comm"/>
+		 <result property="deptno" column="deptno"/>
+  </resultMap>
+    <select id="findAll2" resultMap="userResultMap">
+      select  empno,
+              ename ,
+              job,
+              mgr,
+              hiredate,
+              sal ,
+              comm ,
+              deptno
+       from emp
+    </select>
+   
+   
+   
+   
+   
+    <select id="findAll" resultType="EmpDTO">
+      select  empno,
+              ename as username,
+              job,
+              mgr,
+              hiredate,
+              sal as salary,
+              comm as commission,
+              deptno
+       from emp
+    </select>
+  
+  
+</mapper>
