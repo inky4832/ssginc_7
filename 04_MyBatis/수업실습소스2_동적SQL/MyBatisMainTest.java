@@ -57,13 +57,25 @@ public class MyBatisMainTest {
 		
 		
 		// 5. 동적수정
-		EmpDTO dto3 = new EmpDTO();
-//dto3.setSal(5000);
-dto3.setMgr(7369);
-		dto3.setEmpno(1003);
-		int n3 = session.update("com.config.EmpMapper.updateDynamic", dto3);
-		session.commit();
-		System.out.println(n3 +"가 수정됨");
+//		EmpDTO dto3 = new EmpDTO();
+////dto3.setSal(5000);
+//dto3.setMgr(7369);
+//		dto3.setEmpno(1003);
+//		int n3 = session.update("com.config.EmpMapper.updateDynamic", dto3);
+//		session.commit();
+//		System.out.println(n3 +"가 수정됨");
+		
+		//6. 다중 조건
+//		EmpDTO dto4 = new EmpDTO();
+//		dto4.setJob("MANAGER");  // CLERK , MANAGER
+//		List<EmpDTO> chooseList = session.selectList("com.config.EmpMapper.selectChoose", dto4);
+//		for (EmpDTO empDTO : chooseList) {
+//		   System.out.println(empDTO);
+//	    }
+
+		//7. 단일값
+		int cnt = session.selectOne("com.config.EmpMapper.singleValue");
+		System.out.println("count(*):" + cnt );
 		
 		System.out.println("####################################");
 //		List<EmpDTO> list = session.selectList("com.config.EmpMapper.findAll");

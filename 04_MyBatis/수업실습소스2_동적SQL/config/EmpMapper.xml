@@ -4,6 +4,53 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.config.EmpMapper">
  
+   <!--  페이징 처리 -->
+  <select id="paging" resultType="EmpDTO">
+           select  empno,ename,job,mgr,
+	                hiredate,
+	                sal,comm,deptno
+	        from emp
+	        order by empno desc
+  </select>
+ 
+ 
+   <!--  단일값 -->
+   <select id="singleValue" resultType="int">
+      select count(*)
+      from emp
+   </select>
+ 
+ 
+ 
+ 
+    <!--  조건이 여러개
+    
+          job 이 'SALESMAN' 이면  sal > 1500 조회
+                 'CLERK'     이면  sal > 2500 조회
+                 모두 아니면     sal > 3000 조회
+
+     -->
+     <select id="selectChoose" parameterType="EmpDTO" resultType="EmpDTO">
+            select  empno,ename,job,mgr,
+	                hiredate,
+	                sal,comm,deptno
+	        from emp
+	        <where>
+	           <choose>
+	             <when test="job == 'SALESMAN' ">
+	                 sal &gt; 1500
+	             </when>
+	             <when test="job == 'CLERK' ">
+	                 sal &gt; 2500
+	             </when>
+	             <otherwise>
+	                 sal &gt; 3000
+	             </otherwise>
+	           </choose>
+	        </where>
+     </select>
+ 
+ 
  
      <!--  동적 수정
      
