@@ -3,6 +3,116 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.config.EmpMapper">
+ 
+ 
+     <!--  동적 수정
+     
+            update emp
+            set sal = 값, mgr= 값
+            where empno = 값
+            
+            또는
+             update emp
+            set sal = 값
+            where empno = 값
+            
+            또는
+             update emp
+            set  mgr= 값
+            where empno = 값
+     
+      -->
+      <update id="updateDynamic" parameterType="EmpDTO">
+      	  update emp
+      	  <set>
+      	    <if test="sal != 0">
+      	       sal = #{sal},
+      	    </if>
+      	    <if test="mgr != 0">
+      	       mgr= #{mgr}
+      	    </if>
+      	  </set>
+      	  where empno=#{empno}
+      </update>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    <!--  동적 조건 지정2 - 여러개
+    
+           mysql sql문:
+           
+               select 
+               from emp
+               
+               또는
+               select 
+               from emp
+               where job = 값
+               
+               또는
+                select 
+               from emp
+               where sal > 값
+               
+                 또는
+                 select 
+               from emp
+               where job = 값 or sal > 값
+     -->
+ 
+  <select id="selectIf2" parameterType="EmpDTO" resultType="EmpDTO">
+       select  empno,ename,job,mgr,
+	          hiredate,
+	          sal,comm,deptno
+	   from emp
+	   <where>
+	   		<if test="job != null">
+	   			 job = #{job}
+	   		</if>
+	   		<if test="sal != 0">
+	   			 or sal &lt; #{sal}
+	   		</if>
+	   </where>
+     </select>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    <!--  동적 조건 지정1 - 조건하나
+    
+           mysql sql문:
+           
+               select 
+               from emp
+               
+               또는
+               
+               select 
+               from emp
+               where job = 값
+               
+     -->
+     <select id="selectIf" parameterType="EmpDTO" resultType="EmpDTO">
+       select  empno,ename,job,mgr,
+	          hiredate,
+	          sal,comm,deptno
+	   from emp
+	   <where>
+	   		<if test="job != null">
+	   			 job = #{job}
+	   		</if>
+	   </where>
+     </select>
+
+
 
     <!--  멀티 select
     
