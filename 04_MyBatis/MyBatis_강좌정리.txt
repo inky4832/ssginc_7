@@ -691,7 +691,35 @@ MyBatis 프레임워크
          DeptDTO dto;
      }
 
-      //나.  dept입장에서는 emp 관계가 N:1
+      => mybatis 설정
+
+         <resultMap id="userResultMap" type="EmpDTO">
+		 <id     property="empno" column="empno" />
+		 <result property="username" column="ename"/>
+		 <result property="job" column="job"/>
+		 <result property="mgr" column="mgr"/>
+		 <result property="hiredate" column="hiredate"/>
+		 <result property="salary" column="sal"/>
+		 <result property="commission" column="comm"/>
+	     <!--  dept 테이블 정보저장 -->
+	      <association property="dept"  javaType="DeptDTO">
+			 <id property="deptno" column="xxx"/>
+			 <result property="dname" column="yyy"/>
+			 <result property="loc" column="zzz"/>
+		  </association>
+	  </resultMap>
+
+	  <!--  emp와 dept 조인  -->
+	  <select id="empDeptJoin" resultMap="userResultMap">
+	     select empno, ename, job, mgr, hiredate, sal, comm,
+		    dept.deptno as xxx,
+		    dept.dname as yyy,
+		    dept.loc as zzz
+	     from emp join dept on emp.deptno = dept.deptno
+	     order by empno
+	  </select>
+
+      //나.  dept입장에서는 emp 관계가 1:N
       Emp ---------------- Dept
 
       => 자바코드 방법
@@ -704,3 +732,42 @@ MyBatis 프레임워크
 	 int deptno;         }
          
      }
+
+      => mybatis 설정
+         <resultMap id="userResultMap" type="DeptDTO">
+		 <id     property="deptno" column="deptno" />
+		 <result property="dname" column="dname"/>
+		 <result property="loc" column="loc"/>
+	     
+	 	 <!--  Emp 데이터 저장 -->
+	 	 <collection property="empList" ofType="EmpDTO">
+			 <id     property="empno" column="empno" />
+			 <result property="username" column="ename"/>
+			 <result property="job" column="job"/>
+			 <result property="mgr" column="mgr"/>
+			 <result property="hiredate" column="hiredate"/>
+			 <result property="salary" column="sal"/>
+			 <result property="commission" column="comm"/>
+         </collection>
+	 </resultMap>
+	 
+	 <select id="empDeptJoin" resultMap="userResultMap">
+	     select *
+	     from emp join dept on emp.deptno = dept.deptno
+	     order by empno
+	  </select>
+//////////////////////////////////////////////////////////////////////////////////////
+3일차
+
+1. 아키텍쳐
+                              EmpService
+ EmpMain     <---------->     EmpServiceImpl     <------------> EmpDAO <----------> MySQL
+ - main 메서드                  - 비즈니스 로직처리
+ - 화면처리                     - 트랜잭션처리(****)            EmpDTO
+
+
+2. 추가로 필요 파일
+  - jdbc.properties
+  - Configuration.xml ( jdbc.properties 설정, DTO 별칭 설정, mapper 등록 )
+  - EmpMapper.xml  ( emp 테이블의 crud 위한 sql 문 설정 )
+  - MysqlSessionFactory.java ( Configuration.xml 설정하고 SqlSessionFactory에서 SqlSession 리턴 )
